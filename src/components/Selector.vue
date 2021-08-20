@@ -1,10 +1,10 @@
 <template>
-    <div class="selector" v-on:click="toggle">
-        <div :class="{arrow: showArrow, code: showCode}">
-            {{ language }}
+    <div class="selector" @click="toggleDropdown" @focusout="hideDropdown" tabindex="0">
+        <div :class="{arrow: showArrow, mark: showMark}">
+            {{ mark }}
         </div>
         <transition name="fade">
-            <div class="dropdown" :style="{ width: width, maxWidth: maxWidth }" v-if="show">
+            <div class="dropdown" :style="{ width: width, height: height }" v-if="show">
                 <slot></slot>
             </div>
         </transition>
@@ -19,11 +19,11 @@
                 type: String,
                 default: '80px'
             },
-            maxWidth: {
+            height: {
                 type: String,
-                default: '160px'
+                default: 'auto'
             },
-            language: {
+            mark: {
                 type: String,
                 default: ''
             },
@@ -39,17 +39,20 @@
         },
         computed: {
             showArrow(){
-                return this.language === '' ? true : false
+                return this.mark === '' ? true : false
             },
-            showCode(){
-                return this.language === '' ? false : true
+            showMark(){
+                return this.mark === '' ? false : true
             }
         },
         methods: {
-            toggle(){
+            toggleDropdown(){
                 if (this.disabled == false) {
-                    this.show == false ? this.show = true : this.show = false
+                    this.show == true ? this.show = false : this.show = true
                 }
+            },
+            hideDropdown(){
+                this.show = false
             }
         }
     }
@@ -70,12 +73,14 @@
         position: relative;
         width: 10px;
         height: 10px;
-        &:hover > .code,
+        &:hover > .mark,
         &:hover > .arrow {
             opacity: .5;
         }
-        .code {
+        .mark {
             transition: opacity .2s ease;
+            white-space:nowrap;
+            direction: rtl;
             font-family: sans-serif;
             position: absolute;
             top: 0;
@@ -118,13 +123,11 @@
         }
         .dropdown {
             position: absolute;
-            overflow: hidden;
+            overflow: auto;
             top: 20px;
             right: 0;
             border-radius: 4px;
-            background: #fff;
             box-sizing: border-box;
-            border: 1px solid #ddd;
             box-shadow: 0 2px 12px rgba(0, 0, 0, .15);
         }
     }

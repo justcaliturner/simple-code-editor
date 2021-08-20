@@ -1,15 +1,15 @@
 <template>
     <div class="code_editor" :style="{width: width, height: height}">
-        <Selector width="105px" :language="code" :disabled="false">
+        <Selector width="105px" :mark="mark" :disabled="disableSelect" :hide="hide">
             <ul class="panel">
-                <li @click="switch_javascript">JavaScript</li>
-                <li @click="switch_css">CSS</li>
-                <li @click="switch_html">HTML</li>
+                <li v-for="lang in languageList" :key="lang" @click="this.mark = lang[1]; this.languageClass = 'language-' + lang[0]">
+                    {{ lang[1] }}
+                </li>
             </ul>
         </Selector>
-        <textarea v-model="value"  @keydown.tab.prevent="tab" v-on:scroll="scroll"></textarea>
+        <textarea v-model="value"  @keydown.tab.prevent="tab" v-on:scroll="scroll" :disabled="disabled"></textarea>
             <pre>
-                <code :class="language" :style="{ top: top + 'px', left: left + 'px' }">{{ value }}</code>
+                <code :class="languageClass" :style="{ top: top + 'px', left: left + 'px' }">{{ value }}</code>
             </pre>
         </div>
 </template>
@@ -30,6 +30,17 @@
             height: {
                 type: String,
                 default: '150px'
+            },
+            disableSelect: {
+                type: Boolean,
+                default: false
+            },
+            language: {
+                type: Array
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         data: function(){
@@ -37,29 +48,19 @@
                 value: '<Selector width="100px" :language="code">',
                 top: 0,
                 left: 0,
-                language: 'language-html',
-                code: 'HTML'
+                languageClass: this.language[0][0],
+                mark: this.language[0][1],
+                hide: false,
+                languageList: this.language
             }
         },
         methods: {
-            tab: function () {
+            tab() {
                 document.execCommand("insertText", false, '    ');
             },
-            scroll: function (event) {
+            scroll(event) {
                 this.top = -event.target.scrollTop;
                 this.left = -event.target.scrollLeft
-            },
-            switch_javascript: function(){
-                this.code = 'JS';
-                this.language = 'language-javascript'
-            },
-            switch_css: function(){
-                this.code = 'CSS';
-                this.language = 'language-css'
-            },
-            switch_html: function(){
-                this.code = 'HTML';
-                this.language = 'language-html'
             }
         },
         mounted (){
@@ -89,7 +90,7 @@
         font-size: 16px;
         > textarea {
             box-sizing: border-box;
-            padding: 22px 16px;
+            padding: 26px 20px;
             caret-color: #ccc;
             -webkit-text-fill-color: transparent;
             font-family: 'source_code_proregular', monospace;
@@ -130,7 +131,7 @@
                 width: 100%;
                 height: 100%;
                 box-sizing: border-box;
-                padding: 22px 16px;
+                padding: 26px 20px;
                 display: block;
                 font-family: 'source_code_proregular', monospace;
                 font-size: 1em;
@@ -141,8 +142,8 @@
     .selector {
         position: absolute;
         z-index: 2;
-        top: 8px;
-        right: 20px;
+        top: 12px;
+        right: 22px;
     }
     .panel {
         font-size: 13px;
@@ -151,7 +152,10 @@
         list-style: none;
         margin: 0;
         text-align: left;
+        background: white;
         li {
+            color: #282c34;
+            transition: background .2s ease;
             box-sizing: border-box;
             padding: 0 12px;
             font-family: 'source_code_proregular', monospace;
@@ -160,12 +164,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 28px;
-            &:hover {
-                background: #eee;
+            &:first-child {
+                padding-top: 4px;
             }
-        }
-        li + li {
-            border-top: 1px solid #ddd;
+            &:last-child {
+                padding-bottom: 4px;
+            }
+            &:hover {
+                background: #e2e5e9;
+            }
         }
     }
 </style>
