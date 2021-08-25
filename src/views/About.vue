@@ -6,22 +6,27 @@
       width="600px"
       height="300px"
       dropdownWidth="110px"
-      dropdownHeight="170px"
-      :disableDropdown="true"
-      :languageSwitch="true"
+      dropdownHeight="auto"
+      :disableDropdown="false"
+      :languageSelect="true"
       :themeSwitch="true"
-      :disableEdit="true"
-      :language="[['html', 'HTML'], ['python', 'Python'], ['javascript', 'JS'], ['cpp', 'C++'], ['java', 'Java'], ['objectivec', 'Objective-C']]"
+      :disableEdit="false"
+      :copyCode="true"
+      :language="[['html', 'HTML'], ['python', 'Python'], ['javascript', 'JS'], ['cpp', 'C++'], ['java', 'Java'], ['objectivec', 'Objective-C'], ['swift', 'Swift']]"
     ></CodeEditor>
     <div>{{ value }}</div>
+    <Clipboard></Clipboard>
   </div>
 </template>
 
 <script>
   import CodeEditor from "@/components/CodeEditor";
+  import Clipboard from "@/components/Clipboard";
+
   export default {
     components: {
-      CodeEditor
+      CodeEditor,
+      Clipboard
     },
     data(){
       return {

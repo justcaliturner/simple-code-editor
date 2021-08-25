@@ -1,26 +1,29 @@
 <template>
     <div class="code_editor" :class="{dark: isDark, light: isLight}" :style="{width: width, height: height}">
-        <Dropdown :width="dropdownWidth" :height="dropdownHeight" :mark="mark" :disabled="disableDropdown" :hide="hide">
-            <div class="panel">
-                <ul class="lang_list" :style="{height: isFullHeight}" v-if="languageSwitch">
-                    <li v-for="lang in languageList" :key="lang" @click="this.mark = lang[1]; this.languageClass = 'language-' + lang[0]">
-                        {{ lang[1] }}
-                    </li>
-                </ul>
-                <ul class="switch_theme" v-if="themeSwitch">
-                    <li class="dark" :class="{selected: isDark}" @click="switchThemeToDark">Dark</li>
-                    <li class="light" :class="{selected: isLight}" @click="switchThemeToLight">Light</li>
-                </ul>
-            </div>
-        </Dropdown>
-        <textarea
-            @keydown.tab.prevent="tab"
-            v-on:scroll="scroll"
-            :disabled="disableEdit"
-            :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)"
-            v-if="canEdit"
-        ></textarea>
+        <div class="header">
+            <Dropdown :width="dropdownWidth" :mark="mark" :disabled="disableDropdown" :hide="hide">
+                <div class="panel">
+                    <ul class="lang_list" :style="{height: dropdownHeight}" v-if="languageSelect">
+                        <li v-for="lang in languageList" :key="lang" @click="this.mark = lang[1]; this.languageClass = 'language-' + lang[0]">
+                            {{ lang[1] }}
+                        </li>
+                    </ul>
+                    <ul class="switch_theme" v-if="themeSwitch">
+                        <li class="dark" :class="{selected: isDark}" @click="switchThemeToDark">Dark</li>
+                        <li class="light" :class="{selected: isLight}" @click="switchThemeToLight">Light</li>
+                    </ul>
+                </div>
+            </Dropdown>
+            <Clipboard width="16px" height="16px" :content="content" v-if="copyCode"></Clipboard>
+        </div>
+        <div class="code_area">
+            <textarea
+                @keydown.tab.prevent="tab"
+                v-on:scroll="scroll"
+                :disabled="disableEdit"
+                :value="modelValue"
+                @input="$emit('update:modelValue', $event.target.value)"
+            ></textarea>
             <pre>
                 <code
                     :class="languageClass"
@@ -28,14 +31,18 @@
                 >{{ modelValue }}</code>
             </pre>
         </div>
+    </div>
 </template>
 
 <script>
     import hljs from 'highlight.js';
     import Dropdown from "@/components/Dropdown";
+    import Clipboard from "@/components/Clipboard";
+
     export default {
         components: {
-            Dropdown
+            Dropdown,
+            Clipboard
         },
         name: 'CodeEditor',
         props: {
@@ -68,13 +75,17 @@
             },
             dropdownHeight: {
                 type: String,
-                default: '36px'
+                default: 'auto'
             },
-            languageSwitch: {
+            languageSelect: {
                 type: Boolean,
                 default: true
             },
             themeSwitch: {
+                type: Boolean,
+                default: true
+            },
+            copyCode: {
                 type: Boolean,
                 default: true
             }
@@ -88,13 +99,11 @@
                 hide: false,
                 languageList: this.language,
                 isDark: true,
-                isLight: false
+                isLight: false,
+                content: this.modelValue
             }
         },
         computed: {
-            isFullHeight(){
-                return this.themeSwitch == false ? '100%' : 'calc(100% - 36px)'
-            },
             canEdit(){
                 return this.disableEdit == false ? true : false
             }
@@ -124,13 +133,22 @@
         },
         updated (){
             this.$nextTick(function (){
-                 hljs.highlightAll()
+                 hljs.highlightAll();
+                 this.content = this.modelValue
             })
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .header {
+        position: relative;
+        z-index: 2;
+        box-sizing: border-box;
+        padding: 12px 12px 5px 18px;
+        display: flex;
+        justify-content: space-between;
+    }
     @font-face {
         font-family: 'source_code_proregular';
         src: url('../assets/fonts/sourcecodepro-regular-webfont.woff2') format('woff2'),
@@ -139,61 +157,64 @@
         font-style: normal;
     }
     .code_editor {
-        position: relative;
         font-size: 16px;
-        > textarea {
-            box-sizing: border-box;
-            padding: 26px 20px;
-            caret-color: rgba(127,127,127);
-            -webkit-text-fill-color: transparent;
-            font-family: 'source_code_proregular', monospace;
-            font-size: 1em;
-            white-space:nowrap;
-            border: 0;
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            left: 0;
+        border-radius: 6px;
+        overflow: hidden;
+        > .code_area {
+            position: relative;
             width: 100%;
-            height: 100%;
-            background: none;
-            resize: none;
-            &:hover {
-                outline: none;
-            }
-            &:focus-visible {
-                outline: none;
-            }
-        }
-        > pre {
-            margin: 0;
-            position: absolute;
-            z-index: 0;
-            top: 0;
-            left: 0;
-            overflow: auto;
-            border-radius: 6px;
-            width: 100%;
-            height: 100%;
-            text-align: left;
-            > code {
+            height: calc(100% - 34px);
+            > textarea {
+                box-sizing: border-box;
+                padding: 0px 20px 34px 20px;
+                caret-color: rgba(127,127,127);
+                -webkit-text-fill-color: transparent;
+                font-family: 'source_code_proregular', monospace;
+                font-size: 1em;
+                white-space:nowrap;
+                border: 0;
                 position: absolute;
+                z-index: 1;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                box-sizing: border-box;
-                padding: 26px 20px;
-                display: block;
-                font-family: 'source_code_proregular', monospace;
-                font-size: 1em;
+                background: none;
+                resize: none;
+                &:hover {
+                    outline: none;
+                }
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+            > pre {
+                margin: 0;
+                position: absolute;
+                z-index: 0;
+                top: 0;
+                left: 0;
+                overflow: auto;
+                width: 100%;
+                height: 100%;
+                text-align: left;
+                > code {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    box-sizing: border-box;
+                    padding: 0px 20px 34px 20px;
+                    display: block;
+                    font-family: 'source_code_proregular', monospace;
+                    font-size: 1em;
+                }
             }
         }
     }
-    // selector
+    // dropdown
     .switch_theme {
-        position: absolute;
-        bottom: 0;
         width: 100%;
         font-size: 0;
         margin: 0;
@@ -216,19 +237,14 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            box-shadow: inset 0 1px 0 0 #e2e5e9;
             & + li {
-                box-shadow: inset 1px 0 0 0 #e2e5e9;
+                box-shadow: inset 1px 0 0 0 #e2e5e9, inset 0 1px 0 0 #e2e5e9;
             }
             &:hover {
                 background: #e2e5e9;
             }
         }
-    }
-    .dropdown {
-        position: absolute;
-        z-index: 2;
-        top: 12px;
-        right: 22px;
     }
     .panel {
         height: 100%;
@@ -269,14 +285,16 @@
         }
 
     }
+    // copy
+    .copy {
+        font-family: 'source_code_proregular', monospace;
+    }
 </style>
 
 <style lang="scss">
 /* theme */
     .dark {
-        pre {
         background: #282c34;
-        }
         .hljs {
         color: #abb2bf;
         background: #282c34;
@@ -354,9 +372,7 @@
     }
 
     .light {
-        pre {
         background: #fafafa;
-        }
         .hljs {
         color: #383a42;
         background: #fafafa;

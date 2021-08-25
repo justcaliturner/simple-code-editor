@@ -1,11 +1,11 @@
 <template>
     <div class="dropdown" :class="{disabled: disabled}" @click="toggleDropdown" @focusout="hideDropdown" tabindex="0">
-        <div class="arrow" v-if="showArrow"></div>
-        <div class="mark" v-if="showMark">
+        <div class="mark">
             <div>{{ mark }}</div>
+            <svg v-if="showArrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </div>
         <transition name="fade">
-            <div class="dropdown" :style="{ width: width, height: height }" v-if="show">
+            <div class="panel" :style="{ width: width, height: height }" v-if="show">
                 <slot></slot>
             </div>
         </transition>
@@ -40,16 +40,13 @@
         },
         computed: {
             showArrow(){
-                return this.mark === '' ? true : false
-            },
-            showMark(){
-                return this.mark === '' ? false : true
+                return this.disabled == true ? false : true
             }
         },
         methods: {
             toggleDropdown(){
                 if (this.disabled == false) {
-                    this.show == true ? this.show = false : this.show = true
+                    this.show == true ? this.show = false : this.show = true;
                 }
             },
             hideDropdown(){
@@ -78,63 +75,32 @@
     .dropdown {
         cursor: pointer;
         position: relative;
-        width: 14px;
-        height: 14px;
-        &:hover > .mark,
-        &:hover > .arrow {
+        &:hover > .mark {
             opacity: 1;
         }
         .mark {
             transition: opacity .2s ease;
-            position: absolute;
             opacity: .5;
-            width: 100%;
-            height: 100%;
             display: flex;
-            flex-direction: row-reverse;
+            align-items: center;
             > div {
                 white-space:nowrap;
                 font-family: sans-serif;
                 font-size: 12px;
                 color: #aaa;
                 line-height: 16px;
-                text-align: right;
+            }
+            > svg {
+                margin-left: 3px;
+                margin-top: 1px;
             }
         }
-        .arrow {
-            transition: opacity .2s ease;
-            position: absolute;
-            opacity: .5;
-            top: -20%;
-            left: -10%;
-            width: 70%;
-            height: 70%;
-            transform: rotateZ(-135deg) translate(-50%);
-            &:before {
-                position: absolute;
-                content: "";
-                display: block;
-                width: 100%; 
-                height: 2px;
-                border-radius: 1px;
-                background: #aaa;
-            }
-            &:after {
-                position: absolute;
-                content: "";
-                display: block;
-                width: 2px; 
-                height: 100%;
-                border-radius: 1px;
-                background: #aaa;
-            }   
-        }
-        .dropdown {
+        .panel {
             position: absolute;
             border-radius: 4px;
             overflow: hidden;
             top: 24px;
-            right: 0;
+            left: 0;
             box-sizing: border-box;
             box-shadow: 0 2px 12px rgba(0, 0, 0, .15);
         }
