@@ -7,16 +7,11 @@
 </template>
 
 <script>
-export default {        
+export default {
     name: 'Clipboard',
     props: {
-        color: {
-            type: String,
-            default: '#aaa'
-        },
         content: {
-            type: String,
-            default: 'demo'
+            type: String
         },
         width: {
             type: String,
@@ -25,18 +20,21 @@ export default {
         height: {
             type: String,
             default: '20px'
+        },
+        color: {
+            type: String,
+            default: '#aaa'
         }
     },
     data(){
         return {
-            active: false,
             message: 'Copy code'
         }
     },
     methods: {
         selectContent(){
             this.$refs.textarea.select();
-            document.execCommand("copy")
+            document.execCommand('copy')
         },
         copy(event){
             this.selectContent();
@@ -52,16 +50,15 @@ export default {
 
 <style lang="scss" scoped>
     .clipboard {
-        position: relative;
         transition: .2s opacity ease;
+        position: relative;
         opacity: .5;
         width: 20px;
         height: 20px;
         cursor: pointer;
-        font-size: 0;
         > textarea {
-            padding: 0;
             position: absolute;
+            padding: 0;
             width: 0;
             height: 0;
             background: transparent;
@@ -79,13 +76,14 @@ export default {
             }
         }
         > .tooltip {
+            font-family: sans-serif;
             display: none;
             position: absolute;
             bottom: -40px;
             left: -70px;
             font-size: 12px;
             color: white;
-            width: 90px;
+            width: 86px;
             height: 32px;
             line-height: 32px;
             background: rgba(0,0,0,.8);

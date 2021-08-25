@@ -1,7 +1,7 @@
 <template>
-    <div class="code_editor" :class="{dark: isDark, light: isLight}" :style="{width: width, height: height}">
-        <div class="header">
-            <Dropdown :width="dropdownWidth" :mark="mark" :disabled="disableDropdown" :hide="hide">
+    <div class="code_editor" :class="{dark: isDark, light: isLight, simple_mode: isSimpleMode}" :style="{width: width, height: height, borderRadius: borderRadius}">
+        <div class="header" v-if="showHeader">
+            <Dropdown :width="dropdownWidth" :mark="mark" :disabled="disableDropdown" v-if="canSelect" :defaultDisplay="defaultDropdownDisplay">
                 <div class="panel">
                     <ul class="lang_list" :style="{height: dropdownHeight}" v-if="languageSelect">
                         <li v-for="lang in languageList" :key="lang" @click="this.mark = lang[1]; this.languageClass = 'language-' + lang[0]">
@@ -14,13 +14,14 @@
                     </ul>
                 </div>
             </Dropdown>
-            <Clipboard width="16px" height="16px" :content="content" v-if="copyCode"></Clipboard>
+            <Clipboard width="16px" height="16px" :content="content" v-if="canCopyCode"></Clipboard>
         </div>
-        <div class="code_area">
+        <div class="code_area" :style="{borderBottomLeftRadius: borderRadius, borderBottomRightRadius: borderRadius}">
             <textarea
+                v-if="activeTextarea"
                 @keydown.tab.prevent="tab"
                 v-on:scroll="scroll"
-                :disabled="disableEdit"
+                :disabled="disabledEdit"
                 :value="modelValue"
                 @input="$emit('update:modelValue', $event.target.value)"
             ></textarea>
@@ -49,15 +50,15 @@
             modelValue: {},
             width: {
                 type: String,
-                default: '400px'
+                default: '540px'
             },
             height: {
                 type: String,
-                default: '200px'
+                default: '140px'
             },
-            disableDropdown: {
-                type: Boolean,
-                default: false
+            borderRadius: {
+                type: String,
+                default: '12px'
             },
             language: {
                 type: Array,
@@ -81,6 +82,10 @@
                 type: Boolean,
                 default: true
             },
+            activeSelect: {
+                type: Boolean,
+                default: true
+            },
             themeSwitch: {
                 type: Boolean,
                 default: true
@@ -88,6 +93,18 @@
             copyCode: {
                 type: Boolean,
                 default: true
+            },
+            defaultDropdownDisplay: {
+                type: Boolean,
+                default: false
+            },
+            darkTheme: {
+                type: Boolean,
+                default: true
+            },
+            onlyRead: {
+                type: Boolean,
+                default: false
             }
         },
         data (){
@@ -96,16 +113,47 @@
                 left: 0,
                 languageClass: this.language[0][0],
                 mark: this.language[0][1],
-                hide: false,
                 languageList: this.language,
-                isDark: true,
-                isLight: false,
-                content: this.modelValue
+                content: this.modelValue,
+                isDark: this.darkTheme
             }
         },
         computed: {
-            canEdit(){
-                return this.disableEdit == false ? true : false
+            canCopyCode(){
+                if (this.onlyRead == true) {
+                    return false
+                } else {
+                    return this.copyCode
+                }
+            },
+            canSelect(){
+                if (this.onlyRead == true) {
+                    return false
+                } else {
+                    return this.activeSelect
+                }
+            },
+            disabledEdit(){
+                if (this.onlyRead == true) {
+                    return true
+                } else {
+                    return this.disableEdit
+                }
+            },
+            disableDropdown(){
+                return this.languageSelect == false && this.themeSwitch == false ? true : false
+            },
+            showHeader(){
+                return this.canSelect == false && this.canCopyCode == false ? false : true
+            },
+            isSimpleMode(){
+                return this.canSelect == false && this.canCopyCode == false ? true : false
+            },
+            activeTextarea(){
+                return this.canSelect == false && this.canCopyCode == false && this.disabledEdit == true ? false : true
+            },
+            isLight(){
+                return this.isDark == true ? false : true
             }
         },
         methods: {
@@ -117,12 +165,10 @@
                 this.left = -event.target.scrollLeft
             },
             switchThemeToDark(){
-                this.isDark = true;
-                this.isLight = false
+                this.isDark = true
             },
             switchThemeToLight(){
-                this.isDark = false;
-                this.isLight = true
+                this.isDark = false
             }
         },
         mounted (){
@@ -144,6 +190,7 @@
     .header {
         position: relative;
         z-index: 2;
+        height: 34px;
         box-sizing: border-box;
         padding: 12px 12px 5px 18px;
         display: flex;
@@ -156,17 +203,28 @@
         font-weight: normal;
         font-style: normal;
     }
+    .simple_mode {
+        > .code_area {
+            border-radius: v-bind(borderRadius);
+            height: 100% !important;
+            > textarea {
+                padding: 20px !important;
+            }
+            > pre > code {
+                padding: 20px !important;
+            }
+        }
+    }
     .code_editor {
         font-size: 16px;
-        border-radius: 6px;
-        overflow: hidden;
         > .code_area {
             position: relative;
             width: 100%;
             height: calc(100% - 34px);
+            overflow: hidden;
             > textarea {
                 box-sizing: border-box;
-                padding: 0px 20px 34px 20px;
+                padding: 0px 20px 12px 20px;
                 caret-color: rgba(127,127,127);
                 -webkit-text-fill-color: transparent;
                 font-family: 'source_code_proregular', monospace;
@@ -205,7 +263,7 @@
                     width: 100%;
                     height: 100%;
                     box-sizing: border-box;
-                    padding: 0px 20px 34px 20px;
+                    padding: 0px 20px 12px 20px;
                     display: block;
                     font-family: 'source_code_proregular', monospace;
                     font-size: 1em;
@@ -279,15 +337,8 @@
                     background: #e2e5e9;
                 }
             }
-            & + ul {
-                box-shadow: 0 -1px 0 0 #e2e5e9;
-            }
         }
 
-    }
-    // copy
-    .copy {
-        font-family: 'source_code_proregular', monospace;
     }
 </style>
 

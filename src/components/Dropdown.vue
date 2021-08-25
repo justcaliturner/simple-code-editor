@@ -2,7 +2,7 @@
     <div class="dropdown" :class="{disabled: disabled}" @click="toggleDropdown" @focusout="hideDropdown" tabindex="0">
         <div class="mark">
             <div>{{ mark }}</div>
-            <svg v-if="showArrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg v-if="showArrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" :stroke="color" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </div>
         <transition name="fade">
             <div class="panel" :style="{ width: width, height: height }" v-if="show">
@@ -31,11 +31,19 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            color: {
+                type: String,
+                default: '#aaa'
+            },
+            defaultDisplay: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return {
-                show: false
+                show: this.defaultDisplay
             }
         },
         computed: {
@@ -67,8 +75,7 @@
         transform: translateY(-10px);
     }
     .disabled {
-        &:hover > .mark,
-        &:hover > .arrow {
+        &:hover > .mark {
             opacity: .5 !important;
         }
     }
@@ -87,7 +94,7 @@
                 white-space:nowrap;
                 font-family: sans-serif;
                 font-size: 12px;
-                color: #aaa;
+                color: v-bind(color);
                 line-height: 16px;
             }
             > svg {

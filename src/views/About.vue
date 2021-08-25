@@ -1,36 +1,49 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <CodeEditor
+    <CodeEditor class="center"
       v-model="value"
-      width="600px"
-      height="300px"
-      dropdownWidth="110px"
-      dropdownHeight="auto"
-      :disableDropdown="false"
-      :languageSelect="true"
-      :themeSwitch="true"
-      :disableEdit="false"
-      :copyCode="true"
-      :language="[['html', 'HTML'], ['python', 'Python'], ['javascript', 'JS'], ['cpp', 'C++'], ['java', 'Java'], ['objectivec', 'Objective-C'], ['swift', 'Swift']]"
+      :copyCode="false"
+      :activeSelect="false"
+      :disableEdit="true"
+      borderRadius="12px"
     ></CodeEditor>
-    <div>{{ value }}</div>
-    <Clipboard></Clipboard>
+
+    <CodeEditor class="center"
+      v-model="value"
+      :onlyRead="true"
+    ></CodeEditor>
+
+    <CodeEditor class="center"
+      v-model="value2"
+      height="230px"
+      :defaultDropdownDisplay="true"
+      :language="[['css', 'CSS'], ['javascript', 'JS'], ['html', 'HTML']]"
+      :darkTheme="false"
+    ></CodeEditor>
   </div>
+
+  <div>{{ value }}</div>
 </template>
 
 <script>
   import CodeEditor from "@/components/CodeEditor";
-  import Clipboard from "@/components/Clipboard";
 
   export default {
     components: {
-      CodeEditor,
-      Clipboard
+      CodeEditor
     },
     data(){
       return {
-        value: '<Selector width="100px" :language="code">'
+        value: `import CodeEditor from '@/components/CodeEditor'`,
+        value2:
+`.switch_theme {
+    width: 100%;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    color: #878990;
+}`
       }
     }
   }
@@ -38,7 +51,11 @@
 
 <style lang="scss">
   body {
-    background: #eee;
+    background: #ccc;
+  }
+  .center {
+    margin: 0 auto;
+    margin-top: 20px;
   }
 
 </style>
