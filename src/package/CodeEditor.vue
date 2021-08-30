@@ -2,7 +2,7 @@
   <div
     class="code_editor"
     :class="{ dark: isDark, light: isLight, read_only: isReadOnly }"
-    :style="{ width: width, height: height, borderRadius: borderRadius }"
+    :style="{ width: width, height: height, borderRadius: borderRadius, zIndex: zIndex }"
   >
     <div class="header" v-if="showHeader">
       <Dropdown
@@ -59,6 +59,7 @@
       :style="{
         borderBottomLeftRadius: borderRadius,
         borderBottomRightRadius: borderRadius,
+        fontSize: fontSize
       }"
     >
       <textarea
@@ -104,7 +105,7 @@ export default {
       type: String,
       default: "12px",
     },
-    language: {
+    languages: {
       type: Array,
       default: function () {
         return [
@@ -152,39 +153,47 @@ export default {
       type: Boolean,
       default: true,
     },
-    onlyRead: {
+    readOnly: {
       type: Boolean,
       default: false,
     },
+    zIndex: {
+      type: String,
+      default: '',
+    },
+    fontSize: {
+      type: String,
+      default: '16px',
+    }
   },
   data() {
     return {
       top: 0,
       left: 0,
-      languageClass: this.language[0][0],
-      mark: this.language[0][1],
-      languageList: this.language,
+      languageClass: this.languages[0][0],
+      mark: this.languages[0][1],
+      languageList: this.languages,
       content: this.modelValue,
       isDark: this.darkTheme,
     };
   },
   computed: {
     canCopyCode() {
-      if (this.onlyRead == true) {
+      if (this.readOnly == true) {
         return false;
       } else {
         return this.copyCode;
       }
     },
     canSelect() {
-      if (this.onlyRead == true) {
+      if (this.readOnly == true) {
         return false;
       } else {
         return this.activeSelect;
       }
     },
     disabledEdit() {
-      if (this.onlyRead == true) {
+      if (this.readOnly == true) {
         return true;
       } else {
         return this.disableEdit;

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import CodeEditor from "@/components/CodeEditor";
+import CodeEditor from "@/package/CodeEditor";
 
 export default {
   components: {
