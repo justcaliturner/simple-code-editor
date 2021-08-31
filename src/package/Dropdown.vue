@@ -122,7 +122,7 @@ export default {
 }
 .dropdown > .panel {
   position: absolute;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   top: 24px;
   left: 0;

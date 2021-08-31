@@ -4,10 +4,10 @@
     <h1 class="title">Simple CodeEditor for Vue.js</h1>
     <div class="container">
       <div class="subtitle">
-        <p>It's easy to use, support both <mark>read-only</mark> and <mark>edit mode</mark>, hundreds of languages and theme styles powered by <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage"><mark>highlight.js</mark></a>, you can directly use it in the browser or use npm package in Single File Components</p>
+        <p>It's easy to use, support both <mark>read-only</mark> and <mark>edit mode</mark>, hundreds of languages and theme styles powered by <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage"><mark>highlight.js</mark></a>, you can directly use it in the browser or use NPM Package in Single File Components</p>
       </div>
-      <CodeEditor v-model="value1" width="100%" height="120px" :languages="[['html', 'HTML'], ['javascript', 'JavaScript'], ['css', 'CSS']]"></CodeEditor>
-      <CodeEditor v-model="value2" width="100%" height="400px"></CodeEditor>
+      <CodeEditor v-model="value1" width="100%" height="120px" :languages="[['html', 'HTML'], ['javascript', 'JavaScript'], ['css', 'CSS']]" :languageSelector="true"></CodeEditor>
+      <CodeEditor v-model="value2" width="100%" height="400px" :languageSelector="true"></CodeEditor>
     </div>
   </div>
   <!-- useage -->
@@ -15,9 +15,23 @@
     <div class="container">
       <h2>Useage</h2>
       <h3>In the Browser</h3>
-      <p>The bare minimum for using highlight.js on a web page is linking to the library along with one of the themes and calling
-      <code>highlightAll</code>:
-      </p>
+      <p>Step 1. Add CSS file</p>
+      <CodeEditor value='<link rel="stylesheet" href="/path/code_editor.min.css">'
+        :languages="[['html', 'HTML']]"
+        :languageSelector="true"
+        :readOnly="true"
+        width="100%"
+        height="76px"
+      />
+      <p>Step 2. Add JavaScript files, including the dependencies and the main script, and be careful to the files order, the dependencies should be more forward than the main script</p>
+      <CodeEditor value='<script src="/path/vue@3.2.6.prod.js"></script>
+<script src="/path/highlight.11.2.0.min.js"></script>
+<script src="/path/code_editor.prod.js"></script>'
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+        height="140px"
+      />
     </div>
   </div>
   <!-- API -->
@@ -34,6 +48,7 @@
 
 <script>
 import CodeEditor from "@/package/CodeEditor.vue";
+import 'highlight.js/styles/atom-one-dark.css';
 
 export default {
   name: "Home",
@@ -63,6 +78,8 @@ export default {
 </script>
 
 <style lang="scss">
+$body_width: 580px;
+
 @font-face {
     font-family: 'Quicksand';
     src: url('../assets/font/Quicksand-Regular.woff2') format('woff2'),
@@ -93,17 +110,18 @@ h1, h2, h3, h4 {
 }
 h1 {
   color: var(--grey_8);
+  margin: 0 0 50px 0;
   font-size: 46px;
   text-align: center;
 }
 h2 {
   color: var(--grey_8);
-  margin: 60px 0 40px 0;
+  margin: 0 0 40px 0;
   font-size: 34px;
 }
 h3 {
   color: var(--grey_8);
-  margin: 18px 0;
+  margin: 0 0 20px 0;
   font-size: 20px;
 }
 p {
@@ -111,7 +129,7 @@ p {
   line-height: 1.5;
 }
 code {
-  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono;
+  font-family: Consolas,Monaco,monospace;
   font-size: 85%;
   color: var(--main_5);
   background: var(--grey_2);
@@ -119,7 +137,7 @@ code {
   border-radius: .3em;
 }
 mark {
-  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono;
+  font-family: Consolas,Monaco,monospace;
   color: var(--main_5);
   background: var(--grey_2);
   padding: .2em .4em;
@@ -145,10 +163,16 @@ mark {
 }
 .container {
   margin: 0 auto;
-  max-width: 560px;
+  max-width: $body_width;
 }
 // useage
 .useage {
-
+  background: var(--grey_3);
+  padding: 60px 20px;
+}
+// api
+.api {
+  background: var(--grey_3);
+  padding: 60px 20px;
 }
 </style>

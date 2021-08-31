@@ -226,7 +226,7 @@ const CodeEditor = {
         },
         fontSize: {
             type: String,
-            default: '16px',
+            default: '17px',
         }
     },
     data() {
@@ -234,7 +234,7 @@ const CodeEditor = {
             top: 0,
             left: 0,
             languageClass: this.languages[0][0],
-            mark: this.languages[0][1],
+            mark: this.languages[0][1] === undefined ? this.languages[0][0] : this.languages[0][1],
             languageList: this.languages,
             content: this.modelValue,
             isDark: this.darkTheme,
@@ -339,11 +339,11 @@ const CodeEditor = {
             v-for="lang in languageList"
             :key="lang"
             @click="
-            this.mark = lang[1];
-            this.languageClass = 'language-' + lang[0];
+                this.mark = lang[1] === undefined ? lang[0] : lang[1];
+                this.languageClass = 'language-' + lang[0];
             "
         >
-            {{ lang[1] }}
+          {{ lang[1] === undefined ? lang[0] : lang[1] }}
         </li>
         </ul>
         <ul class="switch_theme" v-if="themeSwitch">
@@ -374,6 +374,8 @@ const CodeEditor = {
 <div
     class="code_area"
     :style="{
+    borderTopLeftRadius: readOnly == true ? borderRadius : 0,
+    borderTopRightRadius: readOnly == true ? borderRadius : 0,
     borderBottomLeftRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
     fontSize: fontSize
