@@ -7,7 +7,7 @@
     tabindex="0"
   >
     <div class="mark">
-      <div>{{ mark }}</div>
+      <div :style="{color: color}">{{ mark }}</div>
       <svg
         v-if="showArrow"
         xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,6 @@ export default {
   white-space: nowrap;
   font-family: sans-serif;
   font-size: 12px;
-  color: v-bind(color);
   line-height: 16px;
 }
 .dropdown > .mark > svg {

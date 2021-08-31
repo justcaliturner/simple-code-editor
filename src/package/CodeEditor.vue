@@ -47,12 +47,12 @@
           </ul>
         </div>
       </Dropdown>
-      <Clipboard
+      <CopyCode
         width="16px"
         height="16px"
         :content="content"
         v-if="canCopyCode"
-      ></Clipboard>
+      ></CopyCode>
     </div>
     <div
       class="code_area"
@@ -83,12 +83,12 @@
 <script>
 import hljs from "highlight.js";
 import Dropdown from "./Dropdown";
-import Clipboard from "./Clipboard";
+import CopyCode from "./CopyCode";
 
 export default {
   components: {
     Dropdown,
-    Clipboard,
+    CopyCode,
   },
   name: "CodeEditor",
   props: {
@@ -273,7 +273,6 @@ export default {
   justify-content: space-between;
 }
 .read_only > .code_area {
-  border-radius: v-bind(borderRadius);
   height: 100% !important;
 }
 .read_only > .code_area > textarea,

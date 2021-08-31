@@ -1,6 +1,6 @@
 <template>
   <div
-    class="clipboard"
+    class="copy_code"
     @click="copy"
     @focusout="resetMessage"
     tabindex="0"
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "Clipboard",
+  name: "CopyCode",
   props: {
     content: {
       type: String,
@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-.clipboard {
+.copy_code {
   transition: 0.2s opacity ease;
   position: relative;
   opacity: 0.5;
@@ -77,7 +77,7 @@ export default {
   height: 20px;
   cursor: pointer;
 }
-.clipboard > textarea {
+.copy_code > textarea {
   position: absolute;
   padding: 0;
   width: 0;
@@ -87,16 +87,16 @@ export default {
   opacity: 0;
   border-color: rgba(0, 0, 0, 0);
 }
-.clipboard > svg {
+.copy_code > svg {
   pointer-events: none;
 }
-.clipboard:hover {
+.copy_code:hover {
   opacity: 1;
 }
-.clipboard:hover > .tooltip {
+.copy_code:hover > .tooltip {
   display: block;
 }
-.clipboard > .tooltip {
+.copy_code > .tooltip {
   font-family: sans-serif;
   display: none;
   position: absolute;
