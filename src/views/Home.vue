@@ -4,7 +4,7 @@
     <h1 class="title">Simple CodeEditor for Vue.js</h1>
     <div class="container">
       <div class="subtitle">
-        <p>It's easy to use, support both <mark>read-only</mark> and <mark>edit mode</mark>, hundreds of languages and theme styles powered by <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage"><mark>highlight.js</mark></a>, you can directly use it in the browser or use NPM Package in Single File Components</p>
+        <p>It's easy to use, support both <mark>read-only</mark> and <mark>edit mode</mark>, hundreds of languages and theme styles powered by <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage">highlight.js</a>, you can directly use it in the browser or import the JavaScript modules via NPM package</p>
       </div>
       <CodeEditor v-model="value1" width="100%" height="120px" :languages="[['html', 'HTML'], ['javascript', 'JavaScript'], ['css', 'CSS']]" :languageSelector="true"></CodeEditor>
       <CodeEditor v-model="value2" width="100%" height="400px" :languageSelector="true"></CodeEditor>
@@ -14,23 +14,79 @@
   <div class="useage">
     <div class="container">
       <h2>Useage</h2>
+      <!-- Browser -->
       <h3>In the Browser</h3>
-      <p>Step 1. Add CSS file</p>
+      <p>Step 1. Add the CSS files, the first one is used for the style of the code editor, the other one is used for the theme style which can be replaced from any other theme style file or customized by userselves.</p>
       <CodeEditor value='<link rel="stylesheet" href="/path/code_editor.min.css">'
         :languages="[['html', 'HTML']]"
-        :languageSelector="true"
         :readOnly="true"
+        height="auto"
         width="100%"
-        height="76px"
       />
-      <p>Step 2. Add JavaScript files, including the dependencies and the main script, and be careful to the files order, the dependencies should be more forward than the main script</p>
-      <CodeEditor value='<script src="/path/vue@3.2.6.prod.js"></script>
-<script src="/path/highlight.11.2.0.min.js"></script>
+      <p>Step 2. Add the JavaScript files including the dependency <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage">highlight.js</a>, and be careful to the files order, the main script should be loaded after the dependency.</p>
+      <CodeEditor value='<script src="/path/highlight.11.2.0.min.js"></script>
 <script src="/path/code_editor.prod.js"></script>'
         :languages="[['html', 'HTML']]"
         :readOnly="true"
         width="100%"
-        height="140px"
+        height="auto"
+      />
+      <p>Step 3. Using the <code>code-editor</code> tag into the HTML template, and then embed the component in JavaScript. All the configuration options please check the <a href="#" target="_blank">API</a> list.</p>
+      <CodeEditor value="<code-editor v-model='value' :languages='[['javascript', 'JS']]'></code-editor>"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        height="auto"
+        width="100%"
+      />
+      <CodeEditor value="const app = Vue.createApp({
+  components: {
+      'code-editor': CodeEditor
+  },
+  data(){
+      return {
+          value: ''
+      }
+  }
+})"
+        :languages="[['javascript', 'JS']]"
+        :readOnly="true"
+        height="auto"
+        width="100%"
+      />
+      <!-- Install with NPM -->
+      <h3 style="margin-top: 60px;">Install with NPM</h3>
+      <p>Step 1</p>
+      <CodeEditor value='npm install CodeEditor --save'
+        :languages="[['shell']]"
+        :hideHeader="true"
+        :readOnly="true"
+        height="auto"
+        width="100%"
+      />
+      <p>Step 2</p>
+      <CodeEditor value="import CodeEditor from 'CodeEditor';
+import 'highlight.js/styles/atom-one-dark.css';"
+        :languages="[['javascript', 'JS']]"
+        :readOnly="true"
+        height="auto"
+        width="100%"
+      />
+      <p>Step 3</p>
+      <CodeEditor value="export default {
+    name: 'PageName',
+    components: {
+      CodeEditor
+    },
+    data() {
+        return {
+          value: ''
+        }
+    }
+}"
+        :languages="[['javascript', 'JS']]"
+        :readOnly="true"
+        height="auto"
+        width="100%"
       />
     </div>
   </div>
@@ -47,11 +103,11 @@
 </template>
 
 <script>
-import CodeEditor from "@/package/CodeEditor.vue";
+import CodeEditor from '@/package/CodeEditor.vue';
 import 'highlight.js/styles/atom-one-dark.css';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     CodeEditor,
   },
@@ -95,11 +151,16 @@ body {
   background: var(--grey_1);
 }
 a {
-  color: var(--main_8);
+  color: var(--main_5);
   text-decoration: none;
   &:hover {
     color: var(--main_5);
     text-decoration: underline;
+  }
+}
+h1, h2, h3, h4, p {
+  a {
+    font-family: Consolas,Monaco,monospace;
   }
 }
 h1, h2, h3, h4 {
@@ -110,22 +171,27 @@ h1, h2, h3, h4 {
 }
 h1 {
   color: var(--grey_8);
-  margin: 0 0 50px 0;
+  margin: 50px 0;
   font-size: 46px;
   text-align: center;
 }
 h2 {
   color: var(--grey_8);
-  margin: 0 0 40px 0;
+  margin: 40px 0;
   font-size: 34px;
 }
 h3 {
   color: var(--grey_8);
-  margin: 0 0 20px 0;
+  margin: 20px 0;
   font-size: 20px;
 }
+h4 {
+  color: var(--grey_7);
+  margin: 20px 0;
+  font-size: 16px;
+}
 p {
-  color: var(--grey_9);
+  color: var(--grey_8);
   line-height: 1.5;
 }
 code {
@@ -139,9 +205,7 @@ code {
 mark {
   font-family: Consolas,Monaco,monospace;
   color: var(--main_5);
-  background: var(--grey_2);
-  padding: .2em .4em;
-  border-radius: .3em;
+  background: none;
 }
 // demo
 .demo {
@@ -158,7 +222,10 @@ mark {
 }
 .code_editor {
   & + .code_editor {
-    margin-top: 40px;
+    margin-top: 32px;
+  }
+  & + p {
+    margin-top: 32px;
   }
 }
 .container {

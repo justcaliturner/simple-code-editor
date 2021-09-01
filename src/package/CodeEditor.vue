@@ -1,10 +1,10 @@
 <template>
   <div
     class="code_editor hljs"
-    :class="{ show_header: showHeader }"
+    :class="{ display_header: displayHeader, no_scroll: noScroll }"
     :style="{ width: width, height: height, borderRadius: borderRadius, zIndex: zIndex, maxWidth: maxWidth, maxHeight: maxHeight }"
   >
-    <div class="header" v-if="showHeader">
+    <div class="header" v-if="displayHeader">
       <Dropdown
         :width="selectorWidth"
         :mark="mark"
@@ -40,8 +40,8 @@
     <div
       class="code_area"
       :style="{
-        borderTopLeftRadius: showHeader == false ? borderRadius : 0,
-        borderTopRightRadius: showHeader == false ? borderRadius : 0,
+        borderTopLeftRadius: displayHeader == false ? borderRadius : 0,
+        borderTopRightRadius: displayHeader == false ? borderRadius : 0,
         borderBottomLeftRadius: borderRadius,
         borderBottomRightRadius: borderRadius,
         fontSize: fontSize
@@ -78,6 +78,14 @@ export default {
   name: "CodeEditor",
   props: {
     modelValue: {},
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    hideHeader: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: String,
     },
@@ -135,10 +143,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
     zIndex: {
       type: String,
       default: '',
@@ -159,8 +163,13 @@ export default {
     };
   },
   computed: {
-    showHeader() {
-      return this.displayLanguage == false && this.copyCode == false
+    noScroll(){
+      return this.height === "auto" ? true : false
+    },
+    displayHeader() {
+      if (this.hideHeader == true)
+      return false
+      else return this.displayLanguage == false && this.copyCode == false
         ? false
         : true;
     },
@@ -206,12 +215,12 @@ export default {
   top: 12px;
   right: 12px;
 }
-.show_header > .code_area {
+.display_header > .code_area {
   height: calc(100% - 34px) !important;
 }
-.show_header > .code_area > textarea,
-.show_header > .code_area > pre > code {
-  padding: 0px 20px 12px 20px !important;
+.display_header > .code_area > textarea,
+.display_header > .code_area > pre > code {
+  padding: 0px 20px 16px 20px !important;
 }
 .code_editor {
   position: relative;
@@ -272,6 +281,16 @@ export default {
   font-family: Consolas,Monaco,monospace;
   line-height: 1.5;
   font-size: 1em;
+}
+.no_scroll > .code_area {
+  height: auto !important;
+}
+.no_scroll > .code_area > pre {
+  display: flex;
+  position: relative;
+}
+.no_scroll > .code_area > pre > code {
+  position: relative;
 }
 
 /* dropdown */
