@@ -117,9 +117,7 @@ export default {
         return [
           ["javascript", "JS"],
           ["cpp", "C++"],
-          ["java", "Java"],
-          ["python", "Python"],
-          ["html", "HTML"],
+          ["python", "Python"]
         ];
       },
     },
