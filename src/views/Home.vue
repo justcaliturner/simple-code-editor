@@ -133,23 +133,8 @@ export default {
         width="100%"
       ></CodeEditor>
 
-      <h3>hideHeader<label> - Boolean</label> </h3>
-      <p>Default: <code>false</code></p>
-      <p>Description: whether the header of code editor is displayed.</p>
-      <p>Example code:</p>
-      <CodeEditor value="<CodeEditor :hideHeader='true'></CodeEditor>"
-        :languages="[['html', 'Template']]"
-        :readOnly="true"
-        height="auto"
-        width="100%"
-      ></CodeEditor>
-      <p>UI Rendering:</p>
-      <CodeEditor value="console.log('This is a demo')"
-        :readOnly="true"
-        :hideHeader='true'
-        height="auto"
-        width="100%"
-      ></CodeEditor>
+      <h3>v-model</h3>
+      <p>Description: varies based on value of form inputs element or output of components, the specific usage please check on <a target="_blank" href="https://v3.vuejs.org/api/directives.html#v-model">Vue.js 3 Documentation</a></p>
 
       <h3>languageSelector<label> - Boolean</label> </h3>
       <p>Default: <code>false</code></p>
@@ -193,6 +178,71 @@ export default {
         width="100%"
       ></CodeEditor>
 
+      <h3>hideHeader<label> - Boolean</label> </h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: whether the header of code editor is displayed.</p>
+      <p>Example code:</p>
+      <CodeEditor value="<CodeEditor :hideHeader='true'></CodeEditor>"
+        :languages="[['html', 'Template']]"
+        :readOnly="true"
+        height="auto"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor value="console.log('This is a demo')"
+        :readOnly="true"
+        :hideHeader='true'
+        height="auto"
+        width="100%"
+      ></CodeEditor>
+
+      <h3>displayLanguage<label> - Boolean</label></h3>
+      <p>Default: <code>true</code></p>
+      <p>Description: Whether the language name is displayed.</p>
+
+      <h3>copyCode<label> - string</label></h3>
+      <p>Default: <code>true</code></p>
+      <p>Description: The height of selector.</p>
+
+      <h3>fontSize<label> - String</label></h3>
+      <p>Default: <code>17px</code></p>
+      <p>Description: Setting the size of the font in coding.</p>
+
+      <h3>width<label> - String</label></h3>
+      <p>Default: <code>540px</code></p>
+      <p>Description: Setting the width of the code editor.</p>
+
+      <h3>height<label> - String</label></h3>
+      <p>Default: <code>140px</code></p>
+      <p>Description: Setting the height of the code editor.</p>
+
+      <h3>maxWidth<label> - String</label></h3>
+      <p>Default: <code>Unset</code></p>
+      <p>Description: Setting the max-width of the code editor.</p>
+
+      <h3>maxHeight<label> - String</label></h3>
+      <p>Default: <code>Unset</code></p>
+      <p>Description: Setting the max-height of the code editor.</p>
+
+      <h3>borderRadius<label> - String</label></h3>
+      <p>Default: <code>12px</code></p>
+      <p>Description: Defining the radius of the code editor.</p>
+      
+      <h3>selectorWidth<label> - string</label></h3>
+      <p>Default: <code>110px</code></p>
+      <p>Description: The width of selector.</p>
+
+      <h3>selectorHeight<label> - string</label></h3>
+      <p>Default: <code>110px</code></p>
+      <p>Description: The height of selector.</p>
+
+      <h3>selectorDefaultDisplay<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description:  Whether the selector is displayed in default.</p>
+
+      <h3>zIndex<label> - String</label></h3>
+      <p>Default: <code>Unset</code></p>
+      <p>Description:  Specifying the stack order of a code editor.</p>
     </div>
   </div>
 </template>
@@ -204,10 +254,12 @@ import CodeEditor from '@/package/CodeEditor.vue';
 export default {
   name: 'Home',
   components: {
-    CodeEditor,
+    CodeEditor
   },
   data() {
     return {
+      demo: `dasda dasd dasdasd dasdasd
+      daasd asdas das as dasd das`,
       value1: `// template
 <CodeEditor v-model="value"></CodeEditor>`,
       value2: `// script

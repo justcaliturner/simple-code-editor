@@ -7,7 +7,7 @@
     :style="{ width: width, height: height }"
   >
     <div class="tooltip">{{ message }}</div>
-    <textarea ref="textarea" :value="content"></textarea>
+    <textarea ref="textarea" :value="content" tabindex="1" readonly></textarea>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
@@ -78,6 +78,7 @@ export default {
   cursor: pointer;
 }
 .copy_code > textarea {
+  user-select: none;
   position: absolute;
   padding: 0;
   width: 0;

@@ -25,7 +25,7 @@
                 this.languageClass = 'language-' + lang[0];
               "
             >
-              {{ lang[1] === undefined ? lang[0] : lang[1]  }}
+              {{ lang[1] === undefined ? lang[0] : lang[1] }}
             </li>
           </ul>
         </div>
@@ -51,13 +51,13 @@
         v-if="readOnly == true ? false : true"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
-        :value="readOnly == true ? value : modelValue"
+        :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       ></textarea>
-      <pre>
+      <pre :style="{borderBottomLeftRadius: borderRadius, borderBottomRightRadius: borderRadius}">
         <code
             :class="languageClass"
-            :style="{ top: top + 'px', left: left + 'px' }"
+            :style="{ top: top + 'px', left: left + 'px', overflow: readOnly == true ? 'auto' : 'visible' }"
         >{{ readOnly == true ? value : modelValue }}</code>
       </pre>
     </div>
@@ -142,8 +142,7 @@ export default {
       default: false,
     },
     zIndex: {
-      type: String,
-      default: '',
+      type: String
     },
     fontSize: {
       type: String,
@@ -210,7 +209,7 @@ export default {
 }
 .header > .copy_code {
   position: absolute;
-  top: 12px;
+  top: 10px;
   right: 12px;
 }
 .display_header > .code_area {
@@ -237,7 +236,8 @@ export default {
   font-family: Consolas,Monaco,monospace;
   line-height: 1.5;
   font-size: 1em;
-  white-space: nowrap;
+  white-space: pre;
+  word-wrap: normal;
   border: 0;
   position: absolute;
   z-index: 1;
@@ -265,6 +265,7 @@ export default {
   width: 100%;
   height: 100%;
   text-align: left;
+  overflow: hidden;
 }
 .code_editor > .code_area > pre > code {
   border-radius: 0;
@@ -279,6 +280,7 @@ export default {
   font-family: Consolas,Monaco,monospace;
   line-height: 1.5;
   font-size: 1em;
+  overflow: visible;
 }
 .no_scroll > .code_area {
   height: auto !important;
