@@ -1,13 +1,19 @@
 <template>
 <!-- demo -->
-  <div class="demo">
+  <div class="demo" :class="{github_dark: githubDark, tomorrow_night_bright: tomorrowNightBright}">
     <h1 class="title">Simple CodeEditor for Vue.js</h1>
     <div class="container">
       <div class="subtitle">
         <p>It's easy to use, support both <mark>read-only</mark> and <mark>edit mode</mark>, hundreds of languages and theme styles powered by <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage">highlight.js</a>, you can directly use it in the browser or import the JavaScript modules via NPM package</p>
       </div>
-      <CodeEditor v-model="value1" width="100%" height="120px" :languages="[['html', 'HTML'], ['javascript', 'JavaScript'], ['css', 'CSS']]" :languageSelector="true"></CodeEditor>
-      <CodeEditor v-model="value2" width="100%" height="400px" :languageSelector="true"></CodeEditor>
+      <CodeEditor :autofocus="true" v-model="value1" width="100%" height="90px" :languages="[['html', 'Template'], ['javascript', 'JavaScript'], ['css', 'CSS']]" :languageSelector="true"></CodeEditor>
+      <CodeEditor class="github" v-model="value2" width="100%" height="355px" :languageSelector="true"></CodeEditor>
+      <div class="button_group">
+        <button :class="{selected: atomOneDark}" @click="themeAtomOneDark">Atom one dark</button>
+        <button :class="{selected: githubDark}" @click="themeToGithubDark">Github dark</button>
+        <button :class="{selected: tomorrowNightBright}" @click="themeToTomorrowNightBright">Tomorrow night bright</button>
+        <button><a target="_blank" href="https://highlightjs.org/static/demo/">More themes</a></button>
+      </div>
     </div>
   </div>
   <!-- useage -->
@@ -24,7 +30,10 @@
         width="100%"
       ></CodeEditor>
       <p>Step 2. Add the JavaScript files including the dependency <a target="_blank" href="https://github.com/highlightjs/highlight.js#basic-usage">highlight.js</a>, and be careful to the files order, the main script should be loaded after the dependency.</p>
-      <CodeEditor value='<script src="/path/highlight.11.2.0.min.js"></script>
+      <CodeEditor value='<script src="/path/vue.js"></script>
+// Dependency
+<script src="/path/highlight.11.2.0.min.js"></script>
+// Main script
 <script src="/path/code_editor.prod.js"></script>'
         :languages="[['html', 'HTML']]"
         :readOnly="true"
@@ -243,13 +252,17 @@ export default {
       <h3>zIndex<label> - String</label></h3>
       <p>Default: <code>Unset</code></p>
       <p>Description:  Specifying the stack order of a code editor.</p>
+
+      <h3>autofocus<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: Whether the code editor should automatically get focus when the page loads.</p>
+
     </div>
   </div>
 </template>
 
 <script>
 import CodeEditor from '@/package/CodeEditor.vue';
-// import 'highlight.js/styles/github.css';
 
 export default {
   name: 'Home',
@@ -258,12 +271,11 @@ export default {
   },
   data() {
     return {
-      demo: `dasda dasd dasdasd dasdasd
-      daasd asdas das as dasd das`,
-      value1: `// template
-<CodeEditor v-model="value"></CodeEditor>`,
-      value2: `// script
-import CodeEditor from 'CodeEditor';
+      atomOneDark: true,
+      githubDark: false,
+      tomorrowNightBright: false,
+      value1: `<CodeEditor v-model="value"></CodeEditor>`,
+      value2: `import CodeEditor from 'CodeEditor';
 export default {
     name: 'PageName',
     components: {
@@ -277,11 +289,29 @@ export default {
 }`
     };
   },
+  methods: {
+    themeAtomOneDark(){
+      this.atomOneDark = true;
+      this.githubDark = false;
+      this.tomorrowNightBright = false;
+    },
+    themeToGithubDark(){
+      this.atomOneDark = false;
+      this.githubDark = true;
+      this.tomorrowNightBright = false;
+    },
+    themeToTomorrowNightBright(){
+      this.atomOneDark = false;
+      this.githubDark = false;
+      this.tomorrowNightBright = true;
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-$body_width: 580px;
+@import "../assets/themes/dist/github-dark.min.css";
+@import "../assets/themes/dist/tomorrow-night-bright.min.css";
 @font-face {
     font-family: 'Quicksand';
     src: url('../assets/font/Quicksand-Regular.woff2') format('woff2'),
@@ -290,6 +320,9 @@ $body_width: 580px;
     font-style: normal;
     font-display: swap;
 }
+
+$body_width: 580px;
+
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI Variable,Segoe UI,system-ui,ui-sans-serif,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
   margin: 0;
@@ -381,7 +414,7 @@ mark {
 .subtitle {
   text-align: center;
   & + div {
-    margin-top: 70px;
+    margin-top: 60px;
   }
 }
 .code_editor {
@@ -417,5 +450,27 @@ mark {
   .code_editor + p {
     margin-top: 16px;
   }
+}
+.button_group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  a {
+    color: unset;
+  }
+}
+button {
+  user-select: none;
+  color: var(--grey_8);
+  font-size: 14px;
+  background: var(--grey_2);
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  padding: 8px 12px;
+}
+.selected {
+  color: var(--main_5);
+  background: var(--main_1);
 }
 </style>

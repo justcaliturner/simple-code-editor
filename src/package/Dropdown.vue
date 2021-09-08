@@ -109,6 +109,7 @@ export default {
   opacity: 0.5;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 .dropdown > .mark > div {
   white-space: nowrap;

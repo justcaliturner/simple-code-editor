@@ -1,0 +1,9 @@
+.github_dark{/*!
+    Theme: GitHub Dark
+    Description: Dark theme as seen on github.com
+    Author: github.com
+    Maintainer: @Hirse
+    Updated: 2021-05-15
+    Outdated base version: https://github.com/primer/github-syntax-dark
+    Current colors taken from GitHub's CSS
+  */}.github_dark .hljs{color:#c9d1d9;background:#0d1117}.github_dark .hljs-doctag,.github_dark .hljs-keyword,.github_dark .hljs-meta .hljs-keyword,.github_dark .hljs-template-tag,.github_dark .hljs-template-variable,.github_dark .hljs-type,.github_dark .hljs-variable.language_{color:#ff7b72}.github_dark .hljs-title,.github_dark .hljs-title.class_,.github_dark .hljs-title.class_.inherited__,.github_dark .hljs-title.function_{color:#d2a8ff}.github_dark .hljs-attr,.github_dark .hljs-attribute,.github_dark .hljs-literal,.github_dark .hljs-meta,.github_dark .hljs-number,.github_dark .hljs-operator,.github_dark .hljs-selector-attr,.github_dark .hljs-selector-class,.github_dark .hljs-selector-id,.github_dark .hljs-variable{color:#79c0ff}.github_dark .hljs-meta .hljs-string,.github_dark .hljs-regexp,.github_dark .hljs-string{color:#a5d6ff}.github_dark .hljs-built_in,.github_dark .hljs-symbol{color:#ffa657}.github_dark .hljs-code,.github_dark .hljs-comment,.github_dark .hljs-formula{color:#8b949e}.github_dark .hljs-name,.github_dark .hljs-quote,.github_dark .hljs-selector-pseudo,.github_dark .hljs-selector-tag{color:#7ee787}.github_dark .hljs-subst{color:#c9d1d9}.github_dark .hljs-section{color:#1f6feb;font-weight:700}.github_dark .hljs-bullet{color:#f2cc60}.github_dark .hljs-emphasis{color:#c9d1d9;font-style:italic}.github_dark .hljs-strong{color:#c9d1d9;font-weight:700}.github_dark .hljs-addition{color:#aff5b4;background-color:#033a16}.github_dark .hljs-deletion{color:#ffdcd7;background-color:#67060c}

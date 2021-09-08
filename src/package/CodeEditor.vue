@@ -49,6 +49,7 @@
     >
       <textarea
         v-if="readOnly == true ? false : true"
+        :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         :value="modelValue"
@@ -79,6 +80,10 @@ export default {
   props: {
     modelValue: {},
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    autofocus: {
       type: Boolean,
       default: false,
     },
@@ -295,6 +300,7 @@ export default {
 
 /* dropdown */
 .panel {
+  user-select: none;
   height: 100%;
   font-family: sans-serif;
 }
