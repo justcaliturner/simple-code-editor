@@ -1,12 +1,11 @@
 <template>
-  <a target="_blank" 
-  href="https://github.com/justcaliturner/codeEditor"
+  <a target="_blank" href="https://github.com/justcaliturner/codeEditor"
     ><svg
       width="80"
       height="80"
       viewBox="0 0 250 250"
       style="
-        fill: var(--main_3);
+        fill: var(--main_4);
         color: #fff;
         position: absolute;
         top: 0;
@@ -84,10 +83,13 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      if (localStorage.getItem("lisa_theme"))
+      if (localStorage.getItem("lisa_theme")) {
         localStorage.getItem("lisa_theme") == "light"
           ? (document.body.className = "")
           : (document.body.className = "mirror");
+      } else {
+        document.body.className = "mirror";
+      }
     });
   },
   methods: {

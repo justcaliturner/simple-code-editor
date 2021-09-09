@@ -1,22 +1,28 @@
 <template>
   <div
     class="code_editor hljs"
-    :class="{ display_header: displayHeader, no_scroll: noScroll }"
-    :style="{ width: width, height: height, borderRadius: borderRadius, zIndex: zIndex, maxWidth: maxWidth, maxHeight: maxHeight }"
+    :class="{ hide_header: withoutHeader, scroll: canScroll, read_only: readOnly}"
+    :style="{
+      width: width,
+      height: height,
+      borderRadius: borderRadius,
+      zIndex: zIndex,
+      maxWidth: maxWidth,
+      minWidth: minWidth,
+      maxHeight: maxHeight,
+      minHeight: minHeight,
+    }"
   >
-    <div class="header" v-if="displayHeader">
+    <div class="header" v-if="withoutHeader == true ? false : true">
       <Dropdown
         :width="selectorWidth"
         :mark="mark"
         :disabled="languageSelector == false ? true : false"
         v-if="displayLanguage"
-        :defaultDisplay="selectorDefaultDisplay"
+        :defaultDisplay="selectorDisplayedByDefault"
       >
         <div class="panel">
-          <ul
-            class="lang_list"
-            :style="{ height: selectorHeight }"
-          >
+          <ul class="lang_list" :style="{ height: selectorHeight }">
             <li
               v-for="lang in languageList"
               :key="lang"
@@ -40,26 +46,34 @@
     <div
       class="code_area"
       :style="{
-        borderTopLeftRadius: displayHeader == false ? borderRadius : 0,
-        borderTopRightRadius: displayHeader == false ? borderRadius : 0,
         borderBottomLeftRadius: borderRadius,
         borderBottomRightRadius: borderRadius,
-        fontSize: fontSize
+        borderTopLeftRadius: hideHeader == true ? borderRadius : 0,
+        borderTopRightRadius: hideHeader == true ? borderRadius : 0,
       }"
     >
       <textarea
-        v-if="readOnly == true ? false : true"
+        v-if="readOnly == true ? false : modelValue === undefined ? true : false"
+        :autofocus="autofocus"
+        @keydown.tab.prevent="tab"
+        v-on:scroll="scroll"
+        v-model="staticValue"
+        :style="{ fontSize: fontSize }"
+      ></textarea>
+      <textarea
+        v-if="readOnly == true ? false : modelValue === undefined ? false : true"
         :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        :style="{ fontSize: fontSize }"
       ></textarea>
-      <pre :style="{borderBottomLeftRadius: borderRadius, borderBottomRightRadius: borderRadius}">
+      <pre>
         <code
             :class="languageClass"
-            :style="{ top: top + 'px', left: left + 'px', overflow: readOnly == true ? 'auto' : 'visible' }"
-        >{{ readOnly == true ? value : modelValue }}</code>
+            :style="{ top: top + 'px', left: left + 'px', fontSize: fontSize }"
+        >{{ readOnly == true ? value : modelValue === undefined ? staticValue + '\n' : modelValue + '\n' }}</code>
       </pre>
     </div>
   </div>
@@ -67,7 +81,7 @@
 
 <script>
 import hljs from "highlight.js";
-import 'highlight.js/styles/atom-one-dark.css';
+import "highlight.js/styles/atom-one-dark.css";
 import Dropdown from "./Dropdown";
 import CopyCode from "./CopyCode";
 
@@ -78,7 +92,9 @@ export default {
   },
   name: "CodeEditor",
   props: {
-    modelValue: {},
+    modelValue: {
+      type: String,
+    },
     readOnly: {
       type: Boolean,
       default: false,
@@ -100,12 +116,18 @@ export default {
     },
     height: {
       type: String,
-      default: "140px",
+      default: "auto",
     },
     maxWidth: {
       type: String,
     },
+    minWidth: {
+      type: String,
+    },
     maxHeight: {
+      type: String,
+    },
+    minHeight: {
       type: String,
     },
     borderRadius: {
@@ -122,7 +144,7 @@ export default {
         return [
           ["javascript", "JS"],
           ["cpp", "C++"],
-          ["python", "Python"]
+          ["python", "Python"],
         ];
       },
     },
@@ -134,6 +156,10 @@ export default {
       type: String,
       default: "auto",
     },
+    selectorDisplayedByDefault: {
+      type: Boolean,
+      default: false,
+    },
     displayLanguage: {
       type: Boolean,
       default: true,
@@ -142,38 +168,40 @@ export default {
       type: Boolean,
       default: true,
     },
-    selectorDefaultDisplay: {
-      type: Boolean,
-      default: false,
-    },
     zIndex: {
-      type: String
+      type: String,
     },
     fontSize: {
       type: String,
-      default: '17px',
-    }
+      default: "17px",
+    },
   },
   data() {
     return {
+      staticValue: "// You can use the v-model to bind data.",
       top: 0,
       left: 0,
       languageClass: this.languages[0][0],
-      mark: this.languages[0][1] === undefined ? this.languages[0][0] : this.languages[0][1],
+      mark:
+        this.languages[0][1] === undefined
+          ? this.languages[0][0]
+          : this.languages[0][1],
       languageList: this.languages,
       content: this.readOnly == true ? this.value : this.modelValue,
     };
   },
   computed: {
-    noScroll(){
-      return this.height === "auto" ? true : false
+    canScroll() {
+      return this.height == "auto" ? false : true;
     },
-    displayHeader() {
-      if (this.hideHeader == true)
-      return false
-      else return this.displayLanguage == false && this.copyCode == false
-        ? false
-        : true;
+    withoutHeader() {
+      if (this.hideHeader == true) {
+        return true;
+      } else {
+        return this.displayLanguage == false && this.copyCode == false
+          ? true
+          : false;
+      }
     },
   },
   methods: {
@@ -189,21 +217,24 @@ export default {
     this.$nextTick(function () {
       hljs.highlightAll();
       hljs.configure({ ignoreUnescapedHTML: true });
+      console.log(1)
     });
   },
   updated() {
     this.$nextTick(function () {
       hljs.highlightAll();
       this.content = this.modelValue;
+      console.log(2)
     });
   },
 };
 </script>
 
 <style scoped>
+/* header */
 .header {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   height: 34px;
   box-sizing: border-box;
 }
@@ -217,30 +248,30 @@ export default {
   top: 10px;
   right: 12px;
 }
-.display_header > .code_area {
-  height: calc(100% - 34px) !important;
-}
-.display_header > .code_area > textarea,
-.display_header > .code_area > pre > code {
-  padding: 0px 20px 16px 20px !important;
-}
+
+/* code_area */
 .code_editor {
+  display: flex;
+  flex-direction: column;
+  font-size: 0;
   position: relative;
 }
 .code_editor > .code_area {
   position: relative;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
 }
+.code_editor > .code_area > textarea,
+.code_editor > .code_area > pre > code {
+  padding: 0px 20px 16px 20px;
+  font-family: Consolas, Monaco, monospace;
+  line-height: 1.5;
+  font-size: 16px;
+}
 .code_editor > .code_area > textarea {
+  overflow-y: hidden;
   box-sizing: border-box;
-  padding: 20px;
   caret-color: rgba(127, 127, 127);
   -webkit-text-fill-color: transparent;
-  font-family: Consolas,Monaco,monospace;
-  line-height: 1.5;
-  font-size: 1em;
   white-space: pre;
   word-wrap: normal;
   border: 0;
@@ -253,49 +284,50 @@ export default {
   background: none;
   resize: none;
 }
-.code_editor > .code_area > textarea:disabled {
-  white-space: pre;
-}
 .code_editor > .code_area > textarea:hover,
 .code_editor > .code_area > textarea:focus-visible {
   outline: none;
 }
 .code_editor > .code_area > pre {
+  position: relative;
   margin: 0;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  overflow: auto;
-  width: 100%;
-  height: 100%;
-  text-align: left;
-  overflow: hidden;
 }
 .code_editor > .code_area > pre > code {
+  position: relative;
+  overflow-x: visible;
   border-radius: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+  box-sizing: border-box;
+}
+
+/* hide_header */
+.hide_header > .code_area > textarea {
+  padding: 16px 20px;
+}
+.hide_header > .code_area > pre > code {
+  padding: 16px 20px;
+}
+.hide_header.scroll > .code_area {
+  height: 100%;
+}
+
+/* read_only */
+.read_only > .code_area > pre > code {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-  display: block;
-  font-family: Consolas,Monaco,monospace;
-  line-height: 1.5;
-  font-size: 1em;
-  overflow: visible;
+  overflow: auto !important;
 }
-.no_scroll > .code_area {
-  height: auto !important;
+
+/* scroll */
+.scroll > .code_area {
+  height: calc(100% - 34px);
 }
-.no_scroll > .code_area > pre {
-  display: flex;
-  position: relative;
+.scroll > .code_area > textarea {
+  overflow: auto;
 }
-.no_scroll > .code_area > pre > code {
-  position: relative;
+.scroll > .code_area > pre {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* dropdown */
@@ -313,12 +345,12 @@ export default {
   list-style: none;
   margin: 0;
   text-align: left;
-  background: white;
+  background: var(--grey_0);
 }
 .panel > .lang_list > li {
   font-size: 13px;
-  color: #282c34;
-  transition: background 0.2s ease;
+  color: var(--grey_8);
+  transition: background 0.16s ease, color 0.16s ease;
   box-sizing: border-box;
   padding: 0 12px;
   white-space: nowrap;
@@ -333,6 +365,7 @@ export default {
   padding-bottom: 5px;
 }
 .panel > .lang_list > li:hover {
-  background: #e2e5e9;
+  color: var(--main_5);
+  background: var(--grey_2);
 }
 </style>

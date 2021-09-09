@@ -11,7 +11,7 @@
     <div class="container">
       <div class="subtitle">
         <p>
-          It's easy to use, support both <mark>read-only</mark> and
+          It's easy to use, both support <mark>read-only</mark> and
           <mark>edit mode</mark>, hundreds of languages and theme styles powered
           by
           <a target="_blank" href="https://highlightjs.org/">highlight.js</a>,
@@ -20,22 +20,19 @@
         </p>
       </div>
       <CodeEditor
-        :autofocus="true"
         v-model="value1"
+        zIndex="3"
         width="100%"
-        height="90px"
         :languages="[
-          ['html', 'Template'],
+          ['html', 'HTML'],
           ['javascript', 'JavaScript'],
           ['css', 'CSS'],
         ]"
         :languageSelector="true"
       ></CodeEditor>
       <CodeEditor
-        class="github"
         v-model="value2"
         width="100%"
-        height="330px"
         :languageSelector="true"
       ></CodeEditor>
       <div class="button_group">
@@ -70,7 +67,6 @@
         value='<link rel="stylesheet" href="/path/code_editor.min.css">'
         :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <p>
@@ -88,7 +84,6 @@
         :languages="[['html', 'HTML']]"
         :readOnly="true"
         width="100%"
-        height="auto"
       ></CodeEditor>
       <p>
         Step 3. Declaring the component in JavaScript, and using your customized
@@ -99,24 +94,17 @@
         value="const app = Vue.createApp({
   components: {
       'code-editor': CodeEditor
-  },
-  data(){
-      return {
-          value: ''
-      }
   }
 })"
         :languages="[['javascript', 'JS']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
 
       <CodeEditor
-        value="<code-editor v-model='value' :languages='[['javascript', 'JS']]'></code-editor>"
+        value='<code-editor></code-editor>'
         :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <!-- Install with NPM -->
@@ -127,7 +115,6 @@
         :languages="[['shell']]"
         :hideHeader="true"
         :readOnly="true"
-        height="auto"
         width="100%"
       />
       <p>
@@ -135,29 +122,22 @@
         <code>&lt;CodeEditor&gt;</code> tag to load the component.
       </p>
       <CodeEditor
-        value='<CodeEditor v-model="value"></CodeEditor>'
-        :languages="[['html', 'Template']]"
-        :readOnly="true"
-        height="auto"
-        width="100%"
-      ></CodeEditor>
-
-      <CodeEditor
         value="import CodeEditor from 'CodeEditor';
 export default {
     name: 'PageName',
     components: {
       CodeEditor
-    },
-    data() {
-        return {
-          value: ''
-        }
     }
 }"
         :languages="[['javascript', 'JS']]"
         :readOnly="true"
-        height="auto"
+        width="100%"
+      ></CodeEditor>
+
+      <CodeEditor
+        value='<CodeEditor></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
         width="100%"
       ></CodeEditor>
 
@@ -174,10 +154,9 @@ export default {
         CSS file to your HTML file:
       </p>
       <CodeEditor
-        value="<link rel='stylesheet' href='/path/github.css'>"
+        value='<link rel="stylesheet" href="/path/github.css">'
         :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <p>
@@ -188,11 +167,11 @@ export default {
         value="import 'highlight.js/styles/github.css';"
         :languages="[['javascript', 'JS']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
     </div>
   </div>
+
   <!-- API -->
   <div class="api" id="api">
     <div class="container">
@@ -202,12 +181,13 @@ export default {
       <p>Description: whether the code is editable</p>
       <p>Example code:</p>
       <CodeEditor
-        value="<CodeEditor :readOnly='true'></CodeEditor>"
-        :languages="[['html', 'Template']]"
+        value="<CodeEditor :readOnly='true' value='console.log('This is a demo')'></CodeEditor>"
+        :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor :readOnly="true" value="console.log('This is a demo')" width="100%"></CodeEditor>
 
       <h3>value<label> - String</label></h3>
       <p>Default: unset</p>
@@ -220,10 +200,9 @@ export default {
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value="<CodeEditor value='some code'></CodeEditor>"
-        :languages="[['html', 'Template']]"
+        value='<CodeEditor value="some code"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
 
@@ -248,10 +227,9 @@ export default {
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value="<CodeEditor :languageSelector='true'></CodeEditor>"
-        :languages="[['html', 'Template']]"
+        value='<CodeEditor :languageSelector="true"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -259,7 +237,6 @@ export default {
         value="console.log('This is a demo')"
         :languageSelector="true"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
 
@@ -287,10 +264,9 @@ export default {
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value="<CodeEditor :languages='[['css', 'CSS'],['javascript', 'JS'],['html', 'HTML']]'></CodeEditor>"
-        :languages="[['html', 'Template']]"
+        value='<CodeEditor :languages="[["css", "CSS"],["javascript", "JS"],["html", "HTML"]]"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -305,10 +281,9 @@ export default {
           ['javascript', 'JS'],
           ['html', 'HTML'],
         ]"
-        :selectorDefaultDisplay="true"
+        :selectorDisplayedByDefault="true"
         :languageSelector="true"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
 
@@ -317,10 +292,9 @@ export default {
       <p>Description: whether the header of code editor is displayed</p>
       <p>Example code:</p>
       <CodeEditor
-        value="<CodeEditor :hideHeader='true'></CodeEditor>"
-        :languages="[['html', 'Template']]"
+        value='<CodeEditor :hideHeader="true"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
         :readOnly="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -328,7 +302,6 @@ export default {
         value="console.log('This is a demo')"
         :readOnly="true"
         :hideHeader="true"
-        height="auto"
         width="100%"
       ></CodeEditor>
 
@@ -372,7 +345,7 @@ export default {
       <p>Default: <code>110px</code></p>
       <p>Description: setting the height of the selector</p>
 
-      <h3>selectorDefaultDisplay<label> - Boolean</label></h3>
+      <h3>selectorDisplayedByDefault<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: whether the selector is displayed by default</p>
 
@@ -403,6 +376,7 @@ export default {
       atomOneDark: true,
       githubDark: false,
       tomorrowNightBright: false,
+      demo:'',
       value1: `<CodeEditor v-model="value"></CodeEditor>`,
       value2: `import CodeEditor from 'CodeEditor';
 export default {
@@ -611,5 +585,19 @@ button {
 .selected {
   color: var(--main_5);
   background: var(--main_1);
+}
+@media screen and (max-width:560px) {
+  .button_group {
+     flex-wrap: wrap;
+     margin-top: 0;
+     button {
+       width: calc(50% - 10px);
+       overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       margin-top: 20px;
+       padding: 12px 12px;
+     }
+  }
 }
 </style>

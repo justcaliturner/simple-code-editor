@@ -98,6 +98,9 @@ export default {
   cursor: pointer;
   position: relative;
 }
+.disabled {
+  cursor: default;
+}
 .disabled:hover > .mark {
   opacity: 0.5 !important;
 }
