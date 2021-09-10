@@ -77,6 +77,9 @@ export default {
   height: 20px;
   cursor: pointer;
 }
+.copy_code:focus {
+  outline: none;
+}
 .copy_code > textarea {
   user-select: none;
   position: absolute;
@@ -101,13 +104,13 @@ export default {
   font-family: sans-serif;
   display: none;
   position: absolute;
-  bottom: -40px;
-  left: -70px;
+  bottom: -10px;
+  left: -96px;
   font-size: 12px;
   color: white;
-  width: 86px;
-  height: 32px;
-  line-height: 32px;
+  width: 84px;
+  height: 30px;
+  line-height: 30px;
   background: rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
   text-align: center;

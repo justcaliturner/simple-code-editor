@@ -56,14 +56,14 @@ export default {
       type: String,
       default: "#aaa",
     },
-    defaultDisplay: {
+    default_display: {
       type: Boolean,
       default: false,
     },
   },
   data() {
     return {
-      show: this.defaultDisplay,
+      show: this.default_display,
     };
   },
   computed: {
@@ -97,6 +97,9 @@ export default {
 .dropdown {
   cursor: pointer;
   position: relative;
+}
+.dropdown:focus {
+  outline: none;
 }
 .disabled {
   cursor: default;

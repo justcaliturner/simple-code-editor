@@ -14,26 +14,24 @@
           It's easy to use, both support <mark>read-only</mark> and
           <mark>edit mode</mark>, hundreds of languages and theme styles powered
           by
-          <a target="_blank" href="https://highlightjs.org/">highlight.js</a>,
-          and you can directly use it in the browser or import the JavaScript
-          modules via the NPM package
+          <a target="_blank" href="https://highlightjs.org/">highlight.js</a>. You can directly use it in the browser or import the JavaScript modules via the NPM package
         </p>
       </div>
       <CodeEditor
         v-model="value1"
-        zIndex="3"
+        z_index="3"
         width="100%"
         :languages="[
           ['html', 'HTML'],
           ['javascript', 'JavaScript'],
           ['css', 'CSS'],
         ]"
-        :languageSelector="true"
+        :language_selector="true"
       ></CodeEditor>
       <CodeEditor
         v-model="value2"
         width="100%"
-        :languageSelector="true"
+        :language_selector="true"
       ></CodeEditor>
       <div class="button_group">
         <button :class="{ selected: atomOneDark }" @click="themeAtomOneDark">
@@ -66,7 +64,7 @@
       <CodeEditor
         value='<link rel="stylesheet" href="/path/code_editor.min.css">'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>
@@ -82,7 +80,7 @@
 // Main script
 <script src="/path/code_editor.prod.js"></script>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>
@@ -97,14 +95,14 @@
   }
 })"
         :languages="[['javascript', 'JS']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
 
       <CodeEditor
         value='<code-editor></code-editor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <!-- Install with NPM -->
@@ -113,8 +111,8 @@
       <CodeEditor
         value="npm install CodeEditor --save"
         :languages="[['shell']]"
-        :hideHeader="true"
-        :readOnly="true"
+        :hide_header="true"
+        :read_only="true"
         width="100%"
       />
       <p>
@@ -130,14 +128,14 @@ export default {
     }
 }"
         :languages="[['javascript', 'JS']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
 
       <CodeEditor
         value='<CodeEditor></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
 
@@ -156,7 +154,7 @@ export default {
       <CodeEditor
         value='<link rel="stylesheet" href="/path/github.css">'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>
@@ -166,7 +164,7 @@ export default {
       <CodeEditor
         value="import 'highlight.js/styles/github.css';"
         :languages="[['javascript', 'JS']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
     </div>
@@ -176,40 +174,32 @@ export default {
   <div class="api" id="api">
     <div class="container">
       <h2>API</h2>
-      <h3 id="read_only">readOnly<label> - Boolean</label></h3>
+      <h3 id="read_only">read_only<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: whether the code is editable</p>
-      <p>Example code:</p>
-      <CodeEditor
-        value="<CodeEditor :readOnly='true' value='console.log('This is a demo')'></CodeEditor>"
-        :languages="[['html', 'HTML']]"
-        :readOnly="true"
-        width="100%"
-      ></CodeEditor>
-      <p>UI Rendering:</p>
-      <CodeEditor :readOnly="true" value="console.log('This is a demo')" width="100%"></CodeEditor>
-
       <h3>value<label> - String</label></h3>
       <p>Default: unset</p>
       <p>
         Description: show your code in the non-editable block, only the
-        value of <code><a href="#read_only">readOnly</a></code> is
-        <code>true</code> this property can be used. If you want to make the
-        code editable you can use the property
-        <a href="#v-model"><code>v-model</code></a>, and the value of <code><a href="#read_only">readOnly</a></code> should be <code>false</code>
+        value of <code><a href="#read_only">read_only</a></code> is
+        <code>true</code>, this property can be used. If you want to make the
+        code editable and bind it, you can use the property
+        <a href="#v-model"><code>v-model</code></a>
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value='<CodeEditor value="some code"></CodeEditor>'
+        value='<CodeEditor :read_only="true" value="console.log(4)"></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor :read_only="true" value="console.log(4)" width="100%"></CodeEditor>
 
       <h3 id="v-model">v-model</h3>
       <p>
         Description: varies based on the value of form inputs element or output
-        of components, the specific usage please check on
+        of components, the specific usage you can check on
         <a
           target="_blank"
           href="https://v3.vuejs.org/api/directives.html#v-model"
@@ -217,26 +207,25 @@ export default {
         >
       </p>
 
-      <h3>languageSelector<label> - Boolean</label></h3>
+      <h3>language_selector<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>
         Description: whether the language selector is availed, if the value is
         <code>true</code>, you can use the property
-        <a href="#languages"><code>languages</code></a> to set which language
+        <a href="#languages"><code>languages</code></a> to set which languages
         can be selected
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value='<CodeEditor :languageSelector="true"></CodeEditor>'
+        value='<CodeEditor :language_selector="true" v-model="code"></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
       <CodeEditor
-        value="console.log('This is a demo')"
-        :languageSelector="true"
-        :readOnly="true"
+        v-model="demo"
+        :language_selector="true"
         width="100%"
       ></CodeEditor>
 
@@ -247,7 +236,7 @@ export default {
       </p>
       <p>
         Description: when the value of
-        <a href="#languageSelector"><code>languageSelector</code></a> is
+        <a href="#language_selector"><code>language_selector</code></a> is
         <code>true</code>, you can set the language list to be selected. This
         property is a two-dimensional array, the first item of each child is the
         index of the language library for <a href="#">highlight.js </a>
@@ -257,63 +246,56 @@ export default {
           href="https://github.com/highlightjs/highlight.js/tree/main/src/languages"
         >
           language list of highlight.js</a
-        >, the second item of each child is a displayed item which is used for
+        >, the second item of each child is used for display, which is for
         the better user reading experience, it can be free to customize and
-        optional, if it's not set, the UI display will be replaced with the
+        optional, if it's unset, the UI display will be replaced with the
         index of the language library
       </p>
       <p>Example code:</p>
       <CodeEditor
-        value='<CodeEditor :languages="[["css", "CSS"],["javascript", "JS"],["html", "HTML"]]"></CodeEditor>'
+        value='<CodeEditor :language_selector="true" :languages="[["css", "CSS"],["javascript", "JS"],["html", "HTML"]]" v-model="cssDemo"></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
       <CodeEditor
-        value=".subtitle {
-  color: var(--grey_7);
-  margin: 20px 0;
-  font-size: 16px;
-}"
+        v-model="cssDemo"
         :languages="[
           ['css', 'CSS'],
           ['javascript', 'JS'],
           ['html', 'HTML'],
         ]"
-        :selectorDisplayedByDefault="true"
-        :languageSelector="true"
-        :readOnly="true"
+        :language_selector="true"
         width="100%"
       ></CodeEditor>
 
-      <h3>hideHeader<label> - Boolean</label></h3>
+      <h3>hide_header<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: whether the header of code editor is displayed</p>
       <p>Example code:</p>
       <CodeEditor
-        value='<CodeEditor :hideHeader="true"></CodeEditor>'
+        value='<CodeEditor :hide_header="true" v-model="demo"></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read_only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
       <CodeEditor
-        value="console.log('This is a demo')"
-        :readOnly="true"
-        :hideHeader="true"
+        v-model="demo"
+        :hide_header="true"
         width="100%"
       ></CodeEditor>
 
-      <h3>displayLanguage<label> - Boolean</label></h3>
+      <h3>display_language<label> - Boolean</label></h3>
       <p>Default: <code>true</code></p>
       <p>Description: whether the language name is displayed</p>
 
-      <h3>copyCode<label> - string</label></h3>
+      <h3>copy_code<label> - string</label></h3>
       <p>Default: <code>true</code></p>
       <p>Description: whether the code can be copied by the icon button</p>
 
-      <h3>fontSize<label> - String</label></h3>
+      <h3>font_size<label> - String</label></h3>
       <p>Default: <code>17px</code></p>
       <p>Description: setting the font size in coding</p>
 
@@ -322,34 +304,42 @@ export default {
       <p>Description: setting the width of the code editor</p>
 
       <h3>height<label> - String</label></h3>
-      <p>Default: <code>140px</code></p>
+      <p>Default: <code>auto</code></p>
       <p>Description: setting the height of the code editor</p>
 
-      <h3>maxWidth<label> - String</label></h3>
+      <h3>min_width<label> - String</label></h3>
+      <p>Default: <code>Unset</code></p>
+      <p>Description: setting the min-width of the code editor</p>
+
+      <h3>min_height<label> - String</label></h3>
+      <p>Default: <code>Unset</code></p>
+      <p>Description: setting the min-height of the code editor</p>
+
+      <h3>max_width<label> - String</label></h3>
       <p>Default: <code>Unset</code></p>
       <p>Description: setting the max-width of the code editor</p>
 
-      <h3>maxHeight<label> - String</label></h3>
+      <h3>max_height<label> - String</label></h3>
       <p>Default: <code>Unset</code></p>
       <p>Description: setting the max-height of the code editor</p>
 
-      <h3>borderRadius<label> - String</label></h3>
+      <h3>border_radius<label> - String</label></h3>
       <p>Default: <code>12px</code></p>
       <p>Description: setting the radius of the code editor</p>
 
-      <h3>selectorWidth<label> - string</label></h3>
+      <h3>selector_width<label> - string</label></h3>
       <p>Default: <code>110px</code></p>
       <p>Description: setting the width of the selector</p>
 
-      <h3>selectorHeight<label> - string</label></h3>
+      <h3>selector_height<label> - string</label></h3>
       <p>Default: <code>110px</code></p>
       <p>Description: setting the height of the selector</p>
 
-      <h3>selectorDisplayedByDefault<label> - Boolean</label></h3>
+      <h3>selector_displayed_by_default<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: whether the selector is displayed by default</p>
 
-      <h3>zIndex<label> - String</label></h3>
+      <h3>z_index<label> - String</label></h3>
       <p>Default: <code>Unset</code></p>
       <p>Description: setting the stack order of the code editor</p>
 
@@ -376,7 +366,12 @@ export default {
       atomOneDark: true,
       githubDark: false,
       tomorrowNightBright: false,
-      demo:'',
+      demo:'// This is a demo.',
+      cssDemo: `.subtitle {
+  color: var(--grey_7);
+  margin: 20px 0;
+  font-size: 16px;
+}`,
       value1: `<CodeEditor v-model="value"></CodeEditor>`,
       value2: `import CodeEditor from 'CodeEditor';
 export default {

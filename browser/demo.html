@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        <code-editor v-model="value" :languages="[['html', 'HTML'], ['javascript', 'JavaScript'], ['css', 'CSS']]"></code-editor>
+        <code-editor :value="value" :languages="[['html', 'HTML'], ['css', 'CSS']]" :language_selector="true"></code-editor>
     </div>
     <!-- js -->
     <script src="./lib/vue@3.2.6.prod.js"></script>

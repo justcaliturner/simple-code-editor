@@ -1,79 +1,85 @@
 <template>
   <div
     class="code_editor hljs"
-    :class="{ hide_header: withoutHeader, scroll: canScroll, read_only: readOnly}"
+    :class="{
+      hide_header: withoutHeader,
+      scroll: canScroll,
+      read_only: read_only,
+    }"
     :style="{
       width: width,
       height: height,
-      borderRadius: borderRadius,
-      zIndex: zIndex,
-      maxWidth: maxWidth,
-      minWidth: minWidth,
-      maxHeight: maxHeight,
-      minHeight: minHeight,
+      borderRadius: border_radius,
+      zIndex: z_index,
+      maxWidth: max_width,
+      minWidth: min_width,
+      maxHeight: max_height,
+      minHeight: min_height,
     }"
   >
     <div class="header" v-if="withoutHeader == true ? false : true">
       <Dropdown
-        :width="selectorWidth"
+        :width="selector_width"
         :mark="mark"
-        :disabled="languageSelector == false ? true : false"
-        v-if="displayLanguage"
-        :defaultDisplay="selectorDisplayedByDefault"
+        :disabled="language_selector == false ? true : false"
+        v-if="display_language"
+        :default_display="selector_displayed_by_default"
       >
-        <div class="panel">
-          <ul class="lang_list" :style="{ height: selectorHeight }">
-            <li
-              v-for="lang in languageList"
-              :key="lang"
-              @click="
-                this.mark = lang[1] === undefined ? lang[0] : lang[1];
-                this.languageClass = 'language-' + lang[0];
-              "
-            >
-              {{ lang[1] === undefined ? lang[0] : lang[1] }}
-            </li>
-          </ul>
-        </div>
+        <ul class="lang_list" :style="{ height: selector_height }">
+          <li
+            v-for="lang in languageList"
+            :key="lang"
+            @click="
+              this.mark = lang[1] === undefined ? lang[0] : lang[1];
+              this.languageClass = 'language-' + lang[0];
+            "
+          >
+            {{ lang[1] === undefined ? lang[0] : lang[1] }}
+          </li>
+        </ul>
       </Dropdown>
       <CopyCode
         width="16px"
         height="16px"
         :content="content"
-        v-if="copyCode"
+        v-if="copy_code"
       ></CopyCode>
     </div>
     <div
       class="code_area"
       :style="{
-        borderBottomLeftRadius: borderRadius,
-        borderBottomRightRadius: borderRadius,
-        borderTopLeftRadius: hideHeader == true ? borderRadius : 0,
-        borderTopRightRadius: hideHeader == true ? borderRadius : 0,
+        borderBottomLeftRadius: border_radius,
+        borderBottomRightRadius: border_radius,
+        borderTopLeftRadius: hide_header == true ? border_radius : 0,
+        borderTopRightRadius: hide_header == true ? border_radius : 0,
       }"
     >
       <textarea
-        v-if="readOnly == true ? false : modelValue === undefined ? true : false"
+        v-if="
+          read_only == true ? false : modelValue === undefined ? true : false
+        "
         :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         v-model="staticValue"
-        :style="{ fontSize: fontSize }"
+        :style="{ fontSize: font_size }"
       ></textarea>
       <textarea
-        v-if="readOnly == true ? false : modelValue === undefined ? false : true"
+        v-if="
+          read_only == true ? false : modelValue === undefined ? false : true
+        "
         :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
-        :style="{ fontSize: fontSize }"
+        :style="{ fontSize: font_size }"
       ></textarea>
       <pre>
         <code
             :class="languageClass"
-            :style="{ top: top + 'px', left: left + 'px', fontSize: fontSize }"
-        >{{ readOnly == true ? value : modelValue === undefined ? staticValue + '\n' : modelValue + '\n' }}</code>
+            :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
+        >{{ read_only == true ? value : modelValue === undefined ? staticValue + '\n' : modelValue + '\n' }}</code>
       </pre>
     </div>
   </div>
@@ -95,7 +101,7 @@ export default {
     modelValue: {
       type: String,
     },
-    readOnly: {
+    read_only: {
       type: Boolean,
       default: false,
     },
@@ -103,12 +109,13 @@ export default {
       type: Boolean,
       default: false,
     },
-    hideHeader: {
+    hide_header: {
       type: Boolean,
       default: false,
     },
     value: {
       type: String,
+      default: "",
     },
     width: {
       type: String,
@@ -118,23 +125,23 @@ export default {
       type: String,
       default: "auto",
     },
-    maxWidth: {
+    max_width: {
       type: String,
     },
-    minWidth: {
+    min_width: {
       type: String,
     },
-    maxHeight: {
+    max_height: {
       type: String,
     },
-    minHeight: {
+    min_height: {
       type: String,
     },
-    borderRadius: {
+    border_radius: {
       type: String,
       default: "12px",
     },
-    languageSelector: {
+    language_selector: {
       type: Boolean,
       default: false,
     },
@@ -148,37 +155,37 @@ export default {
         ];
       },
     },
-    selectorWidth: {
+    selector_width: {
       type: String,
       default: "110px",
     },
-    selectorHeight: {
+    selector_height: {
       type: String,
       default: "auto",
     },
-    selectorDisplayedByDefault: {
+    selector_displayed_by_default: {
       type: Boolean,
       default: false,
     },
-    displayLanguage: {
+    display_language: {
       type: Boolean,
       default: true,
     },
-    copyCode: {
+    copy_code: {
       type: Boolean,
       default: true,
     },
-    zIndex: {
+    z_index: {
       type: String,
     },
-    fontSize: {
+    font_size: {
       type: String,
       default: "17px",
     },
   },
   data() {
     return {
-      staticValue: "// You can use the v-model to bind data.",
+      staticValue: this.value,
       top: 0,
       left: 0,
       languageClass: this.languages[0][0],
@@ -187,7 +194,8 @@ export default {
           ? this.languages[0][0]
           : this.languages[0][1],
       languageList: this.languages,
-      content: this.readOnly == true ? this.value : this.modelValue,
+      content:
+        this.modelValue === undefined ? this.staticValue : this.modelValue,
     };
   },
   computed: {
@@ -195,10 +203,10 @@ export default {
       return this.height == "auto" ? false : true;
     },
     withoutHeader() {
-      if (this.hideHeader == true) {
+      if (this.hide_header == true) {
         return true;
       } else {
-        return this.displayLanguage == false && this.copyCode == false
+        return this.display_language == false && this.copy_code == false
           ? true
           : false;
       }
@@ -217,14 +225,15 @@ export default {
     this.$nextTick(function () {
       hljs.highlightAll();
       hljs.configure({ ignoreUnescapedHTML: true });
-      console.log(1)
+      this.content =
+        this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
   },
   updated() {
     this.$nextTick(function () {
       hljs.highlightAll();
-      this.content = this.modelValue;
-      console.log(2)
+      this.content =
+        this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
   },
 };
@@ -262,7 +271,7 @@ export default {
 }
 .code_editor > .code_area > textarea,
 .code_editor > .code_area > pre > code {
-  padding: 0px 20px 16px 20px;
+  padding: 0px 20px 20px 20px;
   font-family: Consolas, Monaco, monospace;
   line-height: 1.5;
   font-size: 16px;
@@ -297,6 +306,7 @@ export default {
   overflow-x: visible;
   border-radius: 0;
   box-sizing: border-box;
+  display: block;
 }
 
 /* hide_header */
@@ -345,11 +355,11 @@ export default {
   list-style: none;
   margin: 0;
   text-align: left;
-  background: var(--grey_0);
+  background: white;
 }
 .panel > .lang_list > li {
   font-size: 13px;
-  color: var(--grey_8);
+  color: #333;
   transition: background 0.16s ease, color 0.16s ease;
   box-sizing: border-box;
   padding: 0 12px;
@@ -365,7 +375,7 @@ export default {
   padding-bottom: 5px;
 }
 .panel > .lang_list > li:hover {
-  color: var(--main_5);
-  background: var(--grey_2);
+  color: #111;
+  background: #eee;
 }
 </style>
