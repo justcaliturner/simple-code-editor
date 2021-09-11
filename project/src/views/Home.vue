@@ -29,7 +29,7 @@
         :language_selector="true"
       ></CodeEditor>
       <CodeEditor
-        value='import CodeEditor from &apos;CodeEditor&apos;;
+        value='import CodeEditor from &apos;simple-code-editor&apos;;
 export default {
     components: {
       CodeEditor
@@ -125,7 +125,7 @@ export default {
         Step 2. Importing the component and registration.
       </p>
       <CodeEditor
-        value="import CodeEditor from 'CodeEditor';
+        value="import CodeEditor from 'simple-code-editor';
 export default {
     name: 'PageName',
     components: {

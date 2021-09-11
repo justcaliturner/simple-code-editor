@@ -51,9 +51,8 @@ npm install simple-code-editor
 ```
 Step 2. Importing the component and registration.
 ```javascript
-import CodeEditor from 'CodeEditor';
+import CodeEditor from 'simple-code-editor';
 export default {
-    name: 'PageName',
     components: {
       CodeEditor
     }

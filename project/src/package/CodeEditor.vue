@@ -279,6 +279,7 @@ export default {
   flex-direction: column;
   font-size: 0;
   position: relative;
+  text-align: left;
 }
 .code_editor > .code_area {
   position: relative;
