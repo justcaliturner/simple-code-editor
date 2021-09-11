@@ -1,10 +1,14 @@
 {
-  "name": "simple-code-editor",
+  "name": "simple-code-editor-website",
   "version": "1.0.0",
-  "keywords": ["code-editor", "vue"],
+  "keywords": [
+    "code-editor",
+    "vue"
+  ],
   "homepage": "https://simple-code-editor.vicuxd.com",
   "repository": {
-    "url": "https://github.com/justcaliturner/CodeEditor.git"
+    "type": "git",
+    "url": "git+https://github.com/justcaliturner/simple-code-editor.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +17,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "highlight.js": "^11.2.0",
     "vue": "^3.0.0"
   },
   "author": "Vic",

@@ -1,5 +1,6 @@
 <template>
-  <a target="_blank" href="https://github.com/justcaliturner/codeEditor"
+<div>
+  <a target="_blank" href="https://github.com/justcaliturner/simple-code-editor"
     ><svg
       width="80"
       height="80"
@@ -73,6 +74,7 @@
     The color system powered by
     <a target="_blank" href="https://lisa.vicuxd.com/">Lisa color</a>
   </div>
+</div>
 </template>
 
 <script>

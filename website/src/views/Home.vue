@@ -1,4 +1,5 @@
 <template>
+<div>
   <!-- demo -->
   <div
     class="demo"
@@ -17,7 +18,7 @@
         </p>
       </div>
       <CodeEditor
-        v-model="value1"
+        value='<CodeEditor v-model="value"></CodeEditor>'
         z_index="3"
         width="100%"
         :languages="[
@@ -28,7 +29,17 @@
         :language_selector="true"
       ></CodeEditor>
       <CodeEditor
-        v-model="value2"
+        value='import CodeEditor from &apos;CodeEditor&apos;;
+export default {
+    components: {
+      CodeEditor
+    },
+    data() {
+        return {
+          value: &apos;&apos;
+        }
+    }
+}'
         width="100%"
         height="332px"
         :language_selector="true"
@@ -144,7 +155,6 @@ export default {
       ></CodeEditor>
     </div>
   </div>
-
   <!-- API -->
   <div class="api" id="api">
     <div class="container">
@@ -684,6 +694,7 @@ export default {
       ></CodeEditor>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -700,18 +711,6 @@ export default {
       githubDark: false,
       tomorrowNightBright: false,
       demo: "// Please edit it",
-      value1: `<CodeEditor v-model="value"></CodeEditor>`,
-      value2: `import CodeEditor from 'CodeEditor';
-export default {
-    components: {
-      CodeEditor
-    },
-    data() {
-        return {
-          value: ''
-        }
-    }
-}`,
     };
   },
   methods: {
