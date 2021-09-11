@@ -4,7 +4,7 @@
 
 Vue.js version: 3.0
 
-website: [simple-code-editor.vicuxd.com](simple-code-editor.vicuxd.com)
+website: [simple-code-editor.vicuxd.com](https://simple-code-editor.vicuxd.com)
 
 It's easy to use, both support read-only and edit mode, you can directly use it in the browser or import the JavaScript modules via the NPM package
 
