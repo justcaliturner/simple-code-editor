@@ -5,6 +5,7 @@
       hide_header: withoutHeader,
       scroll: canScroll,
       read_only: read_only,
+      wrap_code: wrap_code,
     }"
     :style="{
       width: width,
@@ -50,8 +51,8 @@
       :style="{
         borderBottomLeftRadius: border_radius,
         borderBottomRightRadius: border_radius,
-        borderTopLeftRadius: hide_header == true ? border_radius : 0,
-        borderTopRightRadius: hide_header == true ? border_radius : 0,
+        borderTopLeftRadius: withoutHeader == true ? border_radius : 0,
+        borderTopRightRadius: withoutHeader == true ? border_radius : 0,
       }"
     >
       <textarea
@@ -59,6 +60,7 @@
           read_only == true ? false : modelValue === undefined ? true : false
         "
         :autofocus="autofocus"
+        @input="calcContainerWidth"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         v-model="staticValue"
@@ -72,10 +74,15 @@
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="
+          $emit('update:modelValue', $event.target.value),
+            calcContainerWidth($event)
+        "
         :style="{ fontSize: font_size }"
       ></textarea>
-      <pre>
+      <pre
+        :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
+      >
         <code
             :class="languageClass"
             :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
@@ -100,6 +107,10 @@ export default {
   props: {
     modelValue: {
       type: String,
+    },
+    wrap_code: {
+      type: Boolean,
+      default: false,
     },
     read_only: {
       type: Boolean,
@@ -185,6 +196,7 @@ export default {
   },
   data() {
     return {
+      containerWidth: 0,
       staticValue: this.value,
       top: 0,
       left: 0,
@@ -213,6 +225,9 @@ export default {
     },
   },
   methods: {
+    calcContainerWidth(event) {
+      this.containerWidth = event.target.clientWidth;
+    },
     tab() {
       document.execCommand("insertText", false, "    ");
     },
@@ -310,11 +325,9 @@ export default {
 }
 
 /* hide_header */
-.hide_header > .code_area > textarea {
-  padding: 16px 20px;
-}
+.hide_header > .code_area > textarea,
 .hide_header > .code_area > pre > code {
-  padding: 16px 20px;
+  padding: 20px;
 }
 .hide_header.scroll > .code_area {
   height: 100%;
@@ -325,6 +338,13 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto !important;
+}
+
+/* wrap code */
+.wrap_code > .code_area > textarea,
+.wrap_code > .code_area > pre > code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 /* scroll */

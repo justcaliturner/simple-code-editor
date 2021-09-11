@@ -1,42 +1,42 @@
 // CopyCode
 const CopyCode = {
-    props: {
-        content: {
-          type: String,
-        },
-        width: {
-          type: String,
-          default: "20px",
-        },
-        height: {
-          type: String,
-          default: "20px",
-        },
-        color: {
-          type: String,
-          default: "#aaa",
-        },
-      },
-      data() {
-        return {
-          message: "Copy code",
-        };
-      },
-      methods: {
-        selectContent() {
-          this.$refs.textarea.select();
-          document.execCommand("copy");
-        },
-        copy(event) {
-          this.selectContent();
-          event.target.focus();
-          this.message = "Copied!";
-        },
-        resetMessage() {
-          this.message = "Copy code";
-        },
-      },
-    template: `
+  props: {
+    content: {
+      type: String,
+    },
+    width: {
+      type: String,
+      default: "20px",
+    },
+    height: {
+      type: String,
+      default: "20px",
+    },
+    color: {
+      type: String,
+      default: "#aaa",
+    },
+  },
+  data() {
+    return {
+      message: "Copy code",
+    };
+  },
+  methods: {
+    selectContent() {
+      this.$refs.textarea.select();
+      document.execCommand("copy");
+    },
+    copy(event) {
+      this.selectContent();
+      event.target.focus();
+      this.message = "Copied!";
+    },
+    resetMessage() {
+      this.message = "Copy code";
+    },
+  },
+  template: `
     <div
     class="copy_code"
     @click="copy"
@@ -67,53 +67,53 @@ const CopyCode = {
 
 // Dropdown
 const Dropdown = {
-    props: {
-        width: {
-            type: String,
-            default: "80px",
-        },
-        height: {
-            type: String,
-            default: "auto",
-        },
-        mark: {
-            type: String,
-            default: "",
-        },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        color: {
-            type: String,
-            default: "#aaa",
-        },
-        default_display: {
-            type: Boolean,
-            default: false,
-        },
+  props: {
+    width: {
+      type: String,
+      default: "80px",
     },
-    data() {
-        return {
-            show: this.default_display,
-        };
+    height: {
+      type: String,
+      default: "auto",
     },
-    computed: {
-        showArrow() {
-            return this.disabled == true ? false : true;
-        },
+    mark: {
+      type: String,
+      default: "",
     },
-    methods: {
-        toggleDropdown() {
-            if (this.disabled == false) {
-                this.show == true ? (this.show = false) : (this.show = true);
-            }
-        },
-        hideDropdown() {
-            this.show = false;
-        },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
-    template: `
+    color: {
+      type: String,
+      default: "#aaa",
+    },
+    default_display: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      show: this.default_display,
+    };
+  },
+  computed: {
+    showArrow() {
+      return this.disabled == true ? false : true;
+    },
+  },
+  methods: {
+    toggleDropdown() {
+      if (this.disabled == false) {
+        this.show == true ? (this.show = false) : (this.show = true);
+      }
+    },
+    hideDropdown() {
+      this.show = false;
+    },
+  },
+  template: `
 <div
     class="dropdown"
     :class="{ disabled: disabled }"
@@ -149,156 +149,165 @@ const Dropdown = {
 
 // CodeEditor
 const CodeEditor = {
-    components: {
-        'copy-code': CopyCode,
-        'dropdown': Dropdown
+  components: {
+    'copy-code': CopyCode,
+    'dropdown': Dropdown
+  },
+  props: {
+    modelValue: {
+      type: String,
     },
-    props: {
-      modelValue: {
-        type: String,
-      },
-      read_only: {
-        type: Boolean,
-        default: false,
-      },
-      autofocus: {
-        type: Boolean,
-        default: false,
-      },
-      hide_header: {
-        type: Boolean,
-        default: false,
-      },
-      value: {
-        type: String,
-        default: "",
-      },
-      width: {
-        type: String,
-        default: "540px",
-      },
-      height: {
-        type: String,
-        default: "auto",
-      },
-      max_width: {
-        type: String,
-      },
-      min_width: {
-        type: String,
-      },
-      max_height: {
-        type: String,
-      },
-      min_height: {
-        type: String,
-      },
-      border_radius: {
-        type: String,
-        default: "12px",
-      },
-      language_selector: {
-        type: Boolean,
-        default: false,
-      },
-      languages: {
-        type: Array,
-        default: function () {
-          return [
-            ["javascript", "JS"],
-            ["cpp", "C++"],
-            ["python", "Python"],
-          ];
-        },
-      },
-      selector_width: {
-        type: String,
-        default: "110px",
-      },
-      selector_height: {
-        type: String,
-        default: "auto",
-      },
-      selector_displayed_by_default: {
-        type: Boolean,
-        default: false,
-      },
-      display_language: {
-        type: Boolean,
-        default: true,
-      },
-      copy_code: {
-        type: Boolean,
-        default: true,
-      },
-      z_index: {
-        type: String,
-      },
-      font_size: {
-        type: String,
-        default: "17px",
+    wrap_code: {
+      type: Boolean,
+      default: false,
+    },
+    read_only: {
+      type: Boolean,
+      default: false,
+    },
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
+    hide_header: {
+      type: Boolean,
+      default: false,
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    width: {
+      type: String,
+      default: "540px",
+    },
+    height: {
+      type: String,
+      default: "auto",
+    },
+    max_width: {
+      type: String,
+    },
+    min_width: {
+      type: String,
+    },
+    max_height: {
+      type: String,
+    },
+    min_height: {
+      type: String,
+    },
+    border_radius: {
+      type: String,
+      default: "12px",
+    },
+    language_selector: {
+      type: Boolean,
+      default: false,
+    },
+    languages: {
+      type: Array,
+      default: function () {
+        return [
+          ["javascript", "JS"],
+          ["cpp", "C++"],
+          ["python", "Python"],
+        ];
       },
     },
-    data() {
-      return {
-        staticValue: this.value,
-        top: 0,
-        left: 0,
-        languageClass: this.languages[0][0],
-        mark:
-          this.languages[0][1] === undefined
-            ? this.languages[0][0]
-            : this.languages[0][1],
-        languageList: this.languages,
-        content:
-          this.modelValue === undefined ? this.staticValue : this.modelValue,
-      };
+    selector_width: {
+      type: String,
+      default: "110px",
     },
-    computed: {
-      canScroll() {
-        return this.height == "auto" ? false : true;
-      },
-      withoutHeader() {
-        if (this.hide_header == true) {
-          return true;
-        } else {
-          return this.display_language == false && this.copy_code == false
-            ? true
-            : false;
-        }
-      },
+    selector_height: {
+      type: String,
+      default: "auto",
     },
-    methods: {
-      tab() {
-        document.execCommand("insertText", false, "    ");
-      },
-      scroll(event) {
-        this.top = -event.target.scrollTop;
-        this.left = -event.target.scrollLeft;
-      },
+    selector_displayed_by_default: {
+      type: Boolean,
+      default: false,
     },
-    mounted() {
-      this.$nextTick(function () {
-        hljs.highlightAll();
-        hljs.configure({ ignoreUnescapedHTML: true });
-        this.content =
-          this.modelValue === undefined ? this.staticValue : this.modelValue;
-      });
+    display_language: {
+      type: Boolean,
+      default: true,
     },
-    updated() {
-      this.$nextTick(function () {
-        hljs.highlightAll();
-        this.content =
-          this.modelValue === undefined ? this.staticValue : this.modelValue;
-      });
+    copy_code: {
+      type: Boolean,
+      default: true,
     },
-    template: `
+    z_index: {
+      type: String,
+    },
+    font_size: {
+      type: String,
+      default: "17px",
+    },
+  },
+  data() {
+    return {
+      containerWidth: 0,
+      staticValue: this.value,
+      top: 0,
+      left: 0,
+      languageClass: this.languages[0][0],
+      mark:
+        this.languages[0][1] === undefined
+          ? this.languages[0][0]
+          : this.languages[0][1],
+      languageList: this.languages,
+      content:
+        this.modelValue === undefined ? this.staticValue : this.modelValue,
+    };
+  },
+  computed: {
+    canScroll() {
+      return this.height == "auto" ? false : true;
+    },
+    withoutHeader() {
+      if (this.hide_header == true) {
+        return true;
+      } else {
+        return this.display_language == false && this.copy_code == false
+          ? true
+          : false;
+      }
+    },
+  },
+  methods: {
+    calcContainerWidth(event) {
+      this.containerWidth = event.target.clientWidth;
+    },
+    tab() {
+      document.execCommand("insertText", false, "    ");
+    },
+    scroll(event) {
+      this.top = -event.target.scrollTop;
+      this.left = -event.target.scrollLeft;
+    },
+  },
+  mounted() {
+    this.$nextTick(function () {
+      hljs.highlightAll();
+      hljs.configure({ ignoreUnescapedHTML: true });
+      this.content =
+        this.modelValue === undefined ? this.staticValue : this.modelValue;
+    });
+  },
+  updated() {
+    this.$nextTick(function () {
+      hljs.highlightAll();
+      this.content =
+        this.modelValue === undefined ? this.staticValue : this.modelValue;
+    });
+  },
+  template: `
     <div
     class="code_editor hljs"
     :class="{
       hide_header: withoutHeader,
       scroll: canScroll,
       read_only: read_only,
+      wrap_code: wrap_code,
     }"
     :style="{
       width: width,
@@ -344,8 +353,8 @@ const CodeEditor = {
       :style="{
         borderBottomLeftRadius: border_radius,
         borderBottomRightRadius: border_radius,
-        borderTopLeftRadius: hide_header == true ? border_radius : 0,
-        borderTopRightRadius: hide_header == true ? border_radius : 0,
+        borderTopLeftRadius: withoutHeader == true ? border_radius : 0,
+        borderTopRightRadius: withoutHeader == true ? border_radius : 0,
       }"
     >
       <textarea
@@ -353,6 +362,7 @@ const CodeEditor = {
           read_only == true ? false : modelValue === undefined ? true : false
         "
         :autofocus="autofocus"
+        @input="calcContainerWidth"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         v-model="staticValue"
@@ -366,10 +376,15 @@ const CodeEditor = {
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
         :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="
+          $emit('update:modelValue', $event.target.value),
+            calcContainerWidth($event)
+        "
         :style="{ fontSize: font_size }"
       ></textarea>
-      <pre>
+      <pre
+        :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
+      >
         <code
             :class="languageClass"
             :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"

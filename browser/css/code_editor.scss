@@ -170,11 +170,9 @@
 }
 
 /* hide_header */
-.hide_header > .code_area > textarea {
-  padding: 16px 20px;
-}
+.hide_header > .code_area > textarea,
 .hide_header > .code_area > pre > code {
-  padding: 16px 20px;
+  padding: 20px;
 }
 .hide_header.scroll > .code_area {
   height: 100%;
@@ -185,6 +183,13 @@
   width: 100%;
   height: 100%;
   overflow: auto !important;
+}
+
+/* wrap */
+.wrap_code > .code_area > textarea,
+.wrap_code > .code_area > pre > code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 /* scroll */
@@ -239,24 +244,7 @@
   background: #eee;
 }
 
-/* theme */
-/*
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-*/
-
+// theme
 .hljs {
   color: #abb2bf;
   background: #282c34;

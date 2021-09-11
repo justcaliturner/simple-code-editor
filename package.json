@@ -1,7 +1,11 @@
 {
-  "name": "code-editor",
+  "name": "simple-code-editor",
   "version": "1.0.0",
-  "private": true,
+  "keywords": ["code-editor", "vue"],
+  "homepage": "https://simple-code-editor.vicuxd.com",
+  "repository": {
+    "url": "https://github.com/justcaliturner/CodeEditor.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -13,7 +17,7 @@
     "vue": "^3.0.0"
   },
   "author": "Vic",
-  "license": "GPL",
+  "license": "MIT",
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
