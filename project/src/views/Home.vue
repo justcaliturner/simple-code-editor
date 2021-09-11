@@ -127,7 +127,6 @@ export default {
       <CodeEditor
         value="import CodeEditor from 'simple-code-editor';
 export default {
-    name: 'PageName',
     components: {
       CodeEditor
     }
@@ -699,7 +698,7 @@ export default {
 </template>
 
 <script>
-import CodeEditor from "@/package/CodeEditor.vue";
+import CodeEditor from "../../package/CodeEditor.vue";
 
 export default {
   name: "Home",
