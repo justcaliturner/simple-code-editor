@@ -20,9 +20,10 @@ Step 1. Add the CSS file.
 <link rel="stylesheet" href="/path/code_editor.min.css">
 ```
 
-Step 2. Add the JavaScript file after the `vue.js`.
+Step 2. Add the JavaScript files after the `vue.js` file.
 
 ```html
+<script src="/path/highlight.11.2.0.min.js"></script>
 <script src="/path/code_editor.prod.js"></script>
 ```
 
