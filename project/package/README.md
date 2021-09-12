@@ -46,7 +46,9 @@ You can cover the CSS file to customize the theme style.
 ## API
 
 ### read_only ` Boolean`
+
 Default:  `false`
+
 Description: whether the code is editable
 
 ```html
@@ -58,6 +60,7 @@ Description: whether the code is editable
 ### value `String`
 
 Default:  `unset`
+
 Description: setting the contents of a code editor. If you want to bind the data, please use the property [`v-model`](#v-model)
 
 ```html
@@ -72,15 +75,16 @@ Description: varies based on the value of form inputs element or output of compo
 
 
 
+
 ### language_selector `Boolean`
 
 Default:  `false`
+
 Description: whether the language selector is availed, if the value is `true`, you can use the property `languages` to set which languages can be selected
 
 ```html
 <CodeEditor :language_selector="true"></CodeEditor>
 ```
-
 
 
 
@@ -100,6 +104,7 @@ Description: when the value of `language_selector` is `true`, you can set the la
 ### wrap_code  `Boolean`
 
 Default:  `false`
+
 Description: whether the code is allowed to wrap automatically
 
 ```html
@@ -111,6 +116,7 @@ Description: whether the code is allowed to wrap automatically
 ### hide_header  `Boolean`
 
 Default:  `false`
+
 Description: whether the header of code editor is hidden
 
 ```html
@@ -122,6 +128,7 @@ Description: whether the header of code editor is hidden
 ### display_language  `Boolean`
 
 Default:  `true`
+
 Description: whether the language name is displayed
 
 ```html
@@ -133,6 +140,7 @@ Description: whether the language name is displayed
 ### copy_code  `Boolean`
 
 Default:  `true`
+
 Description: whether the code can be copied by the icon button
 
 ```html
@@ -144,6 +152,7 @@ Description: whether the code can be copied by the icon button
 ### font_size  `String`
 
 Default:  `17px`
+
 Description: setting the font size
 
 ```html
@@ -155,6 +164,7 @@ Description: setting the font size
 ### width  `String`
 
 Default:  `540px`
+
 Description: setting the width of the code editor
 
 ```html
@@ -166,6 +176,7 @@ Description: setting the width of the code editor
 ### height  `String`
 
 Default:  `auto`
+
 Description: the height of the container is adaptive by default, you can also set it to a specific value, and the scroll bar will work with a long text
 
 ```html
@@ -177,6 +188,7 @@ Description: the height of the container is adaptive by default, you can also se
 ### min_width  `String`
 
 Default:  `unset`
+
 Description: setting the min-width of the code editor
 
 ```html
@@ -188,6 +200,7 @@ Description: setting the min-width of the code editor
 ### min_height  `String`
 
 Default:  `unset`
+
 Description: setting the min-height of the code editor
 
 ```html
@@ -199,6 +212,7 @@ Description: setting the min-height of the code editor
 ### max_width  `String`
 
 Default:  `unset`
+
 Description: setting the max-width of the code editor
 
 ```html
@@ -210,6 +224,7 @@ Description: setting the max-width of the code editor
 ### max_height  `String`
 
 Default:  `unset`
+
 Description: setting the max-height of the code editor
 
 ```html
@@ -221,6 +236,7 @@ Description: setting the max-height of the code editor
 ### border_radius  `String`
 
 Default:  `12px`
+
 Description: setting the radius of the code editor
 
 ```html
@@ -232,6 +248,7 @@ Description: setting the radius of the code editor
 ### selector_width  `String`
 
 Default:  `110px`
+
 Description: setting the width of the selector
 
 ```html
@@ -243,6 +260,7 @@ Description: setting the width of the selector
 ### selector_height  `String`
 
 Default:  `auto`
+
 Description: setting the height  of the selector
 
 ```html
@@ -254,6 +272,7 @@ Description: setting the height  of the selector
 ### selector_displayed_by_default   `Boolean`
 
 Default:  `false`
+
 Description: whether the selector is displayed by default
 
 ```html
@@ -265,6 +284,7 @@ Description: whether the selector is displayed by default
 ### z_index   `String`
 
 Default:  `unset`
+
 Description: setting the stack order of the code editor
 
 ```html
