@@ -227,7 +227,7 @@ export default {
         width="100%"
       ></CodeEditor>
 
-      <h3 id="languages">languages<label> - array</label></h3>
+      <h3 id="languages">languages<label> - Array</label></h3>
       <p>
         Default:
         <code>[["javascript", "JS"],["cpp", "C++"],["python", "Python"]]</code>
@@ -503,7 +503,7 @@ export default {
         width="100%"
       ></CodeEditor>
 
-      <h3>copy_code<label> - string</label></h3>
+      <h3>copy_code<label> - Boolean</label></h3>
       <p>Default: <code>true</code></p>
       <p>Description: whether the code can be copied by the icon button</p>
       <CodeEditor
@@ -556,7 +556,7 @@ export default {
       ></CodeEditor>
 
       <h3>min_width<label> - String</label></h3>
-      <p>Default: <code>Unset</code></p>
+      <p>Default: <code>unset</code></p>
       <p>Description: setting the min-width of the code editor</p>
       <CodeEditor
         value='<CodeEditor min_width="200px"></CodeEditor>'
@@ -566,7 +566,7 @@ export default {
       ></CodeEditor>
 
       <h3>min_height<label> - String</label></h3>
-      <p>Default: <code>Unset</code></p>
+      <p>Default: <code>unset</code></p>
       <p>Description: setting the min-height of the code editor</p>
       <CodeEditor
         value='<CodeEditor min_height="200px"></CodeEditor>'
@@ -576,7 +576,7 @@ export default {
       ></CodeEditor>
 
       <h3>max_width<label> - String</label></h3>
-      <p>Default: <code>Unset</code></p>
+      <p>Default: <code>unset</code></p>
       <p>Description: setting the max-width of the code editor</p>
       <CodeEditor
         value='<CodeEditor max_width="200px"></CodeEditor>'
@@ -586,7 +586,7 @@ export default {
       ></CodeEditor>
 
       <h3>max_height<label> - String</label></h3>
-      <p>Default: <code>Unset</code></p>
+      <p>Default: <code>unset</code></p>
       <p>Description: setting the max-height of the code editor</p>
       <CodeEditor
         value='<CodeEditor max_height="200px"></CodeEditor>'
@@ -612,7 +612,7 @@ export default {
         width="100%"
       ></CodeEditor>
 
-      <h3>selector_width<label> - string</label></h3>
+      <h3>selector_width<label> - String</label></h3>
       <p>Default: <code>110px</code></p>
       <p>Description: setting the width of the selector</p>
       <CodeEditor
@@ -634,7 +634,7 @@ export default {
         width="100%"
       ></CodeEditor>
 
-      <h3>selector_height<label> - string</label></h3>
+      <h3>selector_height<label> - String</label></h3>
       <p>Default: <code>auto</code></p>
       <p>Description: setting the height of the selector</p>
       <CodeEditor
@@ -671,7 +671,7 @@ export default {
       ></CodeEditor>
 
       <h3>z_index<label> - String</label></h3>
-      <p>Default: <code>Unset</code></p>
+      <p>Default: <code>unset</code></p>
       <p>Description: setting the stack order of the code editor</p>
       <CodeEditor
         value='<CodeEditor z_index="6"></CodeEditor>'
