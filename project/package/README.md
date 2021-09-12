@@ -12,37 +12,6 @@ It's easy to use, both support read-only and edit mode, you can directly use it 
 
 ## Useage
 
-#### In the Browser
-
-Step 1. Add the CSS file.
-
-```html
-<link rel="stylesheet" href="/path/code_editor.min.css">
-```
-
-Step 2. Add the JavaScript files after the `vue.js` file.
-
-```html
-<script src="/path/highlight.11.2.0.min.js"></script>
-<script src="/path/code_editor.prod.js"></script>
-```
-
-Step 3. Declaring the component, and using the customized tag into the HTML template. For all configure items please check the [API](#api) list.
-
-```javascript
-const app = Vue.createApp({
-  components: {
-      'code-editor': CodeEditor
-  }
-})
-```
-```html
-<code-editor></code-editor>
-```
-
-
-
-#### Install with NPM
 
 Step 1
 

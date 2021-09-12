@@ -116,7 +116,7 @@ Description: whether the language selector is availed, if the value is `true`, y
 
 
 
-### languages `array`
+### languages `Array`
 
 Default: `[["javascript", "JS"],["cpp", "C++"],["python", "Python"]]`
 
@@ -161,7 +161,7 @@ Description: whether the language name is displayed
 
 
 
-### copy_code  `string`
+### copy_code  `Boolean`
 
 Default:  `true`
 Description: whether the code can be copied by the icon button
@@ -172,7 +172,7 @@ Description: whether the code can be copied by the icon button
 
 
 
-### font_size  `string`
+### font_size  `String`
 
 Default:  `17px`
 Description: setting the font size
@@ -183,7 +183,7 @@ Description: setting the font size
 
 
 
-### width  `string`
+### width  `String`
 
 Default:  `540px`
 Description: setting the width of the code editor
@@ -194,7 +194,7 @@ Description: setting the width of the code editor
 
 
 
-### height  `string`
+### height  `String`
 
 Default:  `auto`
 Description: the height of the container is adaptive by default, you can also set it to a specific value, and the scroll bar will work with a long text
@@ -205,9 +205,9 @@ Description: the height of the container is adaptive by default, you can also se
 
 
 
-### min_width  `string`
+### min_width  `String`
 
-Default:  `Unset`
+Default:  `unset`
 Description: setting the min-width of the code editor
 
 ```html
@@ -216,9 +216,9 @@ Description: setting the min-width of the code editor
 
 
 
-### min_height  `string`
+### min_height  `String`
 
-Default:  `Unset`
+Default:  `unset`
 Description: setting the min-height of the code editor
 
 ```html
@@ -227,9 +227,9 @@ Description: setting the min-height of the code editor
 
 
 
-### max_width  `string`
+### max_width  `String`
 
-Default:  `Unset`
+Default:  `unset`
 Description: setting the max-width of the code editor
 
 ```html
@@ -238,9 +238,9 @@ Description: setting the max-width of the code editor
 
 
 
-### max_height  `string`
+### max_height  `String`
 
-Default:  `Unset`
+Default:  `unset`
 Description: setting the max-height of the code editor
 
 ```html
@@ -249,7 +249,7 @@ Description: setting the max-height of the code editor
 
 
 
-### border_radius  `string`
+### border_radius  `String`
 
 Default:  `12px`
 Description: setting the radius of the code editor
@@ -260,7 +260,7 @@ Description: setting the radius of the code editor
 
 
 
-### selector_width  `string`
+### selector_width  `String`
 
 Default:  `110px`
 Description: setting the width of the selector
@@ -271,7 +271,7 @@ Description: setting the width of the selector
 
 
 
-### selector_height  `string`
+### selector_height  `String`
 
 Default:  `auto`
 Description: setting the height  of the selector
@@ -293,9 +293,9 @@ Description: whether the selector is displayed by default
 
 
 
-### z_index   `string`
+### z_index   `String`
 
-Default:  `Unset`
+Default:  `unset`
 Description: setting the stack order of the code editor
 
 ```html
