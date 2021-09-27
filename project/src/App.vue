@@ -85,8 +85,8 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      if (localStorage.getItem("lisa_theme")) {
-        localStorage.getItem("lisa_theme") == "light"
+      if (localStorage.getItem("vic_theme")) {
+        localStorage.getItem("vic_theme") == "light"
           ? (document.body.className = "")
           : (document.body.className = "mirror");
       } else {
@@ -98,10 +98,10 @@ export default {
     switchTheme() {
       if (document.body.className === "") {
         document.body.className = "mirror";
-        localStorage.setItem("lisa_theme", "mirror");
+        localStorage.setItem("vic_theme", "mirror");
       } else {
         document.body.className = "";
-        localStorage.setItem("lisa_theme", "light");
+        localStorage.setItem("vic_theme", "light");
       }
     },
   },
