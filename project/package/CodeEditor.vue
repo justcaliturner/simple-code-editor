@@ -6,6 +6,8 @@
       scroll: canScroll,
       read_only: read_only,
       wrap_code: wrap_code,
+      atom_one_dark: theme == 'dark',
+      atom_one_light: theme == 'light',
     }"
     :style="{
       width: width,
@@ -20,6 +22,7 @@
   >
     <div class="header" v-if="withoutHeader == true ? false : true">
       <Dropdown
+        :color="theme == 'dark' ? '#aaa' : '#999'"
         :width="selector_width"
         :mark="mark"
         :disabled="language_selector == false ? true : false"
@@ -42,6 +45,7 @@
       <CopyCode
         width="16px"
         height="16px"
+        :color="theme == 'dark' ? '#aaa' : '#999'"
         :content="content"
         v-if="copy_code"
       ></CopyCode>
@@ -94,7 +98,6 @@
 
 <script>
 import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
 import Dropdown from "./Dropdown";
 import CopyCode from "./CopyCode";
 
@@ -192,6 +195,10 @@ export default {
     font_size: {
       type: String,
       default: "17px",
+    },
+    theme: {
+      type: String,
+      default: "dark",
     },
   },
   data() {
@@ -398,5 +405,144 @@ export default {
 .panel > .lang_list > li:hover {
   color: #111;
   background: #eee;
+}
+</style>
+
+<style>
+/*
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+*/
+.atom_one_dark.hljs,
+.atom_one_dark .hljs {
+  color: #abb2bf;
+  background: #282c34;
+}
+.atom_one_dark .hljs-comment,
+.atom_one_dark .hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+.atom_one_dark .hljs-doctag,
+.atom_one_dark .hljs-keyword,
+.atom_one_dark .hljs-formula {
+  color: #c678dd;
+}
+.atom_one_dark .hljs-section,
+.atom_one_dark .hljs-name,
+.atom_one_dark .hljs-selector-tag,
+.atom_one_dark .hljs-deletion,
+.atom_one_dark .hljs-subst {
+  color: #e06c75;
+}
+.atom_one_dark .hljs-literal {
+  color: #56b6c2;
+}
+.atom_one_dark .hljs-string,
+.atom_one_dark .hljs-regexp,
+.atom_one_dark .hljs-addition,
+.atom_one_dark .hljs-attribute,
+.atom_one_dark .hljs-meta .hljs-string {
+  color: #98c379;
+}
+.atom_one_dark .hljs-attr,
+.atom_one_dark .hljs-variable,
+.atom_one_dark .hljs-template-variable,
+.atom_one_dark .hljs-type,
+.atom_one_dark .hljs-selector-class,
+.atom_one_dark .hljs-selector-attr,
+.atom_one_dark .hljs-selector-pseudo,
+.atom_one_dark .hljs-number {
+  color: #d19a66;
+}
+.atom_one_dark .hljs-symbol,
+.atom_one_dark .hljs-bullet,
+.atom_one_dark .hljs-link,
+.atom_one_dark .hljs-meta,
+.atom_one_dark .hljs-selector-id,
+.atom_one_dark .hljs-title {
+  color: #61aeee;
+}
+.atom_one_dark .hljs-built_in,
+.atom_one_dark .hljs-title .class_,
+.atom_one_dark .hljs-class .hljs-title {
+  color: #e6c07b;
+}
+.atom_one_dark .hljs-emphasis {
+  font-style: italic;
+}
+.atom_one_dark .hljs-strong {
+  font-weight: bold;
+}
+.atom_one_dark .hljs-link {
+  text-decoration: underline;
+}
+/*
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+*/
+.atom_one_light.hljs,
+.atom_one_light .hljs {
+  color: #383a42;
+  background: #fafafa;
+}
+.atom_one_light .hljs-comment,
+.atom_one_light .hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+.atom_one_light .hljs-doctag,
+.atom_one_light .hljs-keyword,
+.atom_one_light .hljs-formula {
+  color: #a626a4;
+}
+.atom_one_light .hljs-section,
+.atom_one_light .hljs-name,
+.atom_one_light .hljs-selector-tag,
+.atom_one_light .hljs-deletion,
+.atom_one_light .hljs-subst {
+  color: #e45649;
+}
+.atom_one_light .hljs-literal {
+  color: #0184bb;
+}
+.atom_one_light .hljs-string,
+.atom_one_light .hljs-regexp,
+.atom_one_light .hljs-addition,
+.atom_one_light .hljs-attribute,
+.atom_one_light .hljs-meta .hljs-string {
+  color: #50a14f;
+}
+.atom_one_light .hljs-attr,
+.atom_one_light .hljs-variable,
+.atom_one_light .hljs-template-variable,
+.atom_one_light .hljs-type,
+.atom_one_light .hljs-selector-class,
+.atom_one_light .hljs-selector-attr,
+.atom_one_light .hljs-selector-pseudo,
+.atom_one_light .hljs-number {
+  color: #986801;
+}
+.atom_one_light .hljs-symbol,
+.atom_one_light .hljs-bullet,
+.atom_one_light .hljs-link,
+.atom_one_light .hljs-meta,
+.atom_one_light .hljs-selector-id,
+.atom_one_light .hljs-title {
+  color: #4078f2;
+}
+.atom_one_light .hljs-built_in,
+.atom_one_light .hljs-title .class_,
+.atom_one_light .hljs-class .hljs-title {
+  color: #c18401;
+}
+.atom_one_light .hljs-emphasis {
+  font-style: italic;
+}
+.atom_one_light .hljs-strong {
+  font-weight: bold;
+}
+.atom_one_light .hljs-link {
+  text-decoration: underline;
 }
 </style>

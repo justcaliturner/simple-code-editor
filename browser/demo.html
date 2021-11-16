@@ -8,9 +8,10 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/dist/code_editor.min.css">
 </head>
-<body>
+<body style="background-color: #ddd;">
     <div id="app">
         <code-editor style="margin: 100px auto" v-model="value" :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true" width="600px" :hide_header="false" height="340px" autofocus="true"></code-editor>
+        <code-editor style="margin: 100px auto" v-model="value" theme="light" :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true" width="600px" :hide_header="false" height="340px"></code-editor>
     </div>
     <!-- js -->
     <script src="./lib/vue@3.2.6.prod.js"></script>

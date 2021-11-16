@@ -242,6 +242,10 @@ const CodeEditor = {
       type: String,
       default: "17px",
     },
+    theme: {
+      type: String,
+      default: "dark",
+    },
   },
   data() {
     return {
@@ -308,6 +312,8 @@ const CodeEditor = {
       scroll: canScroll,
       read_only: read_only,
       wrap_code: wrap_code,
+      atom_one_dark: theme == 'dark',
+      atom_one_light: theme == 'light',
     }"
     :style="{
       width: width,
@@ -322,6 +328,7 @@ const CodeEditor = {
   >
     <div class="header" v-if="withoutHeader == true ? false : true">
       <dropdown
+        :color="theme == 'dark' ? '#aaa' : '#999'"
         :width="selector_width"
         :mark="mark"
         :disabled="language_selector == false ? true : false"
@@ -344,6 +351,7 @@ const CodeEditor = {
       <copy-code
         width="16px"
         height="16px"
+        :color="theme == 'dark' ? '#aaa' : '#999'"
         :content="content"
         v-if="copy_code"
       ></copy-code>

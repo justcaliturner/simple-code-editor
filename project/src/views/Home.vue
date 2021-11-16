@@ -3,10 +3,6 @@
   <!-- demo -->
   <div
     class="demo"
-    :class="{
-      github_dark: githubDark,
-      tomorrow_night_bright: tomorrowNightBright,
-    }"
   >
     <h1 class="title">Simple CodeEditor for Vue.js</h1>
     <div class="container">
@@ -28,7 +24,10 @@
         ]"
         :language_selector="true"
       ></CodeEditor>
+
       <CodeEditor
+        :class="theme"
+        :theme="theme"
         value='import CodeEditor from &apos;simple-code-editor&apos;;
 export default {
     components: {
@@ -45,15 +44,15 @@ export default {
         :language_selector="true"
       ></CodeEditor>
       <div class="button_group">
-        <button :class="{ selected: atomOneDark }" @click="themeAtomOneDark">
+        <button :class="{ selected: theme == 'dark' }" @click="changeTheme('dark')">
           Atom one dark
         </button>
-        <button :class="{ selected: githubDark }" @click="themeToGithubDark">
+        <button :class="{ selected: theme == 'github_dark' }" @click="changeTheme('github_dark')">
           Github dark
         </button>
         <button
-          :class="{ selected: tomorrowNightBright }"
-          @click="themeToTomorrowNightBright"
+          :class="{ selected: theme == 'tomorrow_night_bright' }"
+          @click="changeTheme('tomorrow_night_bright')"
         >
           Tomorrow night bright
         </button>
@@ -148,9 +147,12 @@ export default {
         You can cover the CSS file to customize the theme style.
       </p>
       <CodeEditor
-        value='<link rel="stylesheet" href="/path/theme.css">'
+        value='<!--1. Setting the theme to an empty value-->
+<!--2. Add your customized class to change the style-->
+<CodeEditor theme="" class="github_dark"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :read_only="true"
+        class="github_dark"
         width="100%"
       ></CodeEditor>
     </div>
@@ -233,14 +235,14 @@ export default {
         <code>[["javascript", "JS"],["cpp", "C++"],["python", "Python"]]</code>
       </p>
       <p>
-        Description: when the value of
-        <a href="#language_selector"><code>language_selector</code></a> is
-        <code>true</code>, you can set the language list to be selected. This
+        Description: This
         property is a two-dimensional array, the first item of each child is an
         index of the language and it's required, the second item of each child is used for display, which is for the
         better user reading experience, it can be free to customize and
-        optional, if it's unset the UI display will be replaced with the index
-        of the language
+        optional, if it's unset, the UI display will be replaced with the index
+        of the language. When the value of
+        <a href="#language_selector"><code>language_selector</code></a> is
+        <code>true</code>, you can set multiple languages to be selected
       </p>
       <CodeEditor
         value="<CodeEditor :language_selector=&quot;true&quot; :languages=&quot;[['javascript', 'JS'],['python', 'Python']]&quot;></CodeEditor>"
@@ -519,6 +521,25 @@ export default {
         width="100%"
       ></CodeEditor>
 
+      <h3>theme<label> - String</label></h3>
+      <p>Default: <code>dark</code></p>
+      <p>
+        Description: switching between light and dark themes
+      </p>
+      <CodeEditor
+        value='<CodeEditor theme="dark"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :read_only="true"
+        width="100%"
+      ></CodeEditor>
+      <CodeEditor
+        value='<CodeEditor theme="light"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        theme="light"
+        :read_only="true"
+        width="100%"
+      ></CodeEditor>
+
       <h3>font_size<label> - String</label></h3>
       <p>Default: <code>17px</code></p>
       <p>Description: setting the font size</p>
@@ -707,28 +728,14 @@ export default {
   },
   data() {
     return {
-      atomOneDark: true,
-      githubDark: false,
-      tomorrowNightBright: false,
+      theme: "dark",
       demo: "// Please edit it",
     };
   },
   methods: {
-    themeAtomOneDark() {
-      this.atomOneDark = true;
-      this.githubDark = false;
-      this.tomorrowNightBright = false;
-    },
-    themeToGithubDark() {
-      this.atomOneDark = false;
-      this.githubDark = true;
-      this.tomorrowNightBright = false;
-    },
-    themeToTomorrowNightBright() {
-      this.atomOneDark = false;
-      this.githubDark = false;
-      this.tomorrowNightBright = true;
-    },
+    changeTheme(theme){
+      this.theme = theme
+    }
   },
 };
 </script>

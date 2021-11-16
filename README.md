@@ -69,7 +69,9 @@ export default {
 You can cover the CSS file to customize the theme style.
 
 ```html
-<link rel="stylesheet" href="/path/theme.css">
+<!--1. Setting the theme to an empty value-->
+<!--2. Add your customized class to change the style-->
+<CodeEditor theme="" class="github_dark"></CodeEditor>
 ```
 
 
@@ -124,7 +126,7 @@ Description: whether the language selector is availed, if the value is `true`, y
 
 Default: `[["javascript", "JS"],["cpp", "C++"],["python", "Python"]]`
 
-Description: when the value of `language_selector` is `true`, you can set the language list to be selected. This property is a two-dimensional array, the first item of each child is an index of the language and it's required, the second item of each child is used for display, which is for the better user reading experience, it can be free to customize and optional, if it's unset the UI display will be replaced with the index of the language
+Description: Description: This property is a two-dimensional array, the first item of each child is an index of the language and it's required, the second item of each child is used for display, which is for the better user reading experience, it can be free to customize and optional, if it's unset, the UI display will be replaced with the index of the language. When the value of `language_selector` is `true`, you can set multiple languages to be selected
 
 ```html
 <CodeEditor :language_selector="true" :languages="[['javascript', 'JS'],['python', 'Python']]"></CodeEditor>
@@ -176,6 +178,18 @@ Description: whether the code can be copied by the icon button
 
 ```html
 <CodeEditor :copy_code="true"></CodeEditor>
+```
+
+
+
+### theme `Boolean`
+
+Default:  `dark`
+
+Description: switching between light and dark themes
+
+```html
+<CodeEditor theme="light"></CodeEditor>
 ```
 
 
