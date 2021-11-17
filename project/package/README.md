@@ -151,7 +151,7 @@ Description: whether the code can be copied by the icon button
 
 
 
-### theme `Boolean`
+### theme `String`
 
 Default:  `dark`
 
