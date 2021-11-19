@@ -330,6 +330,8 @@ export default {
   border-radius: 0;
   box-sizing: border-box;
   display: block;
+  border: none;
+  margin: 0;
 }
 
 /* hide_header */
