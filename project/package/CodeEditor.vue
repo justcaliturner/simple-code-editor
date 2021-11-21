@@ -98,8 +98,8 @@
 
 <script>
 import hljs from "highlight.js";
-import Dropdown from "./Dropdown";
-import CopyCode from "./CopyCode";
+import Dropdown from "./Dropdown.vue";
+import CopyCode from "./CopyCode.vue";
 
 export default {
   components: {
