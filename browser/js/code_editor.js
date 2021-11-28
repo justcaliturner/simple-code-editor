@@ -279,6 +279,7 @@ const CodeEditor = {
   },
   methods: {
     calcContainerWidth(event) {
+      //  calculating the textarea's width while typing for syncing the width between textarea and render area
       this.containerWidth = event.target.clientWidth;
     },
     tab() {
@@ -288,6 +289,19 @@ const CodeEditor = {
       this.top = -event.target.scrollTop;
       this.left = -event.target.scrollLeft;
     },
+    resize(){
+      // listen to the change of the textarea's width to resize the highlight area
+      const resize = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const obj = entry.contentRect;
+            this.containerWidth = obj.width + 40 // 40 is the padding
+        }
+      });
+      // only the textarea is rendered the listener will run
+      if(this.$refs.textarea){
+        resize.observe(this.$refs.textarea);
+      }
+    }
   },
   mounted() {
     this.$nextTick(function () {
@@ -296,6 +310,7 @@ const CodeEditor = {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
+    this.resize()
   },
   updated() {
     this.$nextTick(function () {
@@ -369,6 +384,7 @@ const CodeEditor = {
         v-if="
           read_only == true ? false : modelValue === undefined ? true : false
         "
+        ref="textarea"
         :autofocus="autofocus"
         @input="calcContainerWidth"
         @keydown.tab.prevent="tab"
@@ -380,6 +396,7 @@ const CodeEditor = {
         v-if="
           read_only == true ? false : modelValue === undefined ? false : true
         "
+        ref="textarea"
         :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"

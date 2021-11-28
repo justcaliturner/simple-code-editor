@@ -63,6 +63,7 @@
         v-if="
           read_only == true ? false : modelValue === undefined ? true : false
         "
+        ref="textarea"
         :autofocus="autofocus"
         @input="calcContainerWidth"
         @keydown.tab.prevent="tab"
@@ -74,6 +75,7 @@
         v-if="
           read_only == true ? false : modelValue === undefined ? false : true
         "
+        ref="textarea"
         :autofocus="autofocus"
         @keydown.tab.prevent="tab"
         v-on:scroll="scroll"
@@ -85,7 +87,7 @@
         :style="{ fontSize: font_size }"
       ></textarea>
       <pre
-        :style="{ width: containerWidth === 0 ? '' : '100%' }"
+        :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
       >
         <code
             :class="languageClass"
@@ -233,6 +235,7 @@ export default {
   },
   methods: {
     calcContainerWidth(event) {
+      //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
       this.containerWidth = event.target.clientWidth;
     },
     tab() {
@@ -242,6 +245,19 @@ export default {
       this.top = -event.target.scrollTop;
       this.left = -event.target.scrollLeft;
     },
+    resize(){
+      // listen to the change of the textarea's width to resize the highlight area
+      const resize = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const obj = entry.contentRect;
+            this.containerWidth = obj.width + 40  // 40 is the padding
+        }
+      });
+      // only the textarea is rendered the listener will run
+      if(this.$refs.textarea){
+        resize.observe(this.$refs.textarea);
+      }
+    }
   },
   mounted() {
     this.$nextTick(function () {
@@ -250,6 +266,7 @@ export default {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
+    this.resize()
   },
   updated() {
     this.$nextTick(function () {
