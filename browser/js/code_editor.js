@@ -279,7 +279,7 @@ const CodeEditor = {
   },
   methods: {
     calcContainerWidth(event) {
-      //  calculating the textarea's width while typing for syncing the width between textarea and render area
+      //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
       this.containerWidth = event.target.clientWidth;
     },
     tab() {
