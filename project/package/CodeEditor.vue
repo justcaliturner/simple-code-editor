@@ -85,7 +85,7 @@
         :style="{ fontSize: font_size }"
       ></textarea>
       <pre
-        :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
+        :style="{ width: containerWidth === 0 ? '' : '100%' }"
       >
         <code
             :class="languageClass"
