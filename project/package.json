@@ -1,6 +1,6 @@
 {
   "name": "simple-code-editor-website",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "keywords": [
     "code-editor",
     "vue"
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "highlight.js": "^11.4.0",
     "vue": "^3.0.0"
   },
   "author": "Vic",
