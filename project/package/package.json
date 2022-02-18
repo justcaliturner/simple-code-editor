@@ -21,6 +21,6 @@
   },
   "homepage": "https://simple-code-editor.vicuxd.com",
   "dependencies": {
-    "highlight.js": "^11.3.1"
+    "highlight.js": "^11.4.0"
   }
 }

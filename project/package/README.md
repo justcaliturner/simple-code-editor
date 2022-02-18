@@ -95,7 +95,7 @@ Description: whether the language selector is availed, if the value is `true`, y
 
 Default: `[["javascript", "JS"],["cpp", "C++"],["python", "Python"]]`
 
-Description: Description: This property is a two-dimensional array, the first item of each child is an index of the language and it's required, the second item of each child is used for display, which is for the better user reading experience, it can be free to customize and optional, if it's unset, the UI display will be replaced with the index of the language. When the value of `language_selector` is `true`, you can set multiple languages to be selected
+Description: This property is a two-dimensional array, the first item of each child is an index of the language and it's required, the second item of each child is used for display, which is for the better user reading experience, it can be free to customize and optional, if it's unset, the UI display will be replaced with the index of the language. When the value of `language_selector` is `true`, you can set multiple languages to be selected
 
 ```html
 <CodeEditor :language_selector="true" :languages="[['javascript', 'JS'],['python', 'Python']]"></CodeEditor>
