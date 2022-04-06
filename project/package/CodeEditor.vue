@@ -239,10 +239,15 @@ export default {
         this.modelValue === undefined ? this.staticValue : this.modelValue,
     };
   },
+  watch: {
+    value(value) {
+      this.staticValue = value
+    }
+  },
   computed: {
     contentValue() {
       return this.read_only ?
-        this.value : this.modelValue === undefined ? 
+        this.value : this.modelValue === undefined ?
         this.staticValue + '\n' : this.modelValue + '\n'
     },
     canScroll() {
@@ -298,6 +303,7 @@ export default {
     this.resize()
   },
   updated() {
+    this.$emit('input', this.staticValue)
     this.$nextTick(function () {
       hljs.highlightAll();
       this.content =
