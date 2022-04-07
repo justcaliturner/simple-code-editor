@@ -119,8 +119,7 @@ export default {
         <p>Step 1</p>
         <CodeEditor
           value="npm install simple-code-editor"
-          :languages="[['shell']]"
-          :hide_header="true"
+          :languages="[['shell', 'NPM']]"
           :read_only="true"
           width="100%"
         />

@@ -247,13 +247,35 @@ const CodeEditor = {
       default: "dark",
     },
   },
+  directives: {
+    highlight: {
+      //vue2
+      bind(el, binding) {
+        el.textContent = binding.value
+        hljs.highlightElement(el)
+      },
+      componentUpdated(el, binding) {
+        el.textContent = binding.value
+        hljs.highlightElement(el)
+      },
+      //vue3
+      created(el, binding) {
+        el.textContent = binding.value
+        hljs.highlightElement(el)
+      },
+      updated(el, binding) {
+        el.textContent = binding.value
+        hljs.highlightElement(el)
+      }
+    }
+  },
   data() {
     return {
       containerWidth: 0,
       staticValue: this.value,
       top: 0,
       left: 0,
-      languageClass: this.languages[0][0],
+      languageClass: 'hljs language-' + this.languages[0][0],
       mark:
         this.languages[0][1] === undefined
           ? this.languages[0][0]
@@ -263,7 +285,17 @@ const CodeEditor = {
         this.modelValue === undefined ? this.staticValue : this.modelValue,
     };
   },
+  watch: {
+    value(value) {
+      this.staticValue = value
+    }
+  },
   computed: {
+    contentValue() {
+      return this.read_only ?
+        this.value : this.modelValue === undefined ?
+        this.staticValue + '\n' : this.modelValue + '\n'
+    },
     canScroll() {
       return this.height == "auto" ? false : true;
     },
@@ -278,6 +310,10 @@ const CodeEditor = {
     },
   },
   methods: {
+    changeLang(lang) {
+      this.mark = lang[1] === undefined ? lang[0] : lang[1];
+      this.languageClass = 'language-' + lang[0];
+    },
     calcContainerWidth(event) {
       //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
       this.containerWidth = event.target.clientWidth;
@@ -305,16 +341,14 @@ const CodeEditor = {
   },
   mounted() {
     this.$nextTick(function () {
-      hljs.highlightAll();
-      hljs.configure({ ignoreUnescapedHTML: true });
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
     this.resize()
   },
   updated() {
+    this.$emit('input', this.staticValue)
     this.$nextTick(function () {
-      hljs.highlightAll();
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
@@ -352,12 +386,9 @@ const CodeEditor = {
       >
         <ul class="lang_list" :style="{ height: selector_height }">
           <li
-            v-for="lang in languageList"
-            :key="lang"
-            @click="
-              this.mark = lang[1] === undefined ? lang[0] : lang[1];
-              this.languageClass = 'language-' + lang[0];
-            "
+            v-for="(lang, index) in languageList"
+            :key="index"
+            @click="changeLang(lang)"
           >
             {{ lang[1] === undefined ? lang[0] : lang[1] }}
           </li>
@@ -411,9 +442,10 @@ const CodeEditor = {
         :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
       >
         <code
+            v-highlight="contentValue"
             :class="languageClass"
             :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
-        >{{ read_only == true ? value : modelValue === undefined ? staticValue : modelValue }}\n</code>
+        ></code>
       </pre>
     </div>
   </div>

@@ -2,7 +2,6 @@
 
 
 
-Vue.js version: 3.0
 
 website: [simple-code-editor.vicuxd.com](https://simple-code-editor.vicuxd.com)
 

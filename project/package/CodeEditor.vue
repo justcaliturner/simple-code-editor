@@ -229,7 +229,7 @@ export default {
       staticValue: this.value,
       top: 0,
       left: 0,
-      languageClass: this.languages[0][0],
+      languageClass: 'hljs language-' + this.languages[0][0],
       mark:
         this.languages[0][1] === undefined
           ? this.languages[0][0]
@@ -295,8 +295,6 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      hljs.highlightAll();
-      hljs.configure({ ignoreUnescapedHTML: true });
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
@@ -305,7 +303,6 @@ export default {
   updated() {
     this.$emit('input', this.staticValue)
     this.$nextTick(function () {
-      hljs.highlightAll();
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
