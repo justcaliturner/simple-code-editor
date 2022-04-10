@@ -54,7 +54,7 @@ export default {
   methods: {
     selectContent() {
       let range, selection;
-      const textArea = this.$refs.textarea;
+      let textArea = this.$refs.textarea;
       if (!/Chrome/.test(navigator.userAgent)) {
         range = document.createRange();
         range.selectNodeContents(textArea);
@@ -65,7 +65,11 @@ export default {
       } else {
         textArea.select();
       }
-      document.execCommand("copy");
+      if (document.execCommand("copy") == true) {
+        document.execCommand("copy");
+      } else {
+        navigator.clipboard.writeText(textArea.value);
+      }
     },
     copy(event) {
       this.selectContent();
