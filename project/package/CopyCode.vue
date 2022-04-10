@@ -53,7 +53,18 @@ export default {
   },
   methods: {
     selectContent() {
-      this.$refs.textarea.select();
+      let range, selection;
+      const textArea = this.$refs.textarea;
+      if (!/Chrome/.test(navigator.userAgent)) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, textArea.value.length);
+      } else {
+        textArea.select();
+      }
       document.execCommand("copy");
     },
     copy(event) {

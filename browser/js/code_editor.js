@@ -24,7 +24,18 @@ const CopyCode = {
   },
   methods: {
     selectContent() {
-      this.$refs.textarea.select();
+      let range, selection;
+      const textArea = this.$refs.textarea;
+      if (!/Chrome/.test(navigator.userAgent)) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, textArea.value.length);
+      } else {
+        textArea.select();
+      }
       document.execCommand("copy");
     },
     copy(event) {
@@ -294,7 +305,7 @@ const CodeEditor = {
     contentValue() {
       return this.read_only ?
         this.value : this.modelValue === undefined ?
-        this.staticValue + '\n' : this.modelValue + '\n'
+          this.staticValue + '\n' : this.modelValue + '\n'
     },
     canScroll() {
       return this.height == "auto" ? false : true;
@@ -325,16 +336,16 @@ const CodeEditor = {
       this.top = -event.target.scrollTop;
       this.left = -event.target.scrollLeft;
     },
-    resize(){
+    resize() {
       // listen to the change of the textarea's width to resize the highlight area
       const resize = new ResizeObserver(entries => {
         for (let entry of entries) {
-            const obj = entry.contentRect;
-            this.containerWidth = obj.width + 40 // 40 is the padding
+          const obj = entry.contentRect;
+          this.containerWidth = obj.width + 40 // 40 is the padding
         }
       });
       // only the textarea is rendered the listener will run
-      if(this.$refs.textarea){
+      if (this.$refs.textarea) {
         resize.observe(this.$refs.textarea);
       }
     }
