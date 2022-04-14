@@ -356,7 +356,7 @@ const CodeEditor = {
     }
   },
   mounted() {
-    this.$emit('lang', lang[0]);
+    this.$emit('lang', this.languages[0][0]);
     this.$nextTick(function () {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,15 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/dist/code_editor.min.css">
 </head>
+
 <body style="background-color: #ddd;">
     <div id="app">
-        <code-editor style="margin: 100px auto" v-model="value" :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true" width="100%" max_width="600px" :hide_header="false" height="340px" :autofocus="true"></code-editor>
-        <code-editor style="margin: 100px auto" v-model="value" theme="light" :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true" width="100%" max_width="600px" :hide_header="false" height="340px"></code-editor>
+        <code-editor @lang="getLanguage" style="margin: 100px auto" v-model="value" :languages="[['javascript', 'JS'], ['html', 'HTML']]"
+            :language_selector="true" :wrap_code="true" width="100%" max_width="600px" :hide_header="false"
+            height="340px" :autofocus="true"></code-editor>
+        <code-editor style="margin: 100px auto" v-model="value" theme="light"
+            :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true"
+            width="100%" max_width="600px" :hide_header="false" height="340px"></code-editor>
     </div>
     <!-- js -->
     <script src="./lib/vue@3.2.6.prod.js"></script>
@@ -22,7 +28,12 @@
             components: {
                 'code-editor': CodeEditor
             },
-            data(){
+            methods: {
+                getLanguage(lang) {
+                    console.log('The current language is: ' + lang)
+                }
+            },
+            data() {
                 return {
                     value: `import CodeEditor from 'CodeEditor';
 export default {
@@ -41,4 +52,5 @@ export default {
         app.mount('#app')
     </script>
 </body>
+
 </html>
