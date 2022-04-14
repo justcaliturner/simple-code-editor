@@ -267,6 +267,7 @@ export default {
     changeLang(lang) {
       this.mark = lang[1] === undefined ? lang[0] : lang[1];
       this.languageClass = 'language-' + lang[0];
+      this.$emit('lang', lang[0]);
     },
     calcContainerWidth(event) {
       //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
@@ -294,7 +295,8 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(function () {
+    this.$emit('lang', this.languages[0][0]);
+    this.$nextTick(function () { 
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });

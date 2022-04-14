@@ -12,6 +12,7 @@
           </p>
         </div>
         <CodeEditor
+          @lang="getLanguage"
           value='<CodeEditor v-model="value"></CodeEditor>'
           z_index="3"
           width="100%"
@@ -799,6 +800,9 @@ export default {
     changeTheme(theme) {
       this.theme = theme;
     },
+    getLanguage(lang){
+      console.log('The current language is: ' + lang)
+    }
   },
 };
 </script>
