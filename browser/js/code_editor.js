@@ -77,7 +77,7 @@ const CopyCode = {
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
   </div>
-    `
+    `,
 };
 
 // Dropdown
@@ -159,14 +159,14 @@ const Dropdown = {
         <slot></slot>
       </div>
     </transition>
-  </div>`
+  </div>`,
 };
 
 // CodeEditor
 const CodeEditor = {
   components: {
-    'copy-code': CopyCode,
-    'dropdown': Dropdown
+    "copy-code": CopyCode,
+    dropdown: Dropdown,
   },
   props: {
     modelValue: {
@@ -266,23 +266,23 @@ const CodeEditor = {
     highlight: {
       //vue2
       bind(el, binding) {
-        el.textContent = binding.value
-        hljs.highlightElement(el)
+        el.textContent = binding.value;
+        hljs.highlightElement(el);
       },
       componentUpdated(el, binding) {
-        el.textContent = binding.value
-        hljs.highlightElement(el)
+        el.textContent = binding.value;
+        hljs.highlightElement(el);
       },
       //vue3
       created(el, binding) {
-        el.textContent = binding.value
-        hljs.highlightElement(el)
+        el.textContent = binding.value;
+        hljs.highlightElement(el);
       },
       updated(el, binding) {
-        el.textContent = binding.value
-        hljs.highlightElement(el)
-      }
-    }
+        el.textContent = binding.value;
+        hljs.highlightElement(el);
+      },
+    },
   },
   data() {
     return {
@@ -290,7 +290,7 @@ const CodeEditor = {
       staticValue: this.value,
       top: 0,
       left: 0,
-      languageClass: 'hljs language-' + this.languages[0][0],
+      languageClass: "hljs language-" + this.languages[0][0],
       mark:
         this.languages[0][1] === undefined
           ? this.languages[0][0]
@@ -302,14 +302,16 @@ const CodeEditor = {
   },
   watch: {
     value(value) {
-      this.staticValue = value
-    }
+      this.staticValue = value;
+    },
   },
   computed: {
     contentValue() {
-      return this.read_only ?
-        this.value : this.modelValue === undefined ?
-          this.staticValue + '\n' : this.modelValue + '\n'
+      return this.read_only
+        ? this.value
+        : this.modelValue === undefined
+        ? this.staticValue + "\n"
+        : this.modelValue + "\n";
     },
     canScroll() {
       return this.height == "auto" ? false : true;
@@ -327,7 +329,7 @@ const CodeEditor = {
   methods: {
     changeLang(lang) {
       this.mark = lang[1] === undefined ? lang[0] : lang[1];
-      this.languageClass = 'language-' + lang[0];
+      this.languageClass = "language-" + lang[0];
     },
     calcContainerWidth(event) {
       //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
@@ -342,27 +344,27 @@ const CodeEditor = {
     },
     resize() {
       // listen to the change of the textarea's width to resize the highlight area
-      const resize = new ResizeObserver(entries => {
+      const resize = new ResizeObserver((entries) => {
         for (let entry of entries) {
           const obj = entry.contentRect;
-          this.containerWidth = obj.width + 40 // 40 is the padding
+          this.containerWidth = obj.width + 40; // 40 is the padding
         }
       });
       // only the textarea is rendered the listener will run
       if (this.$refs.textarea) {
         resize.observe(this.$refs.textarea);
       }
-    }
+    },
   },
   mounted() {
     this.$nextTick(function () {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
-    this.resize()
+    this.resize();
   },
   updated() {
-    this.$emit('input', this.staticValue)
+    this.$emit("input", this.staticValue);
     this.$nextTick(function () {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
@@ -433,7 +435,7 @@ const CodeEditor = {
         ref="textarea"
         :autofocus="autofocus"
         @input="calcContainerWidth"
-        @keydown.tab.prevent="tab"
+        @keydown.tab.prevent.stop="tab"
         v-on:scroll="scroll"
         v-model="staticValue"
         :style="{ fontSize: font_size }"
@@ -444,7 +446,7 @@ const CodeEditor = {
         "
         ref="textarea"
         :autofocus="autofocus"
-        @keydown.tab.prevent="tab"
+        @keydown.tab.prevent.stop="tab"
         v-on:scroll="scroll"
         :value="modelValue"
         @input="
@@ -464,5 +466,5 @@ const CodeEditor = {
       </pre>
     </div>
   </div>
-`
-}
+`,
+};
