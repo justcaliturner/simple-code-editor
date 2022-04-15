@@ -13,6 +13,7 @@
         </div>
         <CodeEditor
           @lang="getLanguage"
+          @langs="getLanguages"
           value='<CodeEditor v-model="value"></CodeEditor>'
           z_index="3"
           width="100%"
@@ -802,6 +803,9 @@ export default {
     },
     getLanguage(lang){
       console.log('The current language is: ' + lang)
+    },
+    getLanguages(langs){
+      console.log('The language list is: ' + langs)
     }
   },
 };

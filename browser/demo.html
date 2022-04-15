@@ -12,9 +12,9 @@
 
 <body style="background-color: #ddd;">
     <div id="app">
-        <code-editor @lang="getLanguage" style="margin: 100px auto" v-model="value" :languages="[['javascript', 'JS'], ['html', 'HTML']]"
-            :language_selector="true" :wrap_code="true" width="100%" max_width="600px" :hide_header="false"
-            height="340px" :autofocus="true"></code-editor>
+        <code-editor @lang="getLanguage" @langs="getLanguages" style="margin: 100px auto" v-model="value"
+            :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true"
+            width="100%" max_width="600px" :hide_header="false" height="340px" :autofocus="true"></code-editor>
         <code-editor style="margin: 100px auto" v-model="value" theme="light"
             :languages="[['javascript', 'JS'], ['html', 'HTML']]" :language_selector="true" :wrap_code="true"
             width="100%" max_width="600px" :hide_header="false" height="340px"></code-editor>
@@ -31,6 +31,9 @@
             methods: {
                 getLanguage(lang) {
                     console.log('The current language is: ' + lang)
+                },
+                getLanguages(langs) {
+                    console.log('The language list is: ' + langs)
                 }
             },
             data() {

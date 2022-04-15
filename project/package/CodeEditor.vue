@@ -296,6 +296,7 @@ export default {
   },
   mounted() {
     this.$emit('lang', this.languages[0][0]);
+    this.$emit('langs', this.languages);
     this.$nextTick(function () { 
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
