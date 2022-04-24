@@ -1,17 +1,18 @@
 # Simple CodeEditor for Vue.js
 
-
-
-
 website: [simple-code-editor.vicuxd.com](https://simple-code-editor.vicuxd.com)
 
 It's easy to use, both support read-only and edit mode, you can directly use it in the browser or import the JavaScript modules via the NPM package
 
+## Usage
 
+There are 3 common ways that you can use the `simple-code-editor` package:
 
-## Useage
+1. Vue in the browser
+2. Vue via NPM
+3. NuxtJS via NPM
 
-#### In the Browser
+### 1. Vue in the Browser
 
 Step 1. Add the CSS file.
 
@@ -35,20 +36,21 @@ const app = Vue.createApp({
   }
 })
 ```
+
 ```html
 <code-editor></code-editor>
 ```
 
+### 2. Usage with Vue via NPM
 
-
-#### Install with NPM
-
-Step 1
+Install the `simple-code-editor` package from NPM:
 
 ```shell
 npm install simple-code-editor
 ```
-Step 2. Importing the component and registration.
+
+Importing the component and registration.
+
 ```javascript
 import CodeEditor from 'simple-code-editor';
 export default {
@@ -57,10 +59,40 @@ export default {
     }
 }
 ```
+
 ```html
 <CodeEditor></CodeEditor>
 ```
 
+### 3. Usage with NuxtJS via NPM
+
+Install the `simple-code-editor` package from NPM:
+
+```shell
+npm install simple-code-editor
+```
+
+In your `nuxt.config.js` file, add the `simple-code-editor` module:
+
+```js
+modules: [
+  "simple-code-editor/nuxt",
+]
+```
+
+After adding the global module, you will be able to use the `code-editor` or `CodeEditor` component throughout your Nuxt project:
+
+```vue
+<template>
+  <client-only>
+      <code-editor value="console.log(13)"></code-editor>
+      <!-- or -->
+      <CodeEditor value="console.log(13)"></CodeEditor>
+  </client-only>
+<template>
+```
+
+**NOTE:** While using the code editor with Nuxt, it is recommended to wrap each `CodeEditor` component with the `client-only` tags like the example above. This will prevent a client side hydration error.
 
 
 #### Customizing the theme style
