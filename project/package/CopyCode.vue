@@ -54,10 +54,7 @@ export default {
   methods: {
     selectContent() {
       let textArea = this.$refs.textarea;
-      // modern browser support (using the clipboard API)
-      if (navigator && navigator.clipboard)
-        return navigator.clipboard.writeText(textArea.value);
-      else {
+      if (document.execCommand("copy") == true) {
         // older browser support
         let range, selection;
         textArea.focus();
@@ -69,6 +66,9 @@ export default {
         selection.addRange(range);
         textArea.setSelectionRange(0, textArea.value.length);
         document.execCommand("copy");
+      } else {
+        // modern browser support (using the clipboard API)
+        navigator.clipboard.writeText(textArea.value);
       }
     },
     copy(event) {
