@@ -390,17 +390,19 @@ export default {
   margin: 0;
 }
 
-count-lines{
+.count-lines{
   counter-reset: line;
 }
-.count-lines:deep(span.hljs-tag){
+
+.count-lines:deep(span:before){
   counter-increment: line;
 }
+
 .count-lines:deep(span.hljs-tag:before){
   content: counter(line);
   position: absolute;
-  left: 5px;
-  font-size: 8px;
+  left: 1px;
+  font-size: 7px;
   color: #777777;
   padding-top: 4px;
 }
