@@ -356,6 +356,7 @@ export default {
 .line-numbers {
   width: 20px;
   text-align: right;
+  line-height: 1.5;
 }
 
 .line-numbers:deep(span) {
