@@ -491,11 +491,14 @@ export default {
 }
 
 /* scroll */
-/* .scroll>.code_area { */
+
+.scroll {
+  display: flex; 
+}
+
 .scroll > .editor {
   height: calc(100% - 34px);
   overflow: auto;
-  display: flex;
 }
 
 /* .scroll>.code_area>textarea { */
