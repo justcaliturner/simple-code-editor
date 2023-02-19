@@ -240,21 +240,17 @@ export default {
     numberlines: {
       //vue2
       componentUpdated(el, binding) {
-          const lineNumbers = document.querySelector('.line-numbers')
-
           const numberOfLines = binding.value.split('\n').length
 
-          lineNumbers.innerHTML = Array(numberOfLines - 1)
+          el.innerHTML = Array(numberOfLines - 1)
             .fill('<span></span>')
             .join('')
       },
       //vue3
       updated(el, binding) {
-          const lineNumbers = document.querySelector('.line-numbers')
-
           const numberOfLines = binding.value.split('\n').length
 
-          lineNumbers.innerHTML = Array(numberOfLines - 1)
+          el.innerHTML = Array(numberOfLines - 1)
             .fill('<span></span>')
             .join('')
       }
