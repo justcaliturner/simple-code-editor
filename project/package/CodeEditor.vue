@@ -47,9 +47,13 @@
         v-if="copy_code"
       ></CopyCode>
     </div>
-    <div
-      class="code_area"
-      :style="{
+    <div class="editor">
+      <div v-if="count_lines" class="line-numbers" v-numberlines="contentValue">
+        <span></span>
+      </div>
+      <div
+        class="code_area"
+        :style="{
         borderBottomLeftRadius: border_radius,
         borderBottomRightRadius: border_radius,
         borderTopLeftRadius: withoutHeader == true ? border_radius : 0,
@@ -60,16 +64,18 @@
         v-if="
           read_only == true ? false : modelValue === undefined ? true : false
         "
-        ref="textarea"
-        :autofocus="autofocus"
-        @input="calcContainerWidth"
-        @keydown.tab.prevent.stop="tab"
-        v-on:scroll="scroll"
-        v-model="staticValue"
-        :style="{ fontSize: font_size }"
-      ></textarea>
-      <textarea
-        v-if="
+          ref="textarea"
+          :autofocus="autofocus"
+          @input="calcContainerWidth"
+          @keydown.tab.prevent.stop="tab"
+          v-on:scroll="scroll"
+          v-model="staticValue"
+          :spellcheck="spellcheck"
+          :style="{ fontSize: font_size, height: containerHeight === 0 ? '' : containerHeight + 'px', width: containerWidth === 0 ? '' : containerWidth + 'px' 
+          }"
+        ></textarea>
+        <textarea
+          v-if="
           read_only == true ? false : modelValue === undefined ? false : true
         "
         ref="textarea"
@@ -80,18 +86,19 @@
         @input="
           $emit('update:modelValue', $event.target.value),
             calcContainerWidth($event)
-        "
-        :style="{ fontSize: font_size }"
-      ></textarea>
-      <pre
-        :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
-      >
-        <code
-            v-highlight="contentValue"
-            :class="languageClass"
-            :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
-        ></code>
-      </pre>
+          "
+          :spellcheck="spellcheck"
+          :style="{ fontSize: font_size, height: containerHeight === 0 ? '' : containerHeight + 'px', width: containerWidth === 0 ? '' : containerWidth + 'px' }"
+        ></textarea>
+        <pre
+        >
+              <code
+                  v-highlight="contentValue"
+                  :class="languageClass"
+                  :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
+              ></code>
+            </pre>
+      </div>
     </div>
   </div>
 </template>
@@ -108,6 +115,14 @@ export default {
   },
   name: "CodeEditor",
   props: {
+    count_lines: {
+      type: Boolean,
+      default: true
+    },
+    spellcheck: {
+      type: Boolean,
+      default: false
+    },
     modelValue: {
       type: String,
     },
@@ -221,11 +236,34 @@ export default {
         el.textContent = binding.value
         hljs.highlightElement(el)
       }
+    },
+    numberlines: {
+      //vue2
+      componentUpdated(el, binding) {
+          const lineNumbers = document.querySelector('.line-numbers')
+
+          const numberOfLines = binding.value.split('\n').length
+
+          lineNumbers.innerHTML = Array(numberOfLines - 1)
+            .fill('<span></span>')
+            .join('')
+      },
+      //vue3
+      updated(el, binding) {
+          const lineNumbers = document.querySelector('.line-numbers')
+
+          const numberOfLines = binding.value.split('\n').length
+
+          lineNumbers.innerHTML = Array(numberOfLines - 1)
+            .fill('<span></span>')
+            .join('')
+      }
     }
   },
   data() {
     return {
       containerWidth: 0,
+      containerHeight: 0,
       staticValue: this.value,
       top: 0,
       left: 0,
@@ -271,7 +309,12 @@ export default {
     },
     calcContainerWidth(event) {
       //  calculating the textarea's width while typing for syncing the width between textarea and highlight area
-      this.containerWidth = event.target.clientWidth;
+      event.target.style.height = "";
+      event.target.style.width = ""; 
+      this.$refs.textarea.style.width = event.target.scrollWidth
+
+      this.containerWidth = event.target.scrollWidth;
+      this.containerHeight = event.target.scrollHeight;
     },
     tab() {
       document.execCommand("insertText", false, "    ");
@@ -297,7 +340,7 @@ export default {
   mounted() {
     this.$emit('lang', this.languages[0][0]);
     this.$emit('langs', this.languages);
-    this.$nextTick(function () { 
+    this.$nextTick(function () {
       this.content =
         this.modelValue === undefined ? this.staticValue : this.modelValue;
     });
@@ -314,6 +357,22 @@ export default {
 </script>
 
 <style scoped>
+.line-numbers {
+  width: 20px;
+  text-align: right;
+}
+
+.line-numbers:deep(span) {
+  counter-increment: linenumber;
+}
+
+.line-numbers:deep(span:before) {
+  content: counter(linenumber);
+  display: block;
+  color: #506882;
+  font-size: 17px;
+}
+
 /* header */
 .header {
   position: relative;
@@ -321,11 +380,13 @@ export default {
   height: 34px;
   box-sizing: border-box;
 }
+
 .header > .dropdown {
   position: absolute;
   top: 12px;
   left: 18px;
 }
+
 .header > .copy_code {
   position: absolute;
   top: 10px;
@@ -340,18 +401,22 @@ export default {
   position: relative;
   text-align: left;
 }
-.code_editor > .code_area {
+
+.code_editor > .editor > .code_area {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
+  flex: 1;
 }
-.code_editor > .code_area > textarea,
-.code_editor > .code_area > pre > code {
+
+.code_editor > .editor > .code_area > textarea,
+.code_editor > .editor > .code_area > pre > code {
   padding: 0px 20px 20px 20px;
   font-family: Consolas, Monaco, monospace;
   line-height: 1.5;
   font-size: 16px;
 }
-.code_editor > .code_area > textarea {
+
+.code_editor > .editor > .code_area > textarea {
   overflow-y: hidden;
   box-sizing: border-box;
   caret-color: rgba(127, 127, 127);
@@ -368,15 +433,18 @@ export default {
   background: none;
   resize: none;
 }
-.code_editor > .code_area > textarea:hover,
-.code_editor > .code_area > textarea:focus-visible {
+
+.code_editor > .editor > .code_area > textarea:hover,
+.code_editor > .editor > .code_area > textarea:focus-visible {
   outline: none;
 }
-.code_editor > .code_area > pre {
+
+.code_editor > .editor > .code_area > pre {
   position: relative;
   margin: 0;
 }
-.code_editor > .code_area > pre > code {
+
+.code_editor > .editor > .code_area > pre > code {
   position: relative;
   overflow-x: visible;
   border-radius: 0;
@@ -386,11 +454,28 @@ export default {
   margin: 0;
 }
 
+/* .code_editor:deep(pre>code>*){
+   counter-increment: line;
+}
+.code_editor:deep(pre>code){
+   counter-reset: line;
+}
+
+.code_editor:deep(code>*:before){
+   content: counter(line);
+   position: absolute;
+   left: 1px;
+   font-size: 7px;
+   color: #777777;
+   padding-top: 4px; 
+}*/
+
 /* hide_header */
 .hide_header > .code_area > textarea,
 .hide_header > .code_area > pre > code {
   padding: 20px;
 }
+
 .hide_header.scroll > .code_area {
   height: 100%;
 }
@@ -410,16 +495,24 @@ export default {
 }
 
 /* scroll */
-.scroll > .code_area {
+/* .scroll>.code_area { */
+.scroll > .editor {
   height: calc(100% - 34px);
-}
-.scroll > .code_area > textarea {
   overflow: auto;
+  display: flex;
 }
-.scroll > .code_area > pre {
+
+/* .scroll>.code_area>textarea { */
+.scroll > .editor > .code_area > textarea {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* .scroll>.code_area>pre { */
+.scroll > .editor > .code_area > pre {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* dropdown */
@@ -428,6 +521,7 @@ export default {
   height: 100%;
   font-family: sans-serif;
 }
+
 .panel > .lang_list {
   overflow: auto;
   height: calc(100% - 36px);
@@ -439,6 +533,7 @@ export default {
   text-align: left;
   background: white;
 }
+
 .panel > .lang_list > li {
   font-size: 13px;
   color: #333;
@@ -450,12 +545,15 @@ export default {
   text-overflow: ellipsis;
   line-height: 30px;
 }
+
 .panel > .lang_list > li:first-child {
   padding-top: 5px;
 }
+
 .panel > .lang_list > li:last-child {
   padding-bottom: 5px;
 }
+
 .panel > .lang_list > li:hover {
   color: #111;
   background: #eee;
@@ -472,16 +570,19 @@ Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
   color: #abb2bf;
   background: #282c34;
 }
+
 .atom_one_dark .hljs-comment,
 .atom_one_dark .hljs-quote {
   color: #5c6370;
   font-style: italic;
 }
+
 .atom_one_dark .hljs-doctag,
 .atom_one_dark .hljs-keyword,
 .atom_one_dark .hljs-formula {
   color: #c678dd;
 }
+
 .atom_one_dark .hljs-section,
 .atom_one_dark .hljs-name,
 .atom_one_dark .hljs-selector-tag,
@@ -489,9 +590,11 @@ Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
 .atom_one_dark .hljs-subst {
   color: #e06c75;
 }
+
 .atom_one_dark .hljs-literal {
   color: #56b6c2;
 }
+
 .atom_one_dark .hljs-string,
 .atom_one_dark .hljs-regexp,
 .atom_one_dark .hljs-addition,
@@ -499,6 +602,7 @@ Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
 .atom_one_dark .hljs-meta .hljs-string {
   color: #98c379;
 }
+
 .atom_one_dark .hljs-attr,
 .atom_one_dark .hljs-variable,
 .atom_one_dark .hljs-template-variable,
@@ -509,6 +613,7 @@ Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
 .atom_one_dark .hljs-number {
   color: #d19a66;
 }
+
 .atom_one_dark .hljs-symbol,
 .atom_one_dark .hljs-bullet,
 .atom_one_dark .hljs-link,
@@ -517,20 +622,25 @@ Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
 .atom_one_dark .hljs-title {
   color: #61aeee;
 }
+
 .atom_one_dark .hljs-built_in,
 .atom_one_dark .hljs-title .class_,
 .atom_one_dark .hljs-class .hljs-title {
   color: #e6c07b;
 }
+
 .atom_one_dark .hljs-emphasis {
   font-style: italic;
 }
+
 .atom_one_dark .hljs-strong {
   font-weight: bold;
 }
+
 .atom_one_dark .hljs-link {
   text-decoration: underline;
 }
+
 /*
 Atom One Light by Daniel Gamage
 Original One Light Syntax theme from https://github.com/atom/one-light-syntax
@@ -540,16 +650,19 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
   color: #383a42;
   background: #fafafa;
 }
+
 .atom_one_light .hljs-comment,
 .atom_one_light .hljs-quote {
   color: #a0a1a7;
   font-style: italic;
 }
+
 .atom_one_light .hljs-doctag,
 .atom_one_light .hljs-keyword,
 .atom_one_light .hljs-formula {
   color: #a626a4;
 }
+
 .atom_one_light .hljs-section,
 .atom_one_light .hljs-name,
 .atom_one_light .hljs-selector-tag,
@@ -557,9 +670,11 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 .atom_one_light .hljs-subst {
   color: #e45649;
 }
+
 .atom_one_light .hljs-literal {
   color: #0184bb;
 }
+
 .atom_one_light .hljs-string,
 .atom_one_light .hljs-regexp,
 .atom_one_light .hljs-addition,
@@ -567,6 +682,7 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 .atom_one_light .hljs-meta .hljs-string {
   color: #50a14f;
 }
+
 .atom_one_light .hljs-attr,
 .atom_one_light .hljs-variable,
 .atom_one_light .hljs-template-variable,
@@ -577,6 +693,7 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 .atom_one_light .hljs-number {
   color: #986801;
 }
+
 .atom_one_light .hljs-symbol,
 .atom_one_light .hljs-bullet,
 .atom_one_light .hljs-link,
@@ -585,17 +702,21 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 .atom_one_light .hljs-title {
   color: #4078f2;
 }
+
 .atom_one_light .hljs-built_in,
 .atom_one_light .hljs-title .class_,
 .atom_one_light .hljs-class .hljs-title {
   color: #c18401;
 }
+
 .atom_one_light .hljs-emphasis {
   font-style: italic;
 }
+
 .atom_one_light .hljs-strong {
   font-weight: bold;
 }
+
 .atom_one_light .hljs-link {
   text-decoration: underline;
 }
