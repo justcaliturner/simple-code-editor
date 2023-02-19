@@ -492,7 +492,7 @@ export default {
 
 /* scroll */
 
-.scroll {
+.editor {
   display: flex; 
 }
 
