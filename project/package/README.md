@@ -141,6 +141,25 @@ Description: setting the contents of a code editor. If you want to bind the data
 Description: varies based on the value of form inputs element or output of components, the specific usage you can read [Vue.js Documentation](https://v3.vuejs.org/api/directives.html#v-model)
 
 
+### count_lines `Boolean`
+
+Default: `true`
+
+Description: whether line numbers should be displayed or not
+
+```html
+<CodeEditor :count_lines="true"></CodeEditor>
+```
+
+### spellcheck `Boolean`
+
+Default: `false`
+
+Description: whether spellcheck should be enabled on the code editor or not
+
+```html
+<CodeEditor :spellcheck="true"></CodeEditor>
+```
 
 
 ### language_selector `Boolean`
