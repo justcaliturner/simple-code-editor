@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple code editor for vue.js</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/simple-code-editor.css" />
+    <link rel="stylesheet" href="./css/themes/themes-base16.css" />
+    <link rel="stylesheet" href="./css/themes/themes.css" />
+  </head>
+
+  <body style="background-color: #ddd">
+    <div id="app">
+      <code-editor
+        style="margin: 100px auto"
+        v-model="value"
+        width="100%"
+        max-width="600px"
+        height="340px"
+        :languages="[['javascript', 'JS'], ['html', 'HTML']]"
+        :wrap-code="true"
+        :hide-header="false"
+        :autofocus="true"
+      ></code-editor>
+      <code-editor
+        style="margin: 100px auto"
+        v-model="value"
+        theme="github"
+        width="100%"
+        max-width="600px"
+        height="340px"
+        :languages="[['javascript', 'JS'], ['html', 'HTML']]"
+        :wrap-code="true"
+        :hide-header="false"
+      ></code-editor>
+    </div>
+    <!-- js -->
+    <script src="./deps/vue@3.3.4.min.js"></script>
+    <script src="./deps/highlight.min.js"></script>
+    <script src="./js/simple-code-editor.js"></script>
+    <script>
+      const app = Vue.createApp({
+        components: {
+          "code-editor": CodeEditor,
+        },
+        data() {
+          return {
+            value: `import CodeEditor from 'CodeEditor';
+      export default {
+          components: {
+            CodeEditor
+          },
+          data() {
+              return {
+                value: ''
+              }
+          }
+      }`,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1399 @@
+<div class="body" :style="{paddingLeft: isMenuDisplayed ? '240px' : '0px'}">
+  <!-- menu -->
+  <div class="menu" v-show="isMenuDisplayed">
+    <div class="menu-title">
+      <div>Theme</div>
+      <svg
+        @click="toggleMenu"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-square-chevron-left"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M13 15l-3 -3l3 -3"></path>
+        <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+      </svg>
+    </div>
+    <ul>
+      <li :class="{ selected: theme == 'a11y-dark' }" @click="switchTheme('a11y-dark')">a11y-dark</li>
+      <li :class="{ selected: theme == 'a11y-light' }" @click="switchTheme('a11y-light')">a11y-light</li>
+      <li :class="{ selected: theme == 'agate' }" @click="switchTheme('agate')">agate</li>
+      <li :class="{ selected: theme == 'an-old-hope' }" @click="switchTheme('an-old-hope')">an-old-hope</li>
+      <li :class="{ selected: theme == 'androidstudio' }" @click="switchTheme('androidstudio')">androidstudio</li>
+      <li :class="{ selected: theme == 'arduino-light' }" @click="switchTheme('arduino-light')">arduino-light</li>
+      <li :class="{ selected: theme == 'arta' }" @click="switchTheme('arta')">arta</li>
+      <li :class="{ selected: theme == 'ascetic' }" @click="switchTheme('ascetic')">ascetic</li>
+      <li :class="{ selected: theme == 'atom-one-dark-reasonable' }" @click="switchTheme('atom-one-dark-reasonable')">
+        atom-one-dark-reasonable
+      </li>
+      <li :class="{ selected: theme == 'atom-one-dark' }" @click="switchTheme('atom-one-dark')">atom-one-dark</li>
+      <li :class="{ selected: theme == 'atom-one-light' }" @click="switchTheme('atom-one-light')">atom-one-light</li>
+      <li :class="{ selected: theme == 'brown-paper' }" @click="switchTheme('brown-paper')">brown-paper</li>
+      <li :class="{ selected: theme == 'codepen-embed' }" @click="switchTheme('codepen-embed')">codepen-embed</li>
+      <li :class="{ selected: theme == 'color-brewer' }" @click="switchTheme('color-brewer')">color-brewer</li>
+      <li :class="{ selected: theme == 'dark' }" @click="switchTheme('dark')">dark</li>
+      <li :class="{ selected: theme == 'default' }" @click="switchTheme('default')">default</li>
+      <li :class="{ selected: theme == 'devibeans' }" @click="switchTheme('devibeans')">devibeans</li>
+      <li :class="{ selected: theme == 'docco' }" @click="switchTheme('docco')">docco</li>
+      <li :class="{ selected: theme == 'far' }" @click="switchTheme('far')">far</li>
+      <li :class="{ selected: theme == 'felipec' }" @click="switchTheme('felipec')">felipec</li>
+      <li :class="{ selected: theme == 'foundation' }" @click="switchTheme('foundation')">foundation</li>
+      <li :class="{ selected: theme == 'github-dark-dimmed' }" @click="switchTheme('github-dark-dimmed')">
+        github-dark-dimmed
+      </li>
+      <li :class="{ selected: theme == 'github-dark' }" @click="switchTheme('github-dark')">github-dark</li>
+      <li :class="{ selected: theme == 'github' }" @click="switchTheme('github')">github</li>
+      <li :class="{ selected: theme == 'gml' }" @click="switchTheme('gml')">gml</li>
+      <li :class="{ selected: theme == 'googlecode' }" @click="switchTheme('googlecode')">googlecode</li>
+      <li :class="{ selected: theme == 'gradient-dark' }" @click="switchTheme('gradient-dark')">gradient-dark</li>
+      <li :class="{ selected: theme == 'gradient-light' }" @click="switchTheme('gradient-light')">gradient-light</li>
+      <li :class="{ selected: theme == 'grayscale' }" @click="switchTheme('grayscale')">grayscale</li>
+      <li :class="{ selected: theme == 'hybrid' }" @click="switchTheme('hybrid')">hybrid</li>
+      <li :class="{ selected: theme == 'idea' }" @click="switchTheme('idea')">idea</li>
+      <li :class="{ selected: theme == 'intellij-light' }" @click="switchTheme('intellij-light')">intellij-light</li>
+      <li :class="{ selected: theme == 'ir-black' }" @click="switchTheme('ir-black')">ir-black</li>
+      <li :class="{ selected: theme == 'isbl-editor-dark' }" @click="switchTheme('isbl-editor-dark')">
+        isbl-editor-dark
+      </li>
+      <li :class="{ selected: theme == 'isbl-editor-light' }" @click="switchTheme('isbl-editor-light')">
+        isbl-editor-light
+      </li>
+      <li :class="{ selected: theme == 'kimbie-dark' }" @click="switchTheme('kimbie-dark')">kimbie-dark</li>
+      <li :class="{ selected: theme == 'kimbie-light' }" @click="switchTheme('kimbie-light')">kimbie-light</li>
+      <li :class="{ selected: theme == 'lightfair' }" @click="switchTheme('lightfair')">lightfair</li>
+      <li :class="{ selected: theme == 'lioshi' }" @click="switchTheme('lioshi')">lioshi</li>
+      <li :class="{ selected: theme == 'magula' }" @click="switchTheme('magula')">magula</li>
+      <li :class="{ selected: theme == 'mono-blue' }" @click="switchTheme('mono-blue')">mono-blue</li>
+      <li :class="{ selected: theme == 'monokai-sublime' }" @click="switchTheme('monokai-sublime')">monokai-sublime</li>
+      <li :class="{ selected: theme == 'monokai' }" @click="switchTheme('monokai')">monokai</li>
+      <li :class="{ selected: theme == 'night-owl' }" @click="switchTheme('night-owl')">night-owl</li>
+      <li :class="{ selected: theme == 'nnfx-dark' }" @click="switchTheme('nnfx-dark')">nnfx-dark</li>
+      <li :class="{ selected: theme == 'nnfx-light' }" @click="switchTheme('nnfx-light')">nnfx-light</li>
+      <li :class="{ selected: theme == 'nord' }" @click="switchTheme('nord')">nord</li>
+      <li :class="{ selected: theme == 'obsidian' }" @click="switchTheme('obsidian')">obsidian</li>
+      <li :class="{ selected: theme == 'panda-syntax-dark' }" @click="switchTheme('panda-syntax-dark')">
+        panda-syntax-dark
+      </li>
+      <li :class="{ selected: theme == 'panda-syntax-light' }" @click="switchTheme('panda-syntax-light')">
+        panda-syntax-light
+      </li>
+      <li :class="{ selected: theme == 'paraiso-dark' }" @click="switchTheme('paraiso-dark')">paraiso-dark</li>
+      <li :class="{ selected: theme == 'paraiso-light' }" @click="switchTheme('paraiso-light')">paraiso-light</li>
+      <li :class="{ selected: theme == 'pojoaque' }" @click="switchTheme('pojoaque')">pojoaque</li>
+      <li :class="{ selected: theme == 'purebasic' }" @click="switchTheme('purebasic')">purebasic</li>
+      <li :class="{ selected: theme == 'qtcreator-dark' }" @click="switchTheme('qtcreator-dark')">qtcreator-dark</li>
+      <li :class="{ selected: theme == 'qtcreator-light' }" @click="switchTheme('qtcreator-light')">qtcreator-light</li>
+      <li :class="{ selected: theme == 'rainbow' }" @click="switchTheme('rainbow')">rainbow</li>
+      <li :class="{ selected: theme == 'routeros' }" @click="switchTheme('routeros')">routeros</li>
+      <li :class="{ selected: theme == 'school-book' }" @click="switchTheme('school-book')">school-book</li>
+      <li :class="{ selected: theme == 'shades-of-purple' }" @click="switchTheme('shades-of-purple')">
+        shades-of-purple
+      </li>
+      <li :class="{ selected: theme == 'srcery' }" @click="switchTheme('srcery')">srcery</li>
+      <li :class="{ selected: theme == 'stackoverflow-dark' }" @click="switchTheme('stackoverflow-dark')">
+        stackoverflow-dark
+      </li>
+      <li :class="{ selected: theme == 'stackoverflow-light' }" @click="switchTheme('stackoverflow-light')">
+        stackoverflow-light
+      </li>
+      <li :class="{ selected: theme == 'sunburst' }" @click="switchTheme('sunburst')">sunburst</li>
+      <li :class="{ selected: theme == 'tokyo-night-dark' }" @click="switchTheme('tokyo-night-dark')">
+        tokyo-night-dark
+      </li>
+      <li :class="{ selected: theme == 'tokyo-night-light' }" @click="switchTheme('tokyo-night-light')">
+        tokyo-night-light
+      </li>
+      <li :class="{ selected: theme == 'tomorrow-night-blue' }" @click="switchTheme('tomorrow-night-blue')">
+        tomorrow-night-blue
+      </li>
+      <li :class="{ selected: theme == 'tomorrow-night-bright' }" @click="switchTheme('tomorrow-night-bright')">
+        tomorrow-night-bright
+      </li>
+      <li :class="{ selected: theme == 'vs' }" @click="switchTheme('vs')">vs</li>
+      <li :class="{ selected: theme == 'vs2015' }" @click="switchTheme('vs2015')">vs2015</li>
+      <li :class="{ selected: theme == 'xcode' }" @click="switchTheme('xcode')">xcode</li>
+      <li :class="{ selected: theme == 'xt256' }" @click="switchTheme('xt256')">xt256</li>
+      <li :class="{ selected: theme == 'base16-3024' }" @click="switchTheme('base16-3024')">base16-3024</li>
+      <li :class="{ selected: theme == 'base16-apathy' }" @click="switchTheme('base16-apathy')">base16-apathy</li>
+      <li :class="{ selected: theme == 'base16-apprentice' }" @click="switchTheme('base16-apprentice')">
+        base16-apprentice
+      </li>
+      <li :class="{ selected: theme == 'base16-ashes' }" @click="switchTheme('base16-ashes')">base16-ashes</li>
+      <li :class="{ selected: theme == 'base16-atelier-cave-light' }" @click="switchTheme('base16-atelier-cave-light')">
+        base16-atelier-cave-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-cave' }" @click="switchTheme('base16-atelier-cave')">
+        base16-atelier-cave
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-dune-light' }" @click="switchTheme('base16-atelier-dune-light')">
+        base16-atelier-dune-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-dune' }" @click="switchTheme('base16-atelier-dune')">
+        base16-atelier-dune
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-estuary-light' }"
+        @click="switchTheme('base16-atelier-estuary-light')"
+      >
+        base16-atelier-estuary-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-estuary' }" @click="switchTheme('base16-atelier-estuary')">
+        base16-atelier-estuary
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-forest-light' }"
+        @click="switchTheme('base16-atelier-forest-light')"
+      >
+        base16-atelier-forest-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-forest' }" @click="switchTheme('base16-atelier-forest')">
+        base16-atelier-forest
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-heath-light' }"
+        @click="switchTheme('base16-atelier-heath-light')"
+      >
+        base16-atelier-heath-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-heath' }" @click="switchTheme('base16-atelier-heath')">
+        base16-atelier-heath
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-lakeside-light' }"
+        @click="switchTheme('base16-atelier-lakeside-light')"
+      >
+        base16-atelier-lakeside-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-lakeside' }" @click="switchTheme('base16-atelier-lakeside')">
+        base16-atelier-lakeside
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-plateau-light' }"
+        @click="switchTheme('base16-atelier-plateau-light')"
+      >
+        base16-atelier-plateau-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-plateau' }" @click="switchTheme('base16-atelier-plateau')">
+        base16-atelier-plateau
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-savanna-light' }"
+        @click="switchTheme('base16-atelier-savanna-light')"
+      >
+        base16-atelier-savanna-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-savanna' }" @click="switchTheme('base16-atelier-savanna')">
+        base16-atelier-savanna
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-seaside-light' }"
+        @click="switchTheme('base16-atelier-seaside-light')"
+      >
+        base16-atelier-seaside-light
+      </li>
+      <li :class="{ selected: theme == 'base16-atelier-seaside' }" @click="switchTheme('base16-atelier-seaside')">
+        base16-atelier-seaside
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-sulphurpool-light' }"
+        @click="switchTheme('base16-atelier-sulphurpool-light')"
+      >
+        base16-atelier-sulphurpool-light
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-atelier-sulphurpool' }"
+        @click="switchTheme('base16-atelier-sulphurpool')"
+      >
+        base16-atelier-sulphurpool
+      </li>
+      <li :class="{ selected: theme == 'base16-atlas' }" @click="switchTheme('base16-atlas')">base16-atlas</li>
+      <li :class="{ selected: theme == 'base16-bespin' }" @click="switchTheme('base16-bespin')">base16-bespin</li>
+      <li
+        :class="{ selected: theme == 'base16-black-metal-bathory' }"
+        @click="switchTheme('base16-black-metal-bathory')"
+      >
+        base16-black-metal-bathory
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-burzum' }" @click="switchTheme('base16-black-metal-burzum')">
+        base16-black-metal-burzum
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-black-metal-dark-funeral' }"
+        @click="switchTheme('base16-black-metal-dark-funeral')"
+      >
+        base16-black-metal-dark-funeral
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-black-metal-gorgoroth' }"
+        @click="switchTheme('base16-black-metal-gorgoroth')"
+      >
+        base16-black-metal-gorgoroth
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-black-metal-immortal' }"
+        @click="switchTheme('base16-black-metal-immortal')"
+      >
+        base16-black-metal-immortal
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-khold' }" @click="switchTheme('base16-black-metal-khold')">
+        base16-black-metal-khold
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-marduk' }" @click="switchTheme('base16-black-metal-marduk')">
+        base16-black-metal-marduk
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-mayhem' }" @click="switchTheme('base16-black-metal-mayhem')">
+        base16-black-metal-mayhem
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-nile' }" @click="switchTheme('base16-black-metal-nile')">
+        base16-black-metal-nile
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal-venom' }" @click="switchTheme('base16-black-metal-venom')">
+        base16-black-metal-venom
+      </li>
+      <li :class="{ selected: theme == 'base16-black-metal' }" @click="switchTheme('base16-black-metal')">
+        base16-black-metal
+      </li>
+      <li :class="{ selected: theme == 'base16-brewer' }" @click="switchTheme('base16-brewer')">base16-brewer</li>
+      <li :class="{ selected: theme == 'base16-bright' }" @click="switchTheme('base16-bright')">base16-bright</li>
+      <li :class="{ selected: theme == 'base16-brogrammer' }" @click="switchTheme('base16-brogrammer')">
+        base16-brogrammer
+      </li>
+      <li :class="{ selected: theme == 'base16-brush-trees-dark' }" @click="switchTheme('base16-brush-trees-dark')">
+        base16-brush-trees-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-brush-trees' }" @click="switchTheme('base16-brush-trees')">
+        base16-brush-trees
+      </li>
+      <li :class="{ selected: theme == 'base16-chalk' }" @click="switchTheme('base16-chalk')">base16-chalk</li>
+      <li :class="{ selected: theme == 'base16-circus' }" @click="switchTheme('base16-circus')">base16-circus</li>
+      <li :class="{ selected: theme == 'base16-classic-dark' }" @click="switchTheme('base16-classic-dark')">
+        base16-classic-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-classic-light' }" @click="switchTheme('base16-classic-light')">
+        base16-classic-light
+      </li>
+      <li :class="{ selected: theme == 'base16-codeschool' }" @click="switchTheme('base16-codeschool')">
+        base16-codeschool
+      </li>
+      <li :class="{ selected: theme == 'base16-colors' }" @click="switchTheme('base16-colors')">base16-colors</li>
+      <li :class="{ selected: theme == 'base16-cupcake' }" @click="switchTheme('base16-cupcake')">base16-cupcake</li>
+      <li :class="{ selected: theme == 'base16-cupertino' }" @click="switchTheme('base16-cupertino')">
+        base16-cupertino
+      </li>
+      <li :class="{ selected: theme == 'base16-danqing' }" @click="switchTheme('base16-danqing')">base16-danqing</li>
+      <li :class="{ selected: theme == 'base16-darcula' }" @click="switchTheme('base16-darcula')">base16-darcula</li>
+      <li :class="{ selected: theme == 'base16-dark-violet' }" @click="switchTheme('base16-dark-violet')">
+        base16-dark-violet
+      </li>
+      <li :class="{ selected: theme == 'base16-darkmoss' }" @click="switchTheme('base16-darkmoss')">base16-darkmoss</li>
+      <li :class="{ selected: theme == 'base16-darktooth' }" @click="switchTheme('base16-darktooth')">
+        base16-darktooth
+      </li>
+      <li :class="{ selected: theme == 'base16-decaf' }" @click="switchTheme('base16-decaf')">base16-decaf</li>
+      <li :class="{ selected: theme == 'base16-default-dark' }" @click="switchTheme('base16-default-dark')">
+        base16-default-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-default-light' }" @click="switchTheme('base16-default-light')">
+        base16-default-light
+      </li>
+      <li :class="{ selected: theme == 'base16-dirtysea' }" @click="switchTheme('base16-dirtysea')">base16-dirtysea</li>
+      <li :class="{ selected: theme == 'base16-dracula' }" @click="switchTheme('base16-dracula')">base16-dracula</li>
+      <li :class="{ selected: theme == 'base16-edge-dark' }" @click="switchTheme('base16-edge-dark')">
+        base16-edge-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-edge-light' }" @click="switchTheme('base16-edge-light')">
+        base16-edge-light
+      </li>
+      <li :class="{ selected: theme == 'base16-eighties' }" @click="switchTheme('base16-eighties')">base16-eighties</li>
+      <li :class="{ selected: theme == 'base16-embers' }" @click="switchTheme('base16-embers')">base16-embers</li>
+      <li :class="{ selected: theme == 'base16-equilibrium-dark' }" @click="switchTheme('base16-equilibrium-dark')">
+        base16-equilibrium-dark
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-equilibrium-gray-dark' }"
+        @click="switchTheme('base16-equilibrium-gray-dark')"
+      >
+        base16-equilibrium-gray-dark
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-equilibrium-gray-light' }"
+        @click="switchTheme('base16-equilibrium-gray-light')"
+      >
+        base16-equilibrium-gray-light
+      </li>
+      <li :class="{ selected: theme == 'base16-equilibrium-light' }" @click="switchTheme('base16-equilibrium-light')">
+        base16-equilibrium-light
+      </li>
+      <li :class="{ selected: theme == 'base16-espresso' }" @click="switchTheme('base16-espresso')">base16-espresso</li>
+      <li :class="{ selected: theme == 'base16-eva-dim' }" @click="switchTheme('base16-eva-dim')">base16-eva-dim</li>
+      <li :class="{ selected: theme == 'base16-eva' }" @click="switchTheme('base16-eva')">base16-eva</li>
+      <li :class="{ selected: theme == 'base16-flat' }" @click="switchTheme('base16-flat')">base16-flat</li>
+      <li :class="{ selected: theme == 'base16-framer' }" @click="switchTheme('base16-framer')">base16-framer</li>
+      <li :class="{ selected: theme == 'base16-fruit-soda' }" @click="switchTheme('base16-fruit-soda')">
+        base16-fruit-soda
+      </li>
+      <li :class="{ selected: theme == 'base16-gigavolt' }" @click="switchTheme('base16-gigavolt')">base16-gigavolt</li>
+      <li :class="{ selected: theme == 'base16-github' }" @click="switchTheme('base16-github')">base16-github</li>
+      <li :class="{ selected: theme == 'base16-google-dark' }" @click="switchTheme('base16-google-dark')">
+        base16-google-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-google-light' }" @click="switchTheme('base16-google-light')">
+        base16-google-light
+      </li>
+      <li :class="{ selected: theme == 'base16-grayscale-dark' }" @click="switchTheme('base16-grayscale-dark')">
+        base16-grayscale-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-grayscale-light' }" @click="switchTheme('base16-grayscale-light')">
+        base16-grayscale-light
+      </li>
+      <li :class="{ selected: theme == 'base16-green-screen' }" @click="switchTheme('base16-green-screen')">
+        base16-green-screen
+      </li>
+      <li :class="{ selected: theme == 'base16-gruvbox-dark-hard' }" @click="switchTheme('base16-gruvbox-dark-hard')">
+        base16-gruvbox-dark-hard
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-gruvbox-dark-medium' }"
+        @click="switchTheme('base16-gruvbox-dark-medium')"
+      >
+        base16-gruvbox-dark-medium
+      </li>
+      <li :class="{ selected: theme == 'base16-gruvbox-dark-pale' }" @click="switchTheme('base16-gruvbox-dark-pale')">
+        base16-gruvbox-dark-pale
+      </li>
+      <li :class="{ selected: theme == 'base16-gruvbox-dark-soft' }" @click="switchTheme('base16-gruvbox-dark-soft')">
+        base16-gruvbox-dark-soft
+      </li>
+      <li :class="{ selected: theme == 'base16-gruvbox-light-hard' }" @click="switchTheme('base16-gruvbox-light-hard')">
+        base16-gruvbox-light-hard
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-gruvbox-light-medium' }"
+        @click="switchTheme('base16-gruvbox-light-medium')"
+      >
+        base16-gruvbox-light-medium
+      </li>
+      <li :class="{ selected: theme == 'base16-gruvbox-light-soft' }" @click="switchTheme('base16-gruvbox-light-soft')">
+        base16-gruvbox-light-soft
+      </li>
+      <li :class="{ selected: theme == 'base16-hardcore' }" @click="switchTheme('base16-hardcore')">base16-hardcore</li>
+      <li :class="{ selected: theme == 'base16-harmonic16-dark' }" @click="switchTheme('base16-harmonic16-dark')">
+        base16-harmonic16-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-harmonic16-light' }" @click="switchTheme('base16-harmonic16-light')">
+        base16-harmonic16-light
+      </li>
+      <li :class="{ selected: theme == 'base16-heetch-dark' }" @click="switchTheme('base16-heetch-dark')">
+        base16-heetch-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-heetch-light' }" @click="switchTheme('base16-heetch-light')">
+        base16-heetch-light
+      </li>
+      <li :class="{ selected: theme == 'base16-helios' }" @click="switchTheme('base16-helios')">base16-helios</li>
+      <li :class="{ selected: theme == 'base16-hopscotch' }" @click="switchTheme('base16-hopscotch')">
+        base16-hopscotch
+      </li>
+      <li :class="{ selected: theme == 'base16-horizon-dark' }" @click="switchTheme('base16-horizon-dark')">
+        base16-horizon-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-horizon-light' }" @click="switchTheme('base16-horizon-light')">
+        base16-horizon-light
+      </li>
+      <li :class="{ selected: theme == 'base16-humanoid-dark' }" @click="switchTheme('base16-humanoid-dark')">
+        base16-humanoid-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-humanoid-light' }" @click="switchTheme('base16-humanoid-light')">
+        base16-humanoid-light
+      </li>
+      <li :class="{ selected: theme == 'base16-ia-dark' }" @click="switchTheme('base16-ia-dark')">base16-ia-dark</li>
+      <li :class="{ selected: theme == 'base16-ia-light' }" @click="switchTheme('base16-ia-light')">base16-ia-light</li>
+      <li :class="{ selected: theme == 'base16-icy-dark' }" @click="switchTheme('base16-icy-dark')">base16-icy-dark</li>
+      <li :class="{ selected: theme == 'base16-ir-black' }" @click="switchTheme('base16-ir-black')">base16-ir-black</li>
+      <li :class="{ selected: theme == 'base16-isotope' }" @click="switchTheme('base16-isotope')">base16-isotope</li>
+      <li :class="{ selected: theme == 'base16-kimber' }" @click="switchTheme('base16-kimber')">base16-kimber</li>
+      <li :class="{ selected: theme == 'base16-london-tube' }" @click="switchTheme('base16-london-tube')">
+        base16-london-tube
+      </li>
+      <li :class="{ selected: theme == 'base16-macintosh' }" @click="switchTheme('base16-macintosh')">
+        base16-macintosh
+      </li>
+      <li :class="{ selected: theme == 'base16-marrakesh' }" @click="switchTheme('base16-marrakesh')">
+        base16-marrakesh
+      </li>
+      <li :class="{ selected: theme == 'base16-materia' }" @click="switchTheme('base16-materia')">base16-materia</li>
+      <li :class="{ selected: theme == 'base16-material-darker' }" @click="switchTheme('base16-material-darker')">
+        base16-material-darker
+      </li>
+      <li :class="{ selected: theme == 'base16-material-lighter' }" @click="switchTheme('base16-material-lighter')">
+        base16-material-lighter
+      </li>
+      <li :class="{ selected: theme == 'base16-material-palenight' }" @click="switchTheme('base16-material-palenight')">
+        base16-material-palenight
+      </li>
+      <li :class="{ selected: theme == 'base16-material-vivid' }" @click="switchTheme('base16-material-vivid')">
+        base16-material-vivid
+      </li>
+      <li :class="{ selected: theme == 'base16-material' }" @click="switchTheme('base16-material')">base16-material</li>
+      <li :class="{ selected: theme == 'base16-mellow-purple' }" @click="switchTheme('base16-mellow-purple')">
+        base16-mellow-purple
+      </li>
+      <li :class="{ selected: theme == 'base16-mexico-light' }" @click="switchTheme('base16-mexico-light')">
+        base16-mexico-light
+      </li>
+      <li :class="{ selected: theme == 'base16-mocha' }" @click="switchTheme('base16-mocha')">base16-mocha</li>
+      <li :class="{ selected: theme == 'base16-monokai' }" @click="switchTheme('base16-monokai')">base16-monokai</li>
+      <li :class="{ selected: theme == 'base16-nebula' }" @click="switchTheme('base16-nebula')">base16-nebula</li>
+      <li :class="{ selected: theme == 'base16-nord' }" @click="switchTheme('base16-nord')">base16-nord</li>
+      <li :class="{ selected: theme == 'base16-nova' }" @click="switchTheme('base16-nova')">base16-nova</li>
+      <li :class="{ selected: theme == 'base16-ocean' }" @click="switchTheme('base16-ocean')">base16-ocean</li>
+      <li :class="{ selected: theme == 'base16-oceanicnext' }" @click="switchTheme('base16-oceanicnext')">
+        base16-oceanicnext
+      </li>
+      <li :class="{ selected: theme == 'base16-one-light' }" @click="switchTheme('base16-one-light')">
+        base16-one-light
+      </li>
+      <li :class="{ selected: theme == 'base16-onedark' }" @click="switchTheme('base16-onedark')">base16-onedark</li>
+      <li :class="{ selected: theme == 'base16-outrun-dark' }" @click="switchTheme('base16-outrun-dark')">
+        base16-outrun-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-papercolor-dark' }" @click="switchTheme('base16-papercolor-dark')">
+        base16-papercolor-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-papercolor-light' }" @click="switchTheme('base16-papercolor-light')">
+        base16-papercolor-light
+      </li>
+      <li :class="{ selected: theme == 'base16-paraiso' }" @click="switchTheme('base16-paraiso')">base16-paraiso</li>
+      <li :class="{ selected: theme == 'base16-pasque' }" @click="switchTheme('base16-pasque')">base16-pasque</li>
+      <li :class="{ selected: theme == 'base16-phd' }" @click="switchTheme('base16-phd')">base16-phd</li>
+      <li :class="{ selected: theme == 'base16-pico' }" @click="switchTheme('base16-pico')">base16-pico</li>
+      <li :class="{ selected: theme == 'base16-pop' }" @click="switchTheme('base16-pop')">base16-pop</li>
+      <li :class="{ selected: theme == 'base16-porple' }" @click="switchTheme('base16-porple')">base16-porple</li>
+      <li :class="{ selected: theme == 'base16-qualia' }" @click="switchTheme('base16-qualia')">base16-qualia</li>
+      <li :class="{ selected: theme == 'base16-railscasts' }" @click="switchTheme('base16-railscasts')">
+        base16-railscasts
+      </li>
+      <li :class="{ selected: theme == 'base16-rebecca' }" @click="switchTheme('base16-rebecca')">base16-rebecca</li>
+      <li :class="{ selected: theme == 'base16-ros-pine-dawn' }" @click="switchTheme('base16-ros-pine-dawn')">
+        base16-ros-pine-dawn
+      </li>
+      <li :class="{ selected: theme == 'base16-ros-pine-moon' }" @click="switchTheme('base16-ros-pine-moon')">
+        base16-ros-pine-moon
+      </li>
+      <li :class="{ selected: theme == 'base16-ros-pine' }" @click="switchTheme('base16-ros-pine')">base16-ros-pine</li>
+      <li :class="{ selected: theme == 'base16-sagelight' }" @click="switchTheme('base16-sagelight')">
+        base16-sagelight
+      </li>
+      <li :class="{ selected: theme == 'base16-sandcastle' }" @click="switchTheme('base16-sandcastle')">
+        base16-sandcastle
+      </li>
+      <li :class="{ selected: theme == 'base16-seti-ui' }" @click="switchTheme('base16-seti-ui')">base16-seti-ui</li>
+      <li :class="{ selected: theme == 'base16-shapeshifter' }" @click="switchTheme('base16-shapeshifter')">
+        base16-shapeshifter
+      </li>
+      <li :class="{ selected: theme == 'base16-silk-dark' }" @click="switchTheme('base16-silk-dark')">
+        base16-silk-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-silk-light' }" @click="switchTheme('base16-silk-light')">
+        base16-silk-light
+      </li>
+      <li :class="{ selected: theme == 'base16-snazzy' }" @click="switchTheme('base16-snazzy')">base16-snazzy</li>
+      <li :class="{ selected: theme == 'base16-solar-flare-light' }" @click="switchTheme('base16-solar-flare-light')">
+        base16-solar-flare-light
+      </li>
+      <li :class="{ selected: theme == 'base16-solar-flare' }" @click="switchTheme('base16-solar-flare')">
+        base16-solar-flare
+      </li>
+      <li :class="{ selected: theme == 'base16-solarized-dark' }" @click="switchTheme('base16-solarized-dark')">
+        base16-solarized-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-solarized-light' }" @click="switchTheme('base16-solarized-light')">
+        base16-solarized-light
+      </li>
+      <li :class="{ selected: theme == 'base16-spacemacs' }" @click="switchTheme('base16-spacemacs')">
+        base16-spacemacs
+      </li>
+      <li :class="{ selected: theme == 'base16-summercamp' }" @click="switchTheme('base16-summercamp')">
+        base16-summercamp
+      </li>
+      <li :class="{ selected: theme == 'base16-summerfruit-dark' }" @click="switchTheme('base16-summerfruit-dark')">
+        base16-summerfruit-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-summerfruit-light' }" @click="switchTheme('base16-summerfruit-light')">
+        base16-summerfruit-light
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-synth-midnight-terminal-dark' }"
+        @click="switchTheme('base16-synth-midnight-terminal-dark')"
+      >
+        base16-synth-midnight-terminal-dark
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-synth-midnight-terminal-light' }"
+        @click="switchTheme('base16-synth-midnight-terminal-light')"
+      >
+        base16-synth-midnight-terminal-light
+      </li>
+      <li :class="{ selected: theme == 'base16-tango' }" @click="switchTheme('base16-tango')">base16-tango</li>
+      <li :class="{ selected: theme == 'base16-tender' }" @click="switchTheme('base16-tender')">base16-tender</li>
+      <li :class="{ selected: theme == 'base16-tomorrow-night' }" @click="switchTheme('base16-tomorrow-night')">
+        base16-tomorrow-night
+      </li>
+      <li :class="{ selected: theme == 'base16-tomorrow' }" @click="switchTheme('base16-tomorrow')">base16-tomorrow</li>
+      <li :class="{ selected: theme == 'base16-twilight' }" @click="switchTheme('base16-twilight')">base16-twilight</li>
+      <li :class="{ selected: theme == 'base16-unikitty-dark' }" @click="switchTheme('base16-unikitty-dark')">
+        base16-unikitty-dark
+      </li>
+      <li :class="{ selected: theme == 'base16-unikitty-light' }" @click="switchTheme('base16-unikitty-light')">
+        base16-unikitty-light
+      </li>
+      <li :class="{ selected: theme == 'base16-vulcan' }" @click="switchTheme('base16-vulcan')">base16-vulcan</li>
+      <li :class="{ selected: theme == 'base16-windows-10-light' }" @click="switchTheme('base16-windows-10-light')">
+        base16-windows-10-light
+      </li>
+      <li :class="{ selected: theme == 'base16-windows-10' }" @click="switchTheme('base16-windows-10')">
+        base16-windows-10
+      </li>
+      <li :class="{ selected: theme == 'base16-windows-95-light' }" @click="switchTheme('base16-windows-95-light')">
+        base16-windows-95-light
+      </li>
+      <li :class="{ selected: theme == 'base16-windows-95' }" @click="switchTheme('base16-windows-95')">
+        base16-windows-95
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-windows-high-contrast-light' }"
+        @click="switchTheme('base16-windows-high-contrast-light')"
+      >
+        base16-windows-high-contrast-light
+      </li>
+      <li
+        :class="{ selected: theme == 'base16-windows-high-contrast' }"
+        @click="switchTheme('base16-windows-high-contrast')"
+      >
+        base16-windows-high-contrast
+      </li>
+      <li :class="{ selected: theme == 'base16-windows-nt-light' }" @click="switchTheme('base16-windows-nt-light')">
+        base16-windows-nt-light
+      </li>
+      <li :class="{ selected: theme == 'base16-windows-nt' }" @click="switchTheme('base16-windows-nt')">
+        base16-windows-nt
+      </li>
+      <li :class="{ selected: theme == 'base16-woodland' }" @click="switchTheme('base16-woodland')">base16-woodland</li>
+      <li :class="{ selected: theme == 'base16-xcode-dusk' }" @click="switchTheme('base16-xcode-dusk')">
+        base16-xcode-dusk
+      </li>
+      <li :class="{ selected: theme == 'base16-zenburn' }" @click="switchTheme('base16-zenburn')">base16-zenburn</li>
+    </ul>
+  </div>
+  <!-- demo -->
+  <div class="demo">
+    <h1 class="title">Simple CodeEditor for Vue.js</h1>
+    <div class="container">
+      <div class="subtitle">
+        <p>
+          It's easy to use, both support <mark>read-only</mark> and <mark>edit mode</mark> with
+          <mark>200+</mark> themes, you can directly use it in the browser or import it via the NPM package.
+        </p>
+      </div>
+      <CodeEditor
+        :autofocus="true"
+        :theme="theme"
+        v-model="animationCode"
+        zIndex="3"
+        width="100%"
+        :languages="[
+              ['html', 'HTML'],
+              ['javascript', 'JS'],
+              ['scss', 'SCSS'],
+            ]"
+      ></CodeEditor>
+      <CodeEditor
+        :theme="theme"
+        value="import CodeEditor from 'simple-code-editor';
+export default {
+  components: {
+    CodeEditor
+  },
+  data() {
+    return {
+      value: ''
+    }
+  }
+}"
+        width="100%"
+        height="340px"
+      ></CodeEditor>
+      <h4 center style="color: var(--grey-7); margin: 40px 0 30px 0; font-weight: bold">
+        Freely switch <a>200+</a> themes
+      </h4>
+      <CodeEditor
+        :readOnly="true"
+        v-model="themeDemo"
+        theme="atom-one-dark"
+        width="100%"
+        :languages="[['html', 'HTML']]"
+      ></CodeEditor>
+      <div class="button-group">
+        <button :class="{ selected: theme == 'github-dark' }" @click="switchTheme('github-dark')">github-dark</button>
+        <button :class="{ selected: theme == 'github' }" @click="switchTheme('github')">github</button>
+        <button :class="{ selected: theme == 'gradient-dark' }" @click="switchTheme('gradient-dark')">
+          gradient-dark
+        </button>
+        <button :class="{ selected: theme == 'hybrid' }" @click="switchTheme('hybrid')">hybrid</button>
+        <button :class="{ selected: theme == 'isbl-editor-dark' }" @click="switchTheme('isbl-editor-dark')">
+          isbl-editor-dark
+        </button>
+        <button :class="{ selected: theme == 'vs2015' }" @click="switchTheme('vs2015')">vs2015</button>
+        <button :class="{ selected: theme == 'atom-one-dark' }" @click="switchTheme('atom-one-dark')">
+          atom-one-dark
+        </button>
+        <button style="color: var(--main-5)" @click="toggleMenu">All themes</button>
+      </div>
+    </div>
+  </div>
+  <!-- useage -->
+  <div class="useage">
+    <div class="container">
+      <h2>Useage</h2>
+      <!-- Vue in the Browser -->
+      <h3>Vue in the Browser</h3>
+      <p>Step 1. Add the CSS files.</p>
+      <CodeEditor
+        value='<link rel="stylesheet" href="themes.css" />
+<link rel="stylesheet" href="themes-base16.css" />
+<link rel="stylesheet" href="simple-code-editor.css" />'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>Step 2. Add the JavaScript files after the <code>vue.js</code> file.</p>
+      <CodeEditor
+        value='<script src="highlight.min.js"></script>
+<script src="simple-code-editor.js"></script>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      >
+      </CodeEditor>
+      <p>Step 3. Declaring the component, and using the customized tag into the HTML template.</p>
+      <CodeEditor
+        value="const app = Vue.createApp({
+  components: {
+    'code-editor': CodeEditor
+  }
+})"
+        :languages="[['javascript', 'JS']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+
+      <CodeEditor
+        value="<code-editor></code-editor>"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      >
+      </CodeEditor>
+
+      <!-- Usage with Vue via NPM -->
+      <h3 style="margin-top: 60px">Usage with Vue via NPM</h3>
+      <p>Step 1. Install the package from NPM</p>
+      <CodeEditor
+        value="npm install simple-code-editor"
+        :theme="theme"
+        :languages="[['shell', 'NPM']]"
+        :readOnly="true"
+        width="100%"
+      />
+      <p>Step 2. Importing the component and registration.</p>
+      <CodeEditor
+        value="import CodeEditor from 'simple-code-editor';
+export default {
+  components: {
+    CodeEditor
+  }
+}"
+        :languages="[['javascript', 'JS']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+
+      <CodeEditor
+        value="<CodeEditor></CodeEditor>"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      >
+      </CodeEditor>
+      <!-- view on github -->
+      <a href="https://github.com/justcaliturner/simple-code-editor" target="_blank" class="link">
+        <span>View on Github</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <!-- Props -->
+  <div class="session">
+    <div class="container">
+      <h2>Props</h2>
+      <!-- readOnly -->
+      <h3>readOnly<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable editable or not</p>
+      <CodeEditor
+        value='<CodeEditor :readOnly="true"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- value -->
+      <h3>value<label> - String</label></h3>
+      <p>Default: unset</p>
+      <p>
+        Description: static content setting. If requiring data binding, please use the property:
+        <code>v-model</code>
+      </p>
+      <CodeEditor
+        value='<CodeEditor value="console.log(13)"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor :theme="theme" value="console.log(13)" width="100%"></CodeEditor>
+      <!-- v-model -->
+      <h3>v-model</h3>
+      <p>Description: varies based on the value of form inputs element or output of components</p>
+      <CodeEditor
+        :theme="theme"
+        value='<CodeEditor v-model="demo"></CodeEditor>
+<CodeEditor v-model="demo"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      >
+      </CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :hideHeader="true"></CodeEditor>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :hideHeader="true"></CodeEditor>
+      <!-- languages -->
+      <h3>languages<label> - Array</label></h3>
+      <p>
+        Default:
+        <code>[["javascript", "JS"]]</code>
+      </p>
+      <p>
+        Description: [[<code>language name</code>, <code>display name</code>], [<code>language name</code>,
+        <code>display name</code>], ...]. Multiple languages setting will enable the language selector automatically,
+        the language name is necessary, and the display name is optional
+      </p>
+      <CodeEditor
+        :theme="theme"
+        :value="demoLanguages1"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      />
+      <p>Multiple languages:</p>
+      <CodeEditor
+        :theme="theme"
+        :value="demoLanguages2"
+        :readOnly="true"
+        :languages="[['html', 'HTML'],['javascript', 'JS'],['cpp', 'C++']]"
+        width="100%"
+      />
+      <p>All the languages:</p>
+      <CodeEditor
+        :theme="theme"
+        :hideHeader="true"
+        :readOnly="true"
+        width="100%"
+        height="200px"
+        value="'1c',
+'abnf',
+'accesslog',
+'actionscript',
+'ada',
+'angelscript',
+'apache',
+'applescript',
+'arcade',
+'arduino',
+'armasm',
+'xml',
+'asciidoc',
+'aspectj',
+'autohotkey',
+'autoit',
+'avrasm',
+'awk',
+'axapta',
+'bash',
+'basic',
+'bnf',
+'brainfuck',
+'c',
+'cal',
+'capnproto',
+'ceylon',
+'clean',
+'clojure',
+'clojure-repl',
+'cmake',
+'coffeescript',
+'coq',
+'cos',
+'cpp',
+'crmsh',
+'crystal',
+'csharp',
+'csp',
+'css',
+'d',
+'markdown',
+'dart',
+'delphi',
+'diff',
+'django',
+'dns',
+'dockerfile',
+'dos',
+'dsconfig',
+'dts',
+'dust',
+'ebnf',
+'elixir',
+'elm',
+'ruby',
+'erb',
+'erlang-repl',
+'erlang',
+'excel',
+'fix',
+'flix',
+'fortran',
+'fsharp',
+'gams',
+'gauss',
+'gcode',
+'gherkin',
+'glsl',
+'gml',
+'go',
+'golo',
+'gradle',
+'graphql',
+'groovy',
+'haml',
+'handlebars',
+'haskell',
+'haxe',
+'hsp',
+'http',
+'hy',
+'inform7',
+'ini',
+'irpf90',
+'isbl',
+'java',
+'javascript',
+'jboss-cli',
+'json',
+'julia',
+'julia-repl',
+'kotlin',
+'lasso',
+'latex',
+'ldif',
+'leaf',
+'less',
+'lisp',
+'livecodeserver',
+'livescript',
+'llvm',
+'lsl',
+'lua',
+'makefile',
+'mathematica',
+'matlab',
+'maxima',
+'mel',
+'mercury',
+'mipsasm',
+'mizar',
+'perl',
+'mojolicious',
+'monkey',
+'moonscript',
+'n1ql',
+'nestedtext',
+'nginx',
+'nim',
+'nix',
+'node-repl',
+'nsis',
+'objectivec',
+'ocaml',
+'openscad',
+'oxygene',
+'parser3',
+'pf',
+'pgsql',
+'php',
+'php-template',
+'plaintext',
+'pony',
+'powershell',
+'processing',
+'profile',
+'prolog',
+'properties',
+'protobuf',
+'puppet',
+'purebasic',
+'python',
+'python-repl',
+'q',
+'qml',
+'r',
+'reasonml',
+'rib',
+'roboconf',
+'routeros',
+'rsl',
+'ruleslanguage',
+'rust',
+'sas',
+'scala',
+'scheme',
+'scilab',
+'scss',
+'shell',
+'smali',
+'smalltalk',
+'sml',
+'sqf',
+'sql',
+'stan',
+'stata',
+'step21',
+'stylus',
+'subunit',
+'swift',
+'taggerscript',
+'yaml',
+'tap',
+'tcl',
+'thrift',
+'tp',
+'twig',
+'typescript',
+'vala',
+'vbnet',
+'vbscript',
+'vbscript-html',
+'verilog',
+'vhdl',
+'vim',
+'wasm',
+'wren',
+'x86asm',
+'xl',
+'xquery',
+'zephir'"
+      ></CodeEditor>
+      <!-- tabSpaces -->
+      <h3>tabSpaces<label> - Number</label></h3>
+      <p>Default: <code>2</code></p>
+      <CodeEditor
+        value='<CodeEditor :tabSpaces="4"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor
+        :tabSpaces="4"
+        value="export default {
+    components: {
+        CodeEditor
+    }
+}"
+        :theme="theme"
+        width="100%"
+      />
+      <!-- wrap -->
+      <h3>wrap<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable word wrap or not</p>
+      <CodeEditor
+        :wrap="true"
+        :theme="theme"
+        :hideHeader="true"
+        width="100%"
+        :languages="[['html', 'HTML']]"
+        value='<CodeEditor :wrap="true" :hideHeader="true" width="100%"></CodeEditor>'
+      ></CodeEditor>
+      <!-- hideHeader -->
+      <h3>hideHeader<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable header to show or not</p>
+      <CodeEditor
+        value='<CodeEditor :hideHeader="true"></CodeEditor>'
+        :theme="theme"
+        :hideHeader="true"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- displayLanguage -->
+      <h3>displayLanguage<label> - Boolean</label></h3>
+      <p>Default: <code>true</code></p>
+      <p>Description: enable language name to show or not</p>
+      <CodeEditor
+        value='<CodeEditor :displayLanguage="false"></CodeEditor>'
+        :theme="theme"
+        :displayLanguage="false"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- copyCode -->
+      <h3>copyCode<label> - Boolean</label></h3>
+      <p>Default: <code>true</code></p>
+      <p>Description: enable copy icon to show or not</p>
+      <CodeEditor
+        value='<CodeEditor :copyCode="false"></CodeEditor>'
+        :theme="theme"
+        :copyCode="false"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- theme -->
+      <h3>theme<label> - String</label></h3>
+      <p>Default: <code>github-dark</code></p>
+      <p>
+        Description: freely switching between 200+ themes,
+        <mark style="cursor: pointer; text-decoration: underline" @click="toggleMenu">check all the themes</mark>
+      </p>
+      <CodeEditor
+        v-model="themeDemo"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- fontSize -->
+      <h3>fontSize<label> - String</label></h3>
+      <p>Default: <code>17px</code></p>
+      <CodeEditor
+        value='<CodeEditor fontSize="20px"></CodeEditor>'
+        fontSize="20px"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- width -->
+      <h3>width<label> - String</label></h3>
+      <p>Default: <code>540px</code></p>
+      <CodeEditor
+        value='<CodeEditor width="100%"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- height -->
+      <h3>height<label> - String</label></h3>
+      <p>Default: <code>auto</code></p>
+      <p>
+        Description: the height of the container is adaptive by default, it also can be set as a specific value, and the
+        scroll bar will work with overflow
+      </p>
+      <CodeEditor
+        value='<CodeEditor height="150px"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor
+        :theme="theme"
+        value="import CodeEditor from 'simple-code-editor';
+export default {
+  components: {
+    CodeEditor
+  },
+  data() {
+    return {
+      value: ''
+    }
+  }
+}"
+        height="150px"
+        width="100%"
+      >
+      </CodeEditor>
+      <!-- minWidth -->
+      <h3>minWidth<label> - String</label></h3>
+      <p>Default: <code>unset</code></p>
+      <CodeEditor
+        value='<CodeEditor minWidth="200px"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- minHeight -->
+      <h3>minHeight<label> - String</label></h3>
+      <p>Default: <code>unset</code></p>
+      <CodeEditor
+        value='<CodeEditor minHeight="200px"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- maxWidth -->
+      <h3>maxWidth<label> - String</label></h3>
+      <p>Default: <code>unset</code></p>
+      <CodeEditor
+        value='<CodeEditor maxWidth="1000px"></CodeEditor>'
+        maxWidth="1000px"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- maxHeight -->
+      <h3>maxHeight<label> - String</label></h3>
+      <p>Default: <code>unset</code></p>
+      <CodeEditor
+        value='<CodeEditor maxHeight="200px"></CodeEditor>'
+        maxHeight="200px"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- padding -->
+      <h3>padding<label> - String</label></h3>
+      <p>Default: <code>20px</code></p>
+      <CodeEditor
+        value='<CodeEditor padding="30px"></CodeEditor>'
+        padding="40px"
+        :hideHeader="true"
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- borderRadius -->
+      <h3>borderRadius<label> - String</label></h3>
+      <p>Default: <code>12px</code></p>
+      <CodeEditor
+        value='<CodeEditor borderRadius="4px"></CodeEditor>'
+        borderRadius="4px"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- langListWidth -->
+      <h3>langListWidth<label> - String</label></h3>
+      <p>Default: <code>110px</code></p>
+      <p>Description: the width of language list</p>
+      <CodeEditor
+        value='<CodeEditor langListWidth="150px"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor
+        :languages="[
+              ['javascript', 'JS'],
+              ['css', 'The width is 150px'],
+            ]"
+        :langListDisplayed="true"
+        :theme="theme"
+        value="// Demo"
+        langListWidth="150px"
+        width="100%"
+      ></CodeEditor>
+      <!-- langListHeight -->
+      <h3>langListHeight<label> - String</label></h3>
+      <p>Default: <code>auto</code></p>
+      <p>Description: the height of the language list</p>
+      <CodeEditor
+        value='<CodeEditor langListHeight="70px"></CodeEditor>'
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor
+        :languages="[
+              ['javascript', 'JS'],
+              ['css', 'The height is 70px'],
+              ['rust', 'Rust'],
+              ['python', 'Python'],
+              ['cpp', ' C++'],
+            ]"
+        :langListDisplayed="true"
+        :theme="theme"
+        value="// Demo"
+        langListWidth="160px"
+        langListHeight="70px"
+        width="100%"
+      ></CodeEditor>
+      <!-- langListDisplayed -->
+      <h3>langListDisplayed<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable language list to show by default or not</p>
+      <CodeEditor
+        value='<CodeEditor :langListDisplayed="true"></CodeEditor>'
+        :theme="theme"
+        :langListDisplayed="true"
+        :languages="[['html', 'HTML'], ['rust', 'Rust'], ['python', 'Python']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- zIndex -->
+      <h3>zIndex<label> - String</label></h3>
+      <p>Default: <code>0</code></p>
+      <CodeEditor
+        value='<CodeEditor zIndex="6"></CodeEditor>'
+        zIndex="6"
+        :theme="theme"
+        :languages="[['html', 'HTML']]"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <!-- autofocus -->
+      <h3>autofocus<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable textarea to get focused by default or not</p>
+      <CodeEditor
+        value='<CodeEditor :autofocus="true"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+    </div>
+  </div>
+  <!-- Event -->
+  <div class="session">
+    <div class="container">
+      <h2>Event</h2>
+      <h3>@lang</h3>
+      <p>Description: pass the current languange as an argument</p>
+      <CodeEditor
+        value='<CodeEditor @lang="getLanguage"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <CodeEditor
+        value='getLanguage(lang) {
+  console.log("The current language is: " + lang);
+}'
+        :languages="[['javascript', 'JS']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+
+      <h3>@content</h3>
+      <p>Description: pass the static content as an argument</p>
+      <CodeEditor
+        value='<CodeEditor @content="getContent"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <CodeEditor
+        value='getContent(content) {
+  console.log("The content is: " + content);
+}'
+        :languages="[['javascript', 'JS']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+
+      <h3>@textarea</h3>
+      <p>Description: pass the textarea element as an argument</p>
+      <CodeEditor
+        value='<CodeEditor @textarea="focus"></CodeEditor>'
+        :languages="[['html', 'HTML']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+      <CodeEditor
+        value="focus(node) {
+  node.focus();
+}"
+        :languages="[['javascript', 'JS']]"
+        :theme="theme"
+        :readOnly="true"
+        width="100%"
+      ></CodeEditor>
+    </div>
+  </div>
+  <!-- footer -->
+  <a href="https://github.com/justcaliturner/simple-code-editor" target="_blank" class="link">
+    <span>View on Github</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </a>
+</div>

@@ -1,0 +1,233 @@
+/* -------------------copy code-------------------- */
+.code-editor .copyCode {
+  transition: 0.2s opacity ease;
+  position: relative;
+  opacity: 0.5;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.code-editor .copyCode:focus {
+  outline: none;
+}
+.code-editor .copyCode > svg {
+  pointer-events: none;
+}
+.code-editor .copyCode:hover {
+  opacity: 1;
+}
+.code-editor .copyCode:hover > .tooltip {
+  display: block;
+}
+.code-editor .copyCode > .tooltip {
+  font-family: sans-serif;
+  display: none;
+  position: absolute;
+  bottom: -10px;
+  left: -96px;
+  font-size: 12px;
+  color: white;
+  width: 84px;
+  height: 30px;
+  line-height: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 4px;
+}
+/* ----------------------dropdown------------------------ */
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.code-editor .dropdown {
+  cursor: pointer;
+  position: relative;
+}
+.code-editor .dropdown:focus {
+  outline: none;
+}
+.code-editor .disabled {
+  cursor: default;
+}
+.code-editor .disabled:hover > .title {
+  opacity: 0.5 !important;
+}
+.code-editor .dropdown:hover > .title {
+  opacity: 1;
+}
+.code-editor .dropdown > .title {
+  transition: opacity 0.2s ease;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+.code-editor .dropdown > .title > div {
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 16px;
+}
+.code-editor .dropdown > .title > svg {
+  transition: 0.2s;
+  margin-left: 3px;
+  margin-top: 1px;
+}
+.code-editor .dropdown > .list {
+  box-sizing: border-box;
+  position: absolute;
+  padding: 1px;
+  border-radius: 6px;
+  overflow: hidden;
+  top: 24px;
+  left: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.code-editor .dropdown > .list:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  opacity: 0.2;
+}
+/* -----------------code editor -----------------*/
+.code-editor {
+  position: relative;
+}
+.code-editor > div {
+  width: 100%;
+  height: 100%;
+}
+/* header */
+.code-editor .header {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  height: 34px;
+}
+.code-editor .header > .dropdown {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+}
+.code-editor .header > .copyCode {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+/* code-area */
+.code-editor .code-area {
+  text-align: left;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+.code-editor .code-area > textarea,
+.code-editor .code-area > pre > code {
+  font-family: Consolas, Monaco, monospace;
+  line-height: 1.5;
+}
+.code-editor .code-area > textarea {
+  overflow-y: hidden;
+  box-sizing: border-box;
+  caret-color: rgba(127, 127, 127);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  white-space: pre;
+  word-wrap: normal;
+  border: 0;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  resize: none;
+}
+.code-editor .code-area > textarea:hover,
+.code-editor .code-area > textarea:focus-visible {
+  outline: none;
+}
+.code-editor .code-area > pre {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+  font-size: 0;
+  margin: 0;
+}
+.code-editor .code-area > pre > code {
+  background: none;
+  display: block;
+  position: relative;
+  overflow-x: visible;
+  border-radius: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+/* wrap code */
+.code-editor.wrap .code-area > textarea,
+.code-editor.wrap .code-area > pre > code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/* hide-header */
+.code-editor.hide-header.scroll .code-area {
+  height: 100%;
+}
+/* scroll */
+.code-editor.scroll .code-area {
+  height: calc(100% - 34px);
+}
+.code-editor.scroll .code-area > textarea {
+  overflow: auto;
+}
+.code-editor.scroll .code-area > pre {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* dropdown */
+.code-editor .list {
+  user-select: none;
+  height: 100%;
+  font-family: sans-serif;
+}
+.code-editor .list > .lang-list {
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: auto;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: left;
+}
+.code-editor .list > .lang-list > li {
+  font-size: 13px;
+  transition: background 0.16s ease, color 0.16s ease;
+  box-sizing: border-box;
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 30px;
+}
+.code-editor .list > .lang-list > li:first-child {
+  padding-top: 5px;
+}
+.code-editor .list > .lang-list > li:last-child {
+  padding-bottom: 5px;
+}
+.code-editor .list > .lang-list > li:hover {
+  background: rgba(160, 160, 160, 0.4);
+}
