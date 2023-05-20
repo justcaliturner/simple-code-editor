@@ -25,7 +25,7 @@
           :width="langListWidth"
           :title="languageTitle"
           :disabled="languages.length <= 1"
-          :defaultDisplay="langListDisplayed"
+          :defaultDisplay="langListDisplay"
         >
           <ul class="lang-list hljs" :style="{ height: langListHeight }">
             <li v-for="(lang, index) in languages" :key="index" @click="changeLang(lang)">
@@ -145,7 +145,7 @@ export default {
       type: String,
       default: "auto",
     },
-    langListDisplayed: {
+    langListDisplay: {
       type: Boolean,
       default: false,
     },

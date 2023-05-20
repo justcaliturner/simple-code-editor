@@ -605,7 +605,7 @@
         :autofocus="true"
         :theme="theme"
         v-model="animationCode"
-        zIndex="3"
+        z-index="3"
         width="100%"
         :languages="[
               ['html', 'HTML'],
@@ -633,7 +633,7 @@ export default {
         Freely switch <a>200+</a> themes
       </h4>
       <CodeEditor
-        :readOnly="true"
+        :read-only="true"
         v-model="themeDemo"
         theme="atom-one-dark"
         width="100%"
@@ -670,7 +670,7 @@ export default {
 <link rel="stylesheet" href="simple-code-editor.css" />'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>Step 2. Add the JavaScript files after the <code>vue.js</code> file.</p>
@@ -679,7 +679,7 @@ export default {
 <script src="simple-code-editor.js"></script>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       >
       </CodeEditor>
@@ -692,7 +692,7 @@ export default {
 })"
         :languages="[['javascript', 'JS']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
 
@@ -700,7 +700,7 @@ export default {
         value="<code-editor></code-editor>"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       >
       </CodeEditor>
@@ -712,7 +712,7 @@ export default {
         value="npm install simple-code-editor"
         :theme="theme"
         :languages="[['shell', 'NPM']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       />
       <p>Step 2. Importing the component and registration.</p>
@@ -725,7 +725,7 @@ export default {
 }"
         :languages="[['javascript', 'JS']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
 
@@ -733,7 +733,7 @@ export default {
         value="<CodeEditor></CodeEditor>"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       >
       </CodeEditor>
@@ -761,15 +761,15 @@ export default {
   <div class="session">
     <div class="container">
       <h2>Props</h2>
-      <!-- readOnly -->
-      <h3>readOnly<label> - Boolean</label></h3>
+      <!-- read-only -->
+      <h3>read-only<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: enable editable or not</p>
       <CodeEditor
-        value='<CodeEditor :readOnly="true"></CodeEditor>'
+        value='<CodeEditor :read-only="true"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- value -->
@@ -783,7 +783,7 @@ export default {
         value='<CodeEditor value="console.log(13)"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -796,13 +796,13 @@ export default {
         value='<CodeEditor v-model="demo"></CodeEditor>
 <CodeEditor v-model="demo"></CodeEditor>'
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       >
       </CodeEditor>
       <p>UI Rendering:</p>
-      <CodeEditor :theme="theme" v-model="demo" width="100%" :hideHeader="true"></CodeEditor>
-      <CodeEditor :theme="theme" v-model="demo" width="100%" :hideHeader="true"></CodeEditor>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :hide-header="true"></CodeEditor>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :hide-header="true"></CodeEditor>
       <!-- languages -->
       <h3>languages<label> - Array</label></h3>
       <p>
@@ -818,22 +818,22 @@ export default {
         :theme="theme"
         :value="demoLanguages1"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       />
       <p>Multiple languages:</p>
       <CodeEditor
         :theme="theme"
         :value="demoLanguages2"
-        :readOnly="true"
+        :read-only="true"
         :languages="[['html', 'HTML'],['javascript', 'JS'],['cpp', 'C++']]"
         width="100%"
       />
       <p>All the languages:</p>
       <CodeEditor
         :theme="theme"
-        :hideHeader="true"
-        :readOnly="true"
+        :hide-header="true"
+        :read-only="true"
         width="100%"
         height="200px"
         value="'1c',
@@ -1029,19 +1029,19 @@ export default {
 'xquery',
 'zephir'"
       ></CodeEditor>
-      <!-- tabSpaces -->
-      <h3>tabSpaces<label> - Number</label></h3>
+      <!-- tab-spaces -->
+      <h3>tab-spaces<label> - Number</label></h3>
       <p>Default: <code>2</code></p>
       <CodeEditor
-        value='<CodeEditor :tabSpaces="4"></CodeEditor>'
+        value='<CodeEditor :tab-spaces="4"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
       <CodeEditor
-        :tabSpaces="4"
+        :tab-spaces="4"
         value="export default {
     components: {
         CodeEditor
@@ -1057,45 +1057,45 @@ export default {
       <CodeEditor
         :wrap="true"
         :theme="theme"
-        :hideHeader="true"
+        :hide-header="true"
         width="100%"
         :languages="[['html', 'HTML']]"
-        value='<CodeEditor :wrap="true" :hideHeader="true" width="100%"></CodeEditor>'
+        value='<CodeEditor :wrap="true" :hide-header="true" width="100%"></CodeEditor>'
       ></CodeEditor>
-      <!-- hideHeader -->
-      <h3>hideHeader<label> - Boolean</label></h3>
+      <!-- hide-header -->
+      <h3>hide-header<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: enable header to show or not</p>
       <CodeEditor
-        value='<CodeEditor :hideHeader="true"></CodeEditor>'
+        value='<CodeEditor :hide-header="true"></CodeEditor>'
         :theme="theme"
-        :hideHeader="true"
+        :hide-header="true"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- displayLanguage -->
-      <h3>displayLanguage<label> - Boolean</label></h3>
+      <!-- display-language -->
+      <h3>display-language<label> - Boolean</label></h3>
       <p>Default: <code>true</code></p>
       <p>Description: enable language name to show or not</p>
       <CodeEditor
-        value='<CodeEditor :displayLanguage="false"></CodeEditor>'
+        value='<CodeEditor :display-language="false"></CodeEditor>'
         :theme="theme"
-        :displayLanguage="false"
+        :display-language="false"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- copyCode -->
-      <h3>copyCode<label> - Boolean</label></h3>
+      <!-- copy-code -->
+      <h3>copy-code<label> - Boolean</label></h3>
       <p>Default: <code>true</code></p>
       <p>Description: enable copy icon to show or not</p>
       <CodeEditor
-        value='<CodeEditor :copyCode="false"></CodeEditor>'
+        value='<CodeEditor :copy-code="false"></CodeEditor>'
         :theme="theme"
-        :copyCode="false"
+        :copy-code="false"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- theme -->
@@ -1109,18 +1109,18 @@ export default {
         v-model="themeDemo"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- fontSize -->
-      <h3>fontSize<label> - String</label></h3>
+      <!-- font-size -->
+      <h3>font-size<label> - String</label></h3>
       <p>Default: <code>17px</code></p>
       <CodeEditor
-        value='<CodeEditor fontSize="20px"></CodeEditor>'
-        fontSize="20px"
+        value='<CodeEditor font-size="20px"></CodeEditor>'
+        font-size="20px"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- width -->
@@ -1130,7 +1130,7 @@ export default {
         value='<CodeEditor width="100%"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- height -->
@@ -1144,7 +1144,7 @@ export default {
         value='<CodeEditor height="150px"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -1165,46 +1165,46 @@ export default {
         width="100%"
       >
       </CodeEditor>
-      <!-- minWidth -->
-      <h3>minWidth<label> - String</label></h3>
+      <!-- min-width -->
+      <h3>min-width<label> - String</label></h3>
       <p>Default: <code>unset</code></p>
       <CodeEditor
-        value='<CodeEditor minWidth="200px"></CodeEditor>'
+        value='<CodeEditor min-width="200px"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- minHeight -->
-      <h3>minHeight<label> - String</label></h3>
+      <!-- min-height -->
+      <h3>min-height<label> - String</label></h3>
       <p>Default: <code>unset</code></p>
       <CodeEditor
-        value='<CodeEditor minHeight="200px"></CodeEditor>'
+        value='<CodeEditor min-height="200px"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- maxWidth -->
-      <h3>maxWidth<label> - String</label></h3>
+      <!-- max-width -->
+      <h3>max-width<label> - String</label></h3>
       <p>Default: <code>unset</code></p>
       <CodeEditor
-        value='<CodeEditor maxWidth="1000px"></CodeEditor>'
-        maxWidth="1000px"
+        value='<CodeEditor max-width="1000px"></CodeEditor>'
+        max-width="1000px"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- maxHeight -->
-      <h3>maxHeight<label> - String</label></h3>
+      <!-- max-height -->
+      <h3>max-height<label> - String</label></h3>
       <p>Default: <code>unset</code></p>
       <CodeEditor
-        value='<CodeEditor maxHeight="200px"></CodeEditor>'
-        maxHeight="200px"
+        value='<CodeEditor max-height="200px"></CodeEditor>'
+        max-height="200px"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- padding -->
@@ -1213,32 +1213,32 @@ export default {
       <CodeEditor
         value='<CodeEditor padding="30px"></CodeEditor>'
         padding="40px"
-        :hideHeader="true"
+        :hide-header="true"
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- borderRadius -->
-      <h3>borderRadius<label> - String</label></h3>
+      <!-- border-radius -->
+      <h3>border-radius<label> - String</label></h3>
       <p>Default: <code>12px</code></p>
       <CodeEditor
-        value='<CodeEditor borderRadius="4px"></CodeEditor>'
-        borderRadius="4px"
+        value='<CodeEditor border-radius="4px"></CodeEditor>'
+        border-radius="4px"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- langListWidth -->
-      <h3>langListWidth<label> - String</label></h3>
+      <!-- lang-list-width -->
+      <h3>lang-list-width<label> - String</label></h3>
       <p>Default: <code>110px</code></p>
       <p>Description: the width of language list</p>
       <CodeEditor
-        value='<CodeEditor langListWidth="150px"></CodeEditor>'
+        value='<CodeEditor lang-list-width="150px"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -1247,21 +1247,21 @@ export default {
               ['javascript', 'JS'],
               ['css', 'The width is 150px'],
             ]"
-        :langListDisplayed="true"
+        :lang-list-display="true"
         :theme="theme"
         value="// Demo"
-        langListWidth="150px"
+        lang-list-width="150px"
         width="100%"
       ></CodeEditor>
-      <!-- langListHeight -->
-      <h3>langListHeight<label> - String</label></h3>
+      <!-- lang-list-height -->
+      <h3>lang-list-height<label> - String</label></h3>
       <p>Default: <code>auto</code></p>
       <p>Description: the height of the language list</p>
       <CodeEditor
-        value='<CodeEditor langListHeight="70px"></CodeEditor>'
+        value='<CodeEditor lang-list-height="70px"></CodeEditor>'
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <p>UI Rendering:</p>
@@ -1273,34 +1273,34 @@ export default {
               ['python', 'Python'],
               ['cpp', ' C++'],
             ]"
-        :langListDisplayed="true"
+        :lang-list-display="true"
         :theme="theme"
         value="// Demo"
-        langListWidth="160px"
-        langListHeight="70px"
+        lang-list-width="160px"
+        lang-list-height="70px"
         width="100%"
       ></CodeEditor>
-      <!-- langListDisplayed -->
-      <h3>langListDisplayed<label> - Boolean</label></h3>
+      <!-- lang-list-display -->
+      <h3>lang-list-display<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
       <p>Description: enable language list to show by default or not</p>
       <CodeEditor
-        value='<CodeEditor :langListDisplayed="true"></CodeEditor>'
+        value='<CodeEditor :lang-list-display="true"></CodeEditor>'
         :theme="theme"
-        :langListDisplayed="true"
+        :lang-list-display="true"
         :languages="[['html', 'HTML'], ['rust', 'Rust'], ['python', 'Python']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
-      <!-- zIndex -->
-      <h3>zIndex<label> - String</label></h3>
+      <!-- z-index -->
+      <h3>z-index<label> - String</label></h3>
       <p>Default: <code>0</code></p>
       <CodeEditor
-        value='<CodeEditor zIndex="6"></CodeEditor>'
-        zIndex="6"
+        value='<CodeEditor z-index="6"></CodeEditor>'
+        z-index="6"
         :theme="theme"
         :languages="[['html', 'HTML']]"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <!-- autofocus -->
@@ -1311,7 +1311,7 @@ export default {
         value='<CodeEditor :autofocus="true"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
     </div>
@@ -1326,7 +1326,7 @@ export default {
         value='<CodeEditor @lang="getLanguage"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <CodeEditor
@@ -1335,7 +1335,7 @@ export default {
 }'
         :languages="[['javascript', 'JS']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
 
@@ -1345,7 +1345,7 @@ export default {
         value='<CodeEditor @content="getContent"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <CodeEditor
@@ -1354,7 +1354,7 @@ export default {
 }'
         :languages="[['javascript', 'JS']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
 
@@ -1364,7 +1364,7 @@ export default {
         value='<CodeEditor @textarea="focus"></CodeEditor>'
         :languages="[['html', 'HTML']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
       <CodeEditor
@@ -1373,7 +1373,7 @@ export default {
 }"
         :languages="[['javascript', 'JS']]"
         :theme="theme"
-        :readOnly="true"
+        :read-only="true"
         width="100%"
       ></CodeEditor>
     </div>

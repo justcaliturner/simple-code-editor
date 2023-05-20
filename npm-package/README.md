@@ -99,14 +99,14 @@ Step 3. After adding the global module, you will be able to use the `code-editor
 
 ## Props
 
-### readOnly ` Boolean`
+### read-only ` Boolean`
 
 Default: `false`
 
 Description: enable editable or not
 
 ```html
-<CodeEditor :readOnly="true"></CodeEditor>
+<CodeEditor :read-only="true"></CodeEditor>
 ```
 
 ### value `String`
@@ -143,12 +143,12 @@ Multiple languages:
 <CodeEditor :languages="[['cpp', 'C++'],['python', 'Python'],['php', 'PHP']]" />
 ```
 
-### tabSpaces `Number`
+### tab-spaces `Number`
 
 Default: `2`
 
 ```html
-<CodeEditor :tabSpaces="4"></CodeEditor>
+<CodeEditor :tab-spaces="4"></CodeEditor>
 ```
 
 ### wrap `Boolean`
@@ -161,34 +161,34 @@ Description: enable word wrap or not
 <CodeEditor :wrap="true"></CodeEditor>
 ```
 
-### hideHeader `Boolean`
+### hide-header `Boolean`
 
 Default: `false`
 
 Description: enable header to show or not
 
 ```html
-<CodeEditor :hideHeader="true"></CodeEditor>
+<CodeEditor :hide-header="true"></CodeEditor>
 ```
 
-### displayLanguage `Boolean`
+### display-language `Boolean`
 
 Default: `true`
 
 Description: enable language name to show or not
 
 ```html
-<CodeEditor :displayLanguage="false"></CodeEditor>
+<CodeEditor :display-language="false"></CodeEditor>
 ```
 
-### copyCode `Boolean`
+### copy-code `Boolean`
 
 Default: `true`
 
 Description: enable copy icon to show or not
 
 ```html
-<CodeEditor :copyCode="false"></CodeEditor>
+<CodeEditor :copy-code="false"></CodeEditor>
 ```
 
 ### theme `String`
@@ -201,12 +201,12 @@ Description: freely switching between 200+ themes, [check all the themes](https:
 <CodeEditor theme="github-dark"></CodeEditor>
 ```
 
-### fontSize `String`
+### font-size `String`
 
 Default: `17px`
 
 ```html
-<CodeEditor fontSize="20px"></CodeEditor>
+<CodeEditor font-size="20px"></CodeEditor>
 ```
 
 ### width `String`
@@ -227,36 +227,36 @@ Description: the height of the container is adaptive by default, it also can be 
 <CodeEditor height="150px"></CodeEditor>
 ```
 
-### minWidth `String`
+### min-width `String`
 
 Default: `unset`
 
 ```html
-<CodeEditor minWidth="200px"></CodeEditor>
+<CodeEditor min-width="200px"></CodeEditor>
 ```
 
-### minHeight `String`
+### min-height `String`
 
 Default: `unset`
 
 ```html
-<CodeEditor minHeight="200px"></CodeEditor>
+<CodeEditor min-height="200px"></CodeEditor>
 ```
 
-### maxWidth `String`
+### max-width `String`
 
 Default: `unset`
 
 ```html
-<CodeEditor maxWidth="1000px"></CodeEditor>
+<CodeEditor max-width="1000px"></CodeEditor>
 ```
 
-### maxHeight `String`
+### max-height `String`
 
 Default: `unset`
 
 ```html
-<CodeEditor maxHeight="200px"></CodeEditor>
+<CodeEditor max-height="200px"></CodeEditor>
 ```
 
 ### padding `String`
@@ -267,50 +267,50 @@ Default: `20px`
 <CodeEditor padding="30px"></CodeEditor>
 ```
 
-### borderRadius `String`
+### border-radius `String`
 
 Default: `12px`
 
 ```html
-<CodeEditor borderRadius="4px"></CodeEditor>
+<CodeEditor border-radius="4px"></CodeEditor>
 ```
 
-### langListWidth `String`
+### lang-list-width `String`
 
 Default: `110px`
 
 Description: the width of language list
 
 ```html
-<CodeEditor langListWidth="150px"></CodeEditor>
+<CodeEditor lang-list-width="150px"></CodeEditor>
 ```
 
-### langListHeight `String`
+### lang-list-height `String`
 
 Default: `auto`
 
 Description: the height of the language list
 
 ```html
-<CodeEditor langListHeight="70px"></CodeEditor>
+<CodeEditor lang-list-height="70px"></CodeEditor>
 ```
 
-### langListDisplayed `Boolean`
+### lang-list-display `Boolean`
 
 Default: `false`
 
 Description: enable language list to show by default or not
 
 ```html
-<CodeEditor :langListDisplayed="true"></CodeEditor>
+<CodeEditor :lang-list-display="true"></CodeEditor>
 ```
 
-### zIndex `String`
+### z-index `String`
 
 Default: `0`
 
 ```html
-<CodeEditor zIndex="6"></CodeEditor>
+<CodeEditor z-index="6"></CodeEditor>
 ```
 
 ### autofocus `Boolean`
