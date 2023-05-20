@@ -300,7 +300,7 @@ export default {
   top: 12px;
   left: 18px;
 }
-.code-editor .header > .copyCode {
+.code-editor .header > .copy-code {
   position: absolute;
   top: 10px;
   right: 12px;
@@ -350,7 +350,7 @@ export default {
   background: none;
   display: block;
   position: relative;
-  overflow-x: visible;
+  overflow-x: visible !important;
   border-radius: 0;
   box-sizing: border-box;
   margin: 0;

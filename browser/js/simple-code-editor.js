@@ -14,7 +14,7 @@ const CopyCode = {
     },
   },
   template: `
-  <div class="copyCode" @click="showMessage" @mouseout="resetMessage">
+  <div class="copy-code" @click="showMessage" @mouseout="resetMessage">
   <div class="tooltip">{{ message }}</div>
   <svg
     xmlns="http://www.w3.org/2000/svg"

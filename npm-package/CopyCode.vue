@@ -1,5 +1,5 @@
 <template>
-  <div class="copyCode" @click="showMessage" @mouseout="resetMessage">
+  <div class="copy-code" @click="showMessage" @mouseout="resetMessage">
     <div class="tooltip">{{ message }}</div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-.code-editor .copyCode {
+.code-editor .copy-code {
   transition: 0.2s opacity ease;
   position: relative;
   opacity: 0.5;
@@ -46,19 +46,19 @@ export default {
   height: 16px;
   cursor: pointer;
 }
-.code-editor .copyCode:focus {
+.code-editor .copy-code:focus {
   outline: none;
 }
-.code-editor .copyCode > svg {
+.code-editor .copy-code > svg {
   pointer-events: none;
 }
-.code-editor .copyCode:hover {
+.code-editor .copy-code:hover {
   opacity: 1;
 }
-.code-editor .copyCode:hover > .tooltip {
+.code-editor .copy-code:hover > .tooltip {
   display: block;
 }
-.code-editor .copyCode > .tooltip {
+.code-editor .copy-code > .tooltip {
   font-family: sans-serif;
   display: none;
   position: absolute;
