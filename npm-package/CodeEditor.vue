@@ -44,6 +44,7 @@
           :style="{ fontSize: fontSize, padding: withoutHeader ? padding : '0 ' + padding + ' ' + padding }"
           ref="textarea"
           :autofocus="autofocus"
+          spellcheck="false"
           @keydown.tab.prevent.stop="tab"
           @scroll="calcScrollDistance"
           :value="modelValue == undefined ? content : modelValue"

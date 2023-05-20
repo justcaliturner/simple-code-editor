@@ -1,6 +1,6 @@
 {
   "name": "simple-code-editor",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple code editor for Vue.js",
   "main": "CodeEditor.vue",
   "scripts": {
