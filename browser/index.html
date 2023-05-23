@@ -14,25 +14,25 @@
   <body style="background-color: #ddd">
     <div id="app">
       <code-editor
+        theme="vs2015"
+        :line-nums="true"
         style="margin: 100px auto"
         v-model="value"
         width="100%"
         max-width="600px"
-        height="340px"
+        height="250px"
         :languages="[['javascript', 'JS'], ['html', 'HTML']]"
-        :hide-header="false"
-        :autofocus="true"
       ></code-editor>
       <code-editor
+        :header="false"
         style="margin: 100px auto"
         v-model="value"
         theme="github"
         width="100%"
         max-width="600px"
-        height="340px"
         :languages="[['javascript', 'JS'], ['html', 'HTML']]"
         :wrap="true"
-        :hide-header="false"
+        :autofocus="true"
       ></code-editor>
     </div>
     <!-- js -->
@@ -47,16 +47,16 @@
         data() {
           return {
             value: `import CodeEditor from 'CodeEditor';
-      export default {
-          components: {
-            CodeEditor
-          },
-          data() {
-              return {
-                value: ''
-              }
-          }
-      }`,
+export default {
+    components: {
+      CodeEditor
+    },
+    data() {
+        return {
+          value: ''
+        }
+    }
+}`,
           };
         },
       });

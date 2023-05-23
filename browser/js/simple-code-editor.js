@@ -109,6 +109,10 @@ const CodeEditor = {
     Dropdown: Dropdown,
   },
   props: {
+    lineNums: {
+      type: Boolean,
+      default: false,
+    },
     modelValue: {
       type: String,
     },
@@ -135,9 +139,9 @@ const CodeEditor = {
       type: Boolean,
       default: false,
     },
-    hideHeader: {
+    header: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     width: {
       type: String,
@@ -209,8 +213,8 @@ const CodeEditor = {
         hljs.highlightElement(el);
       },
       updated(el, binding) {
-        if (el.isScrolling) {
-          el.isScrolling = false;
+        if (el.scrolling) {
+          el.scrolling = false;
         } else {
           el.textContent = binding.value;
           hljs.highlightElement(el);
@@ -229,6 +233,11 @@ const CodeEditor = {
       content: this.value,
       cursorPosition: 0,
       insertTab: false,
+      lineNum: 0,
+      lineNumsWidth: 0,
+      scrolling: false,
+      textareaHeight: 0,
+      showLineNums: this.wrap ? false : this.lineNums,
     };
   },
   computed: {
@@ -246,7 +255,7 @@ const CodeEditor = {
       return this.height == "auto" ? false : true;
     },
     withoutHeader() {
-      return this.hideHeader ? true : !this.displayLanguage && !this.copyCode ? true : false;
+      return this.header ? false : !this.displayLanguage && !this.copyCode ? true : false;
     },
   },
   methods: {
@@ -274,17 +283,25 @@ const CodeEditor = {
       }
     },
     calcScrollDistance(e) {
-      this.$refs.code.isScrolling = true;
+      this.$refs.code.scrolling = true;
+      this.scrolling = true;
       this.top = -e.target.scrollTop;
       this.left = -e.target.scrollLeft;
     },
     resizer() {
-      const resizer = new ResizeObserver((entries) => {
+      // textareaResizer
+      const textareaResizer = new ResizeObserver((entries) => {
         this.scrollBarWidth = entries[0].target.offsetWidth - entries[0].target.clientWidth;
         this.scrollBarHeight = entries[0].target.offsetHeight - entries[0].target.clientHeight;
+        this.textareaHeight = entries[0].target.offsetHeight;
       });
-      if (this.$refs.textarea) {
-        resizer.observe(this.$refs.textarea);
+      textareaResizer.observe(this.$refs.textarea);
+      // lineNumsResizer
+      const lineNumsResizer = new ResizeObserver((entries) => {
+        this.lineNumsWidth = entries[0].target.offsetWidth;
+      });
+      if (this.$refs.lineNums) {
+        lineNumsResizer.observe(this.$refs.lineNums);
       }
     },
     copy() {
@@ -295,6 +312,21 @@ const CodeEditor = {
       } else {
         navigator.clipboard.writeText(this.$refs.textarea.value);
       }
+    },
+    getLineNum() {
+      // lineNum
+      const str = this.$refs.textarea.value;
+      let lineNum = 0;
+      let position = str.indexOf("\n");
+      while (position !== -1) {
+        lineNum++;
+        position = str.indexOf("\n", position + 1);
+      }
+      // heightNum
+      const singleLineHeight = this.$refs.lineNums.firstChild.offsetHeight;
+      const heightNum = parseInt(this.textareaHeight / singleLineHeight) - 1;
+      // displayed lineNum
+      this.lineNum = this.height == "auto" ? lineNum : lineNum > heightNum ? lineNum : heightNum;
     },
   },
   mounted() {
@@ -308,13 +340,20 @@ const CodeEditor = {
       this.$refs.textarea.setSelectionRange(this.cursorPosition, this.cursorPosition);
       this.insertTab = false;
     }
+    if (this.lineNums) {
+      if (this.scrolling) {
+        this.scrolling = false;
+      } else {
+        this.getLineNum();
+      }
+    }
   },
   template: `
   <div
     :theme="theme"
     class="code-editor"
     :class="{
-      'hide-header': withoutHeader,
+      'hide-header': !header,
       scroll: scroll,
       'read-only': readOnly,
       wrap: wrap,
@@ -330,7 +369,12 @@ const CodeEditor = {
     }"
   >
     <div class="hljs" :style="{ borderRadius: borderRadius }">
-      <div class="header" v-if="!withoutHeader" :style="{ borderRadius: borderRadius + ' ' + borderRadius + ' 0 0' }">
+      <div
+        class="header"
+        :class="{ border: showLineNums }"
+        v-if="header"
+        :style="{ borderRadius: borderRadius + ' ' + borderRadius + ' 0 0' }"
+      >
         <Dropdown
           v-if="displayLanguage"
           :width="langListWidth"
@@ -348,11 +392,31 @@ const CodeEditor = {
       </div>
       <div
         class="code-area"
-        :style="{ borderRadius: withoutHeader ? borderRadius : '0 0 ' + borderRadius + ' ' + borderRadius }"
+        :style="{ borderRadius: header ? '0 0 ' + borderRadius + ' ' + borderRadius : borderRadius }"
       >
+        <div
+          v-if="showLineNums"
+          ref="lineNums"
+          class="line-nums hljs"
+          :style="{
+            fontSize: fontSize,
+            paddingTop: header ? '10px' : padding,
+            paddingBottom: padding,
+            top: top + 'px',
+          }"
+        >
+          <div>1</div>
+          <div v-for="num in lineNum">{{ num + 1 }}</div>
+          <div>&nbsp;</div>
+        </div>
         <textarea
           :readOnly="readOnly"
-          :style="{ fontSize: fontSize, padding: withoutHeader ? padding : '0 ' + padding + ' ' + padding }"
+          :style="{
+            fontSize: fontSize,
+            padding: !header ? padding : lineNums ? '10px ' + padding + ' ' + padding : '0 ' + padding + ' ' + padding,
+            marginLeft: showLineNums ? lineNumsWidth + 'px' : '0',
+            width: showLineNums ? 'calc(100% - ' + lineNumsWidth + 'px)' : '100%',
+          }"
           ref="textarea"
           :autofocus="autofocus"
           spellcheck="false"
@@ -361,14 +425,25 @@ const CodeEditor = {
           :value="modelValue == undefined ? content : modelValue"
           @input="updateValue"
         ></textarea>
-        <pre :style="{ paddingRight: scrollBarWidth + 'px', paddingBottom: scrollBarHeight + 'px' }">
+        <pre
+          :style="{
+            paddingRight: scrollBarWidth + 'px',
+            paddingBottom: scrollBarHeight + 'px',
+            marginLeft: showLineNums ? lineNumsWidth + 'px' : '0',
+            width: showLineNums ? 'calc(100% - ' + lineNumsWidth + 'px)' : '100%',
+          }"
+        >
         <code
-            ref="code"
-            v-highlight="contentValue"
-            :class="languageClass"
-            :isScrolling="false"
-            :style="{ top: top + 'px', left: left + 'px', fontSize: fontSize, padding: withoutHeader ? padding : '0 ' + padding + ' ' + padding }"
-        ></code>
+          ref="code"
+          v-highlight="contentValue"
+          :class="languageClass"
+          :style="{
+            top: top + 'px',
+            left: left + 'px',
+            fontSize: fontSize,
+            padding: !header ? padding : lineNums ? '10px ' + padding + ' ' + padding : '0 ' + padding + ' ' + padding,
+          }">
+        </code>
       </pre>
       </div>
     </div>

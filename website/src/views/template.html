@@ -6,7 +6,6 @@
       <svg
         @click="toggleMenu"
         xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-square-chevron-left"
         width="22"
         height="22"
         viewBox="0 0 24 24"
@@ -17,8 +16,8 @@
         stroke-linejoin="round"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M13 15l-3 -3l3 -3"></path>
-        <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+        <path d="M18 6l-12 12"></path>
+        <path d="M6 6l12 12"></path>
       </svg>
     </div>
     <ul>
@@ -614,6 +613,7 @@
             ]"
       ></CodeEditor>
       <CodeEditor
+        :line-nums="true"
         :theme="theme"
         value="import CodeEditor from 'simple-code-editor';
 export default {
@@ -627,7 +627,7 @@ export default {
   }
 }"
         width="100%"
-        height="340px"
+        height="345px"
       ></CodeEditor>
       <h4 center style="color: var(--grey-7); margin: 40px 0 30px 0; font-weight: bold">
         Freely switch <a>200+</a> themes
@@ -801,8 +801,21 @@ export default {
       >
       </CodeEditor>
       <p>UI Rendering:</p>
-      <CodeEditor :theme="theme" v-model="demo" width="100%" :hide-header="true"></CodeEditor>
-      <CodeEditor :theme="theme" v-model="demo" width="100%" :hide-header="true"></CodeEditor>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :header="false"></CodeEditor>
+      <CodeEditor :theme="theme" v-model="demo" width="100%" :header="false"></CodeEditor>
+      <!-- line-nums -->
+      <h3>line-nums<label> - Boolean</label></h3>
+      <p>Default: <code>false</code></p>
+      <p>Description: enable line numbers to show or not, and unable to enable in <code>wrap</code> mode</p>
+      <CodeEditor
+        :line-nums="true"
+        :languages="[['html', 'HTML']]"
+        width="100%"
+        :theme="theme"
+        value='<!-- line numbers -->
+<CodeEditor :line-nums="true"></CodeEditor>'
+      >
+      </CodeEditor>
       <!-- languages -->
       <h3>languages<label> - Array</label></h3>
       <p>
@@ -832,7 +845,7 @@ export default {
       <p>All the languages:</p>
       <CodeEditor
         :theme="theme"
-        :hide-header="true"
+        :header="false"
         :read-only="true"
         width="100%"
         height="200px"
@@ -1057,19 +1070,19 @@ export default {
       <CodeEditor
         :wrap="true"
         :theme="theme"
-        :hide-header="true"
+        :header="false"
         width="100%"
         :languages="[['html', 'HTML']]"
-        value='<CodeEditor :wrap="true" :hide-header="true" width="100%"></CodeEditor>'
+        value='<CodeEditor :wrap="true" :header="false" width="100%"></CodeEditor>'
       ></CodeEditor>
-      <!-- hide-header -->
-      <h3>hide-header<label> - Boolean</label></h3>
-      <p>Default: <code>false</code></p>
+      <!-- header -->
+      <h3>header<label> - Boolean</label></h3>
+      <p>Default: <code>true</code></p>
       <p>Description: enable header to show or not</p>
       <CodeEditor
-        value='<CodeEditor :hide-header="true"></CodeEditor>'
+        value='<CodeEditor :header="false"></CodeEditor>'
         :theme="theme"
-        :hide-header="true"
+        :header="false"
         :languages="[['html', 'HTML']]"
         :read-only="true"
         width="100%"
@@ -1213,7 +1226,7 @@ export default {
       <CodeEditor
         value='<CodeEditor padding="30px"></CodeEditor>'
         padding="40px"
-        :hide-header="true"
+        :header="false"
         :languages="[['html', 'HTML']]"
         :theme="theme"
         :read-only="true"
@@ -1396,4 +1409,8 @@ export default {
       <polyline points="12 5 19 12 12 19"></polyline>
     </svg>
   </a>
+  <div class="footer">
+    The color system powered by
+    <a target="_blank" href="https://lisa.vicuxd.com/">Lisa color</a>
+  </div>
 </div>

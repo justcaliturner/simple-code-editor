@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a target="_blank" href="https://github.com/justcaliturner/simple-code-editor"
+    <a target="_blank" title="github" href="https://github.com/justcaliturner/simple-code-editor"
       ><svg
         width="80"
         height="80"
@@ -62,10 +62,6 @@
       </div>
     </div>
     <Home></Home>
-    <div class="footer">
-      The color system powered by
-      <a target="_blank" href="https://lisa.vicuxd.com/">Lisa color</a>
-    </div>
   </div>
 </template>
 
@@ -142,18 +138,6 @@ body {
   }
   .moon {
     display: none;
-  }
-}
-.footer {
-  font-size: 13px;
-  color: var(--grey-4);
-  text-align: center;
-  padding: 24px 0;
-  a {
-    color: var(--grey-4);
-    &:hover {
-      color: var(--main-5);
-    }
   }
 }
 </style>

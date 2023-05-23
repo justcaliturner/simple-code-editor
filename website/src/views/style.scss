@@ -179,6 +179,7 @@ li {
   }
 }
 button {
+  -webkit-user-select: none;
   user-select: none;
   color: var(--grey-8);
   font-size: 14px;
@@ -276,8 +277,29 @@ body::-webkit-scrollbar-thumb {
     }
   }
 }
+// footer
+.footer {
+  font-size: 13px;
+  color: var(--grey-4);
+  text-align: center;
+  padding: 24px 0;
+  a {
+    color: var(--grey-4);
+    &:hover {
+      color: var(--main-5);
+    }
+  }
+}
 @media screen and (max-width: 560px) {
   .button-group {
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 540px) {
+  .body {
+    padding-left: 60px !important;
+  }
+  .menu {
+    width: 190px;
   }
 }

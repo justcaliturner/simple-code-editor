@@ -100,6 +100,7 @@ export default {
   opacity: 0.5;
   display: flex;
   align-items: center;
+  -webkit-user-select: none;
   user-select: none;
 }
 .code-editor .dropdown > .title > div {

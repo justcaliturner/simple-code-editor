@@ -97,6 +97,8 @@ Step 3. After adding the global module, you will be able to use the `code-editor
 
 **NOTE:** While using the code editor with Nuxt, it is recommended to wrap each `CodeEditor` component with the `client-only` tags like the example above. This will prevent a client side hydration error.
 
+
+
 ## Props
 
 ### read-only ` Boolean`
@@ -125,6 +127,16 @@ Description: varies based on the value of form inputs element or output of compo
 
 ```html
 <CodeEditor v-model="demo"></CodeEditor> <CodeEditor v-model="demo"></CodeEditor>
+```
+
+### line-nums `Boolean`
+
+Default: `false`
+
+Description: enable line numbers to show or not, and unable to enable in `wrap` mode
+
+```html
+<CodeEditor :line-nums="true"></CodeEditor>
 ```
 
 ### languages `Array`
@@ -161,14 +173,14 @@ Description: enable word wrap or not
 <CodeEditor :wrap="true"></CodeEditor>
 ```
 
-### hide-header `Boolean`
+### header `Boolean`
 
-Default: `false`
+Default: `true`
 
 Description: enable header to show or not
 
 ```html
-<CodeEditor :hide-header="true"></CodeEditor>
+<CodeEditor :header="true"></CodeEditor>
 ```
 
 ### display-language `Boolean`

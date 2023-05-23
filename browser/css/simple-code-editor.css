@@ -66,6 +66,7 @@
   opacity: 0.5;
   display: flex;
   align-items: center;
+  -webkit-user-select: none;
   user-select: none;
 }
 .code-editor .dropdown > .title > div {
@@ -126,42 +127,45 @@
 }
 /* code-area */
 .code-editor .code-area {
-  text-align: left;
   position: relative;
   z-index: 0;
+  text-align: left;
   overflow: hidden;
 }
+/* font style */
 .code-editor .code-area > textarea,
-.code-editor .code-area > pre > code {
+.code-editor .code-area > pre > code,
+.code-editor .line-nums > div {
   font-family: Consolas, Monaco, monospace;
   line-height: 1.5;
-}
-.code-editor .code-area > textarea {
-  overflow-y: hidden;
-  box-sizing: border-box;
-  caret-color: rgba(127, 127, 127);
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  white-space: pre;
-  word-wrap: normal;
-  border: 0;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: none;
-  resize: none;
 }
 .code-editor .code-area > textarea:hover,
 .code-editor .code-area > textarea:focus-visible {
   outline: none;
 }
+.code-editor .code-area > textarea {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  caret-color: rgb(127, 127, 127);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  white-space: pre;
+  word-wrap: normal;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  resize: none;
+}
 .code-editor .code-area > pre {
   box-sizing: border-box;
   position: relative;
   z-index: 0;
+  overflow: hidden;
   font-size: 0;
   margin: 0;
 }
@@ -198,6 +202,7 @@
 }
 /* dropdown */
 .code-editor .list {
+  -webkit-user-select: none;
   user-select: none;
   height: 100%;
   font-family: sans-serif;
@@ -230,4 +235,35 @@
 }
 .code-editor .list > .lang-list > li:hover {
   background: rgba(160, 160, 160, 0.4);
+}
+/* line-nums */
+.code-editor .line-nums {
+  min-width: 36px;
+  text-align: right;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  opacity: 0.3;
+}
+.code-editor .line-nums::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-right: 1px solid currentColor;
+  opacity: 0.5;
+}
+.code-editor .header.border::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: currentColor;
+  opacity: 0.15;
 }
