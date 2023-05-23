@@ -810,11 +810,28 @@ export default {
       <CodeEditor
         :line-nums="true"
         :languages="[['html', 'HTML']]"
+        :read-only="true"
         width="100%"
         :theme="theme"
-        value='<!-- line numbers -->
-<CodeEditor :line-nums="true"></CodeEditor>'
+        value='<CodeEditor :line-nums="true"></CodeEditor>'
       >
+      </CodeEditor>
+      <p>UI Rendering:</p>
+      <CodeEditor
+        width="100%"
+        :line-nums="true"
+        :theme="theme"
+        value="import CodeEditor from 'simple-code-editor';
+export default {
+  components: {
+    CodeEditor
+  },
+  data() {
+    return {
+      value: ''
+    }
+  }
+}">
       </CodeEditor>
       <!-- languages -->
       <h3>languages<label> - Array</label></h3>
