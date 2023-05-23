@@ -53,9 +53,10 @@ Step 1. Install the package from NPM:
 npm install simple-code-editor
 ```
 
-Step 2. Importing the component and registration.
+Step 2. Importing the modules and registration.
 
 ```javascript
+import hljs from 'highlight.js';
 import CodeEditor from "simple-code-editor";
 export default {
   components: {

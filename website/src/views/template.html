@@ -719,9 +719,10 @@ export default {
         :read-only="true"
         width="100%"
       />
-      <p>Step 2. Importing the component and registration.</p>
+      <p>Step 2. Importing the modules and registration.</p>
       <CodeEditor
-        value="import CodeEditor from 'simple-code-editor';
+        value="import hljs from 'highlight.js';
+import CodeEditor from 'simple-code-editor';
 export default {
   components: {
     CodeEditor
