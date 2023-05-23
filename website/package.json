@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "highlight.js": "^11.8.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
