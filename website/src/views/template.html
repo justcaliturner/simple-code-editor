@@ -1,4 +1,4 @@
-<div class="body" :style="{paddingLeft: isMenuDisplayed ? '240px' : '0px'}">
+<div class="body" :class="{'menu-on': isMenuDisplayed}">
   <!-- menu -->
   <div class="menu" v-show="isMenuDisplayed">
     <div class="menu-title">

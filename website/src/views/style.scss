@@ -277,6 +277,9 @@ body::-webkit-scrollbar-thumb {
     }
   }
 }
+.body.menu-on {
+  padding-left: 240px;
+}
 // footer
 .footer {
   font-size: 13px;
@@ -296,8 +299,8 @@ body::-webkit-scrollbar-thumb {
   }
 }
 @media screen and (max-width: 540px) {
-  .body {
-    padding-left: 60px !important;
+  .body.menu-on {
+    padding-left: 60px;
   }
   .menu {
     width: 190px;
