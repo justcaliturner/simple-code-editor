@@ -806,7 +806,7 @@ export default {
       <!-- line-nums -->
       <h3>line-nums<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
-      <p>Description: enable line numbers to show or not, and unable to enable in <code>wrap</code> mode</p>
+      <p>Description: enable line numbers to show or not, but unable in wrap text mode</p>
       <CodeEditor
         :line-nums="true"
         :languages="[['html', 'HTML']]"
@@ -1066,7 +1066,7 @@ export default {
       <!-- wrap -->
       <h3>wrap<label> - Boolean</label></h3>
       <p>Default: <code>false</code></p>
-      <p>Description: enable word wrap or not</p>
+      <p>Description: enable wrap text or not</p>
       <CodeEditor
         :wrap="true"
         :theme="theme"

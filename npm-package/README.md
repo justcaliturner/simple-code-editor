@@ -133,7 +133,7 @@ Description: varies based on the value of form inputs element or output of compo
 
 Default: `false`
 
-Description: enable line numbers to show or not, and unable to enable in `wrap` mode
+Description: enable line numbers to show or not, but unable in wrap text mode
 
 ```html
 <CodeEditor :line-nums="true"></CodeEditor>
@@ -167,7 +167,7 @@ Default: `2`
 
 Default: `false`
 
-Description: enable word wrap or not
+Description: enable wrap text or not
 
 ```html
 <CodeEditor :wrap="true"></CodeEditor>
