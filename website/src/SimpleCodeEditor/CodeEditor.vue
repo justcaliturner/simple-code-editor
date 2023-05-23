@@ -260,9 +260,6 @@ export default {
     scroll() {
       return this.height == "auto" ? false : true;
     },
-    withoutHeader() {
-      return this.header ? false : !this.displayLanguage && !this.copyCode ? true : false;
-    },
   },
   methods: {
     updateValue(e) {
