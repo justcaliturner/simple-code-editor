@@ -90,6 +90,16 @@ li {
   list-style: none;
   padding: 0;
 }
+// animation
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.2s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  transform: translateX(-240px);
+}
+// main
 .link {
   transition: color 0.2s;
   color: var(--grey-6);
@@ -210,19 +220,19 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--grey-4);
   border-radius: 6px;
 }
-// menu scroll bar
-.menu::-webkit-scrollbar {
+// menu-body scroll bar
+.menu-body::-webkit-scrollbar {
   width: 11px;
   height: 11px;
 }
-.menu {
+.menu-body {
   scrollbar-width: thin;
   scrollbar-color: var(--grey-4) var(--grey-2);
 }
-.menu::-webkit-scrollbar-track {
+.menu-body::-webkit-scrollbar-track {
   background: var(--grey-2);
 }
-.menu::-webkit-scrollbar-thumb {
+.menu-body::-webkit-scrollbar-thumb {
   border: 3px solid var(--grey-2);
   background-color: var(--grey-4);
   border-radius: 6px;
@@ -230,7 +240,6 @@ body::-webkit-scrollbar-thumb {
 // menu
 .menu {
   box-sizing: border-box;
-  padding: 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -238,7 +247,6 @@ body::-webkit-scrollbar-thumb {
   width: 240px;
   height: 100vh;
   background: var(--grey-1);
-  overflow: auto;
   li.selected {
     font-weight: bold;
     color: var(--main-5);
@@ -246,6 +254,7 @@ body::-webkit-scrollbar-thumb {
     box-shadow: inset -2px 0 0 0 var(--main-5);
   }
   li {
+    box-sizing: border-box;
     text-indent: 1px;
     height: 36px;
     line-height: 36px;
@@ -263,6 +272,8 @@ body::-webkit-scrollbar-thumb {
   }
 }
 .menu-title {
+  box-sizing: border-box;
+  padding: 20px 20px 10px 20px;
   font-family: "Quicksand";
   display: flex;
   justify-content: space-between;
@@ -270,6 +281,7 @@ body::-webkit-scrollbar-thumb {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
+  border-bottom: 1px solid var(--grey-2);
   svg {
     cursor: pointer;
     &:hover {
@@ -279,6 +291,12 @@ body::-webkit-scrollbar-thumb {
 }
 .body.menu-on {
   padding-left: 240px;
+}
+.menu-body {
+  box-sizing: border-box;
+  padding: 0 20px 20px 20px;
+  height: calc(100vh - 53px);
+  overflow: auto;
 }
 // footer
 .footer {

@@ -1,5 +1,6 @@
 <div class="body" :class="{'menu-on': isMenuDisplayed}">
   <!-- menu -->
+  <transition name="fade">
   <div class="menu" v-show="isMenuDisplayed">
     <div class="menu-title">
       <div>Theme</div>
@@ -20,576 +21,579 @@
         <path d="M6 6l12 12"></path>
       </svg>
     </div>
-    <ul>
-      <li :class="{ selected: theme == 'a11y-dark' }" @click="switchTheme('a11y-dark')">a11y-dark</li>
-      <li :class="{ selected: theme == 'a11y-light' }" @click="switchTheme('a11y-light')">a11y-light</li>
-      <li :class="{ selected: theme == 'agate' }" @click="switchTheme('agate')">agate</li>
-      <li :class="{ selected: theme == 'an-old-hope' }" @click="switchTheme('an-old-hope')">an-old-hope</li>
-      <li :class="{ selected: theme == 'androidstudio' }" @click="switchTheme('androidstudio')">androidstudio</li>
-      <li :class="{ selected: theme == 'arduino-light' }" @click="switchTheme('arduino-light')">arduino-light</li>
-      <li :class="{ selected: theme == 'arta' }" @click="switchTheme('arta')">arta</li>
-      <li :class="{ selected: theme == 'ascetic' }" @click="switchTheme('ascetic')">ascetic</li>
-      <li :class="{ selected: theme == 'atom-one-dark-reasonable' }" @click="switchTheme('atom-one-dark-reasonable')">
-        atom-one-dark-reasonable
-      </li>
-      <li :class="{ selected: theme == 'atom-one-dark' }" @click="switchTheme('atom-one-dark')">atom-one-dark</li>
-      <li :class="{ selected: theme == 'atom-one-light' }" @click="switchTheme('atom-one-light')">atom-one-light</li>
-      <li :class="{ selected: theme == 'brown-paper' }" @click="switchTheme('brown-paper')">brown-paper</li>
-      <li :class="{ selected: theme == 'codepen-embed' }" @click="switchTheme('codepen-embed')">codepen-embed</li>
-      <li :class="{ selected: theme == 'color-brewer' }" @click="switchTheme('color-brewer')">color-brewer</li>
-      <li :class="{ selected: theme == 'dark' }" @click="switchTheme('dark')">dark</li>
-      <li :class="{ selected: theme == 'default' }" @click="switchTheme('default')">default</li>
-      <li :class="{ selected: theme == 'devibeans' }" @click="switchTheme('devibeans')">devibeans</li>
-      <li :class="{ selected: theme == 'docco' }" @click="switchTheme('docco')">docco</li>
-      <li :class="{ selected: theme == 'far' }" @click="switchTheme('far')">far</li>
-      <li :class="{ selected: theme == 'felipec' }" @click="switchTheme('felipec')">felipec</li>
-      <li :class="{ selected: theme == 'foundation' }" @click="switchTheme('foundation')">foundation</li>
-      <li :class="{ selected: theme == 'github-dark-dimmed' }" @click="switchTheme('github-dark-dimmed')">
-        github-dark-dimmed
-      </li>
-      <li :class="{ selected: theme == 'github-dark' }" @click="switchTheme('github-dark')">github-dark</li>
-      <li :class="{ selected: theme == 'github' }" @click="switchTheme('github')">github</li>
-      <li :class="{ selected: theme == 'gml' }" @click="switchTheme('gml')">gml</li>
-      <li :class="{ selected: theme == 'googlecode' }" @click="switchTheme('googlecode')">googlecode</li>
-      <li :class="{ selected: theme == 'gradient-dark' }" @click="switchTheme('gradient-dark')">gradient-dark</li>
-      <li :class="{ selected: theme == 'gradient-light' }" @click="switchTheme('gradient-light')">gradient-light</li>
-      <li :class="{ selected: theme == 'grayscale' }" @click="switchTheme('grayscale')">grayscale</li>
-      <li :class="{ selected: theme == 'hybrid' }" @click="switchTheme('hybrid')">hybrid</li>
-      <li :class="{ selected: theme == 'idea' }" @click="switchTheme('idea')">idea</li>
-      <li :class="{ selected: theme == 'intellij-light' }" @click="switchTheme('intellij-light')">intellij-light</li>
-      <li :class="{ selected: theme == 'ir-black' }" @click="switchTheme('ir-black')">ir-black</li>
-      <li :class="{ selected: theme == 'isbl-editor-dark' }" @click="switchTheme('isbl-editor-dark')">
-        isbl-editor-dark
-      </li>
-      <li :class="{ selected: theme == 'isbl-editor-light' }" @click="switchTheme('isbl-editor-light')">
-        isbl-editor-light
-      </li>
-      <li :class="{ selected: theme == 'kimbie-dark' }" @click="switchTheme('kimbie-dark')">kimbie-dark</li>
-      <li :class="{ selected: theme == 'kimbie-light' }" @click="switchTheme('kimbie-light')">kimbie-light</li>
-      <li :class="{ selected: theme == 'lightfair' }" @click="switchTheme('lightfair')">lightfair</li>
-      <li :class="{ selected: theme == 'lioshi' }" @click="switchTheme('lioshi')">lioshi</li>
-      <li :class="{ selected: theme == 'magula' }" @click="switchTheme('magula')">magula</li>
-      <li :class="{ selected: theme == 'mono-blue' }" @click="switchTheme('mono-blue')">mono-blue</li>
-      <li :class="{ selected: theme == 'monokai-sublime' }" @click="switchTheme('monokai-sublime')">monokai-sublime</li>
-      <li :class="{ selected: theme == 'monokai' }" @click="switchTheme('monokai')">monokai</li>
-      <li :class="{ selected: theme == 'night-owl' }" @click="switchTheme('night-owl')">night-owl</li>
-      <li :class="{ selected: theme == 'nnfx-dark' }" @click="switchTheme('nnfx-dark')">nnfx-dark</li>
-      <li :class="{ selected: theme == 'nnfx-light' }" @click="switchTheme('nnfx-light')">nnfx-light</li>
-      <li :class="{ selected: theme == 'nord' }" @click="switchTheme('nord')">nord</li>
-      <li :class="{ selected: theme == 'obsidian' }" @click="switchTheme('obsidian')">obsidian</li>
-      <li :class="{ selected: theme == 'panda-syntax-dark' }" @click="switchTheme('panda-syntax-dark')">
-        panda-syntax-dark
-      </li>
-      <li :class="{ selected: theme == 'panda-syntax-light' }" @click="switchTheme('panda-syntax-light')">
-        panda-syntax-light
-      </li>
-      <li :class="{ selected: theme == 'paraiso-dark' }" @click="switchTheme('paraiso-dark')">paraiso-dark</li>
-      <li :class="{ selected: theme == 'paraiso-light' }" @click="switchTheme('paraiso-light')">paraiso-light</li>
-      <li :class="{ selected: theme == 'pojoaque' }" @click="switchTheme('pojoaque')">pojoaque</li>
-      <li :class="{ selected: theme == 'purebasic' }" @click="switchTheme('purebasic')">purebasic</li>
-      <li :class="{ selected: theme == 'qtcreator-dark' }" @click="switchTheme('qtcreator-dark')">qtcreator-dark</li>
-      <li :class="{ selected: theme == 'qtcreator-light' }" @click="switchTheme('qtcreator-light')">qtcreator-light</li>
-      <li :class="{ selected: theme == 'rainbow' }" @click="switchTheme('rainbow')">rainbow</li>
-      <li :class="{ selected: theme == 'routeros' }" @click="switchTheme('routeros')">routeros</li>
-      <li :class="{ selected: theme == 'school-book' }" @click="switchTheme('school-book')">school-book</li>
-      <li :class="{ selected: theme == 'shades-of-purple' }" @click="switchTheme('shades-of-purple')">
-        shades-of-purple
-      </li>
-      <li :class="{ selected: theme == 'srcery' }" @click="switchTheme('srcery')">srcery</li>
-      <li :class="{ selected: theme == 'stackoverflow-dark' }" @click="switchTheme('stackoverflow-dark')">
-        stackoverflow-dark
-      </li>
-      <li :class="{ selected: theme == 'stackoverflow-light' }" @click="switchTheme('stackoverflow-light')">
-        stackoverflow-light
-      </li>
-      <li :class="{ selected: theme == 'sunburst' }" @click="switchTheme('sunburst')">sunburst</li>
-      <li :class="{ selected: theme == 'tokyo-night-dark' }" @click="switchTheme('tokyo-night-dark')">
-        tokyo-night-dark
-      </li>
-      <li :class="{ selected: theme == 'tokyo-night-light' }" @click="switchTheme('tokyo-night-light')">
-        tokyo-night-light
-      </li>
-      <li :class="{ selected: theme == 'tomorrow-night-blue' }" @click="switchTheme('tomorrow-night-blue')">
-        tomorrow-night-blue
-      </li>
-      <li :class="{ selected: theme == 'tomorrow-night-bright' }" @click="switchTheme('tomorrow-night-bright')">
-        tomorrow-night-bright
-      </li>
-      <li :class="{ selected: theme == 'vs' }" @click="switchTheme('vs')">vs</li>
-      <li :class="{ selected: theme == 'vs2015' }" @click="switchTheme('vs2015')">vs2015</li>
-      <li :class="{ selected: theme == 'xcode' }" @click="switchTheme('xcode')">xcode</li>
-      <li :class="{ selected: theme == 'xt256' }" @click="switchTheme('xt256')">xt256</li>
-      <li :class="{ selected: theme == 'base16-3024' }" @click="switchTheme('base16-3024')">base16-3024</li>
-      <li :class="{ selected: theme == 'base16-apathy' }" @click="switchTheme('base16-apathy')">base16-apathy</li>
-      <li :class="{ selected: theme == 'base16-apprentice' }" @click="switchTheme('base16-apprentice')">
-        base16-apprentice
-      </li>
-      <li :class="{ selected: theme == 'base16-ashes' }" @click="switchTheme('base16-ashes')">base16-ashes</li>
-      <li :class="{ selected: theme == 'base16-atelier-cave-light' }" @click="switchTheme('base16-atelier-cave-light')">
-        base16-atelier-cave-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-cave' }" @click="switchTheme('base16-atelier-cave')">
-        base16-atelier-cave
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-dune-light' }" @click="switchTheme('base16-atelier-dune-light')">
-        base16-atelier-dune-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-dune' }" @click="switchTheme('base16-atelier-dune')">
-        base16-atelier-dune
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-estuary-light' }"
-        @click="switchTheme('base16-atelier-estuary-light')"
-      >
-        base16-atelier-estuary-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-estuary' }" @click="switchTheme('base16-atelier-estuary')">
-        base16-atelier-estuary
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-forest-light' }"
-        @click="switchTheme('base16-atelier-forest-light')"
-      >
-        base16-atelier-forest-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-forest' }" @click="switchTheme('base16-atelier-forest')">
-        base16-atelier-forest
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-heath-light' }"
-        @click="switchTheme('base16-atelier-heath-light')"
-      >
-        base16-atelier-heath-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-heath' }" @click="switchTheme('base16-atelier-heath')">
-        base16-atelier-heath
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-lakeside-light' }"
-        @click="switchTheme('base16-atelier-lakeside-light')"
-      >
-        base16-atelier-lakeside-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-lakeside' }" @click="switchTheme('base16-atelier-lakeside')">
-        base16-atelier-lakeside
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-plateau-light' }"
-        @click="switchTheme('base16-atelier-plateau-light')"
-      >
-        base16-atelier-plateau-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-plateau' }" @click="switchTheme('base16-atelier-plateau')">
-        base16-atelier-plateau
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-savanna-light' }"
-        @click="switchTheme('base16-atelier-savanna-light')"
-      >
-        base16-atelier-savanna-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-savanna' }" @click="switchTheme('base16-atelier-savanna')">
-        base16-atelier-savanna
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-seaside-light' }"
-        @click="switchTheme('base16-atelier-seaside-light')"
-      >
-        base16-atelier-seaside-light
-      </li>
-      <li :class="{ selected: theme == 'base16-atelier-seaside' }" @click="switchTheme('base16-atelier-seaside')">
-        base16-atelier-seaside
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-sulphurpool-light' }"
-        @click="switchTheme('base16-atelier-sulphurpool-light')"
-      >
-        base16-atelier-sulphurpool-light
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-atelier-sulphurpool' }"
-        @click="switchTheme('base16-atelier-sulphurpool')"
-      >
-        base16-atelier-sulphurpool
-      </li>
-      <li :class="{ selected: theme == 'base16-atlas' }" @click="switchTheme('base16-atlas')">base16-atlas</li>
-      <li :class="{ selected: theme == 'base16-bespin' }" @click="switchTheme('base16-bespin')">base16-bespin</li>
-      <li
-        :class="{ selected: theme == 'base16-black-metal-bathory' }"
-        @click="switchTheme('base16-black-metal-bathory')"
-      >
-        base16-black-metal-bathory
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-burzum' }" @click="switchTheme('base16-black-metal-burzum')">
-        base16-black-metal-burzum
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-black-metal-dark-funeral' }"
-        @click="switchTheme('base16-black-metal-dark-funeral')"
-      >
-        base16-black-metal-dark-funeral
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-black-metal-gorgoroth' }"
-        @click="switchTheme('base16-black-metal-gorgoroth')"
-      >
-        base16-black-metal-gorgoroth
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-black-metal-immortal' }"
-        @click="switchTheme('base16-black-metal-immortal')"
-      >
-        base16-black-metal-immortal
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-khold' }" @click="switchTheme('base16-black-metal-khold')">
-        base16-black-metal-khold
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-marduk' }" @click="switchTheme('base16-black-metal-marduk')">
-        base16-black-metal-marduk
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-mayhem' }" @click="switchTheme('base16-black-metal-mayhem')">
-        base16-black-metal-mayhem
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-nile' }" @click="switchTheme('base16-black-metal-nile')">
-        base16-black-metal-nile
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal-venom' }" @click="switchTheme('base16-black-metal-venom')">
-        base16-black-metal-venom
-      </li>
-      <li :class="{ selected: theme == 'base16-black-metal' }" @click="switchTheme('base16-black-metal')">
-        base16-black-metal
-      </li>
-      <li :class="{ selected: theme == 'base16-brewer' }" @click="switchTheme('base16-brewer')">base16-brewer</li>
-      <li :class="{ selected: theme == 'base16-bright' }" @click="switchTheme('base16-bright')">base16-bright</li>
-      <li :class="{ selected: theme == 'base16-brogrammer' }" @click="switchTheme('base16-brogrammer')">
-        base16-brogrammer
-      </li>
-      <li :class="{ selected: theme == 'base16-brush-trees-dark' }" @click="switchTheme('base16-brush-trees-dark')">
-        base16-brush-trees-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-brush-trees' }" @click="switchTheme('base16-brush-trees')">
-        base16-brush-trees
-      </li>
-      <li :class="{ selected: theme == 'base16-chalk' }" @click="switchTheme('base16-chalk')">base16-chalk</li>
-      <li :class="{ selected: theme == 'base16-circus' }" @click="switchTheme('base16-circus')">base16-circus</li>
-      <li :class="{ selected: theme == 'base16-classic-dark' }" @click="switchTheme('base16-classic-dark')">
-        base16-classic-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-classic-light' }" @click="switchTheme('base16-classic-light')">
-        base16-classic-light
-      </li>
-      <li :class="{ selected: theme == 'base16-codeschool' }" @click="switchTheme('base16-codeschool')">
-        base16-codeschool
-      </li>
-      <li :class="{ selected: theme == 'base16-colors' }" @click="switchTheme('base16-colors')">base16-colors</li>
-      <li :class="{ selected: theme == 'base16-cupcake' }" @click="switchTheme('base16-cupcake')">base16-cupcake</li>
-      <li :class="{ selected: theme == 'base16-cupertino' }" @click="switchTheme('base16-cupertino')">
-        base16-cupertino
-      </li>
-      <li :class="{ selected: theme == 'base16-danqing' }" @click="switchTheme('base16-danqing')">base16-danqing</li>
-      <li :class="{ selected: theme == 'base16-darcula' }" @click="switchTheme('base16-darcula')">base16-darcula</li>
-      <li :class="{ selected: theme == 'base16-dark-violet' }" @click="switchTheme('base16-dark-violet')">
-        base16-dark-violet
-      </li>
-      <li :class="{ selected: theme == 'base16-darkmoss' }" @click="switchTheme('base16-darkmoss')">base16-darkmoss</li>
-      <li :class="{ selected: theme == 'base16-darktooth' }" @click="switchTheme('base16-darktooth')">
-        base16-darktooth
-      </li>
-      <li :class="{ selected: theme == 'base16-decaf' }" @click="switchTheme('base16-decaf')">base16-decaf</li>
-      <li :class="{ selected: theme == 'base16-default-dark' }" @click="switchTheme('base16-default-dark')">
-        base16-default-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-default-light' }" @click="switchTheme('base16-default-light')">
-        base16-default-light
-      </li>
-      <li :class="{ selected: theme == 'base16-dirtysea' }" @click="switchTheme('base16-dirtysea')">base16-dirtysea</li>
-      <li :class="{ selected: theme == 'base16-dracula' }" @click="switchTheme('base16-dracula')">base16-dracula</li>
-      <li :class="{ selected: theme == 'base16-edge-dark' }" @click="switchTheme('base16-edge-dark')">
-        base16-edge-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-edge-light' }" @click="switchTheme('base16-edge-light')">
-        base16-edge-light
-      </li>
-      <li :class="{ selected: theme == 'base16-eighties' }" @click="switchTheme('base16-eighties')">base16-eighties</li>
-      <li :class="{ selected: theme == 'base16-embers' }" @click="switchTheme('base16-embers')">base16-embers</li>
-      <li :class="{ selected: theme == 'base16-equilibrium-dark' }" @click="switchTheme('base16-equilibrium-dark')">
-        base16-equilibrium-dark
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-equilibrium-gray-dark' }"
-        @click="switchTheme('base16-equilibrium-gray-dark')"
-      >
-        base16-equilibrium-gray-dark
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-equilibrium-gray-light' }"
-        @click="switchTheme('base16-equilibrium-gray-light')"
-      >
-        base16-equilibrium-gray-light
-      </li>
-      <li :class="{ selected: theme == 'base16-equilibrium-light' }" @click="switchTheme('base16-equilibrium-light')">
-        base16-equilibrium-light
-      </li>
-      <li :class="{ selected: theme == 'base16-espresso' }" @click="switchTheme('base16-espresso')">base16-espresso</li>
-      <li :class="{ selected: theme == 'base16-eva-dim' }" @click="switchTheme('base16-eva-dim')">base16-eva-dim</li>
-      <li :class="{ selected: theme == 'base16-eva' }" @click="switchTheme('base16-eva')">base16-eva</li>
-      <li :class="{ selected: theme == 'base16-flat' }" @click="switchTheme('base16-flat')">base16-flat</li>
-      <li :class="{ selected: theme == 'base16-framer' }" @click="switchTheme('base16-framer')">base16-framer</li>
-      <li :class="{ selected: theme == 'base16-fruit-soda' }" @click="switchTheme('base16-fruit-soda')">
-        base16-fruit-soda
-      </li>
-      <li :class="{ selected: theme == 'base16-gigavolt' }" @click="switchTheme('base16-gigavolt')">base16-gigavolt</li>
-      <li :class="{ selected: theme == 'base16-github' }" @click="switchTheme('base16-github')">base16-github</li>
-      <li :class="{ selected: theme == 'base16-google-dark' }" @click="switchTheme('base16-google-dark')">
-        base16-google-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-google-light' }" @click="switchTheme('base16-google-light')">
-        base16-google-light
-      </li>
-      <li :class="{ selected: theme == 'base16-grayscale-dark' }" @click="switchTheme('base16-grayscale-dark')">
-        base16-grayscale-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-grayscale-light' }" @click="switchTheme('base16-grayscale-light')">
-        base16-grayscale-light
-      </li>
-      <li :class="{ selected: theme == 'base16-green-screen' }" @click="switchTheme('base16-green-screen')">
-        base16-green-screen
-      </li>
-      <li :class="{ selected: theme == 'base16-gruvbox-dark-hard' }" @click="switchTheme('base16-gruvbox-dark-hard')">
-        base16-gruvbox-dark-hard
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-gruvbox-dark-medium' }"
-        @click="switchTheme('base16-gruvbox-dark-medium')"
-      >
-        base16-gruvbox-dark-medium
-      </li>
-      <li :class="{ selected: theme == 'base16-gruvbox-dark-pale' }" @click="switchTheme('base16-gruvbox-dark-pale')">
-        base16-gruvbox-dark-pale
-      </li>
-      <li :class="{ selected: theme == 'base16-gruvbox-dark-soft' }" @click="switchTheme('base16-gruvbox-dark-soft')">
-        base16-gruvbox-dark-soft
-      </li>
-      <li :class="{ selected: theme == 'base16-gruvbox-light-hard' }" @click="switchTheme('base16-gruvbox-light-hard')">
-        base16-gruvbox-light-hard
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-gruvbox-light-medium' }"
-        @click="switchTheme('base16-gruvbox-light-medium')"
-      >
-        base16-gruvbox-light-medium
-      </li>
-      <li :class="{ selected: theme == 'base16-gruvbox-light-soft' }" @click="switchTheme('base16-gruvbox-light-soft')">
-        base16-gruvbox-light-soft
-      </li>
-      <li :class="{ selected: theme == 'base16-hardcore' }" @click="switchTheme('base16-hardcore')">base16-hardcore</li>
-      <li :class="{ selected: theme == 'base16-harmonic16-dark' }" @click="switchTheme('base16-harmonic16-dark')">
-        base16-harmonic16-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-harmonic16-light' }" @click="switchTheme('base16-harmonic16-light')">
-        base16-harmonic16-light
-      </li>
-      <li :class="{ selected: theme == 'base16-heetch-dark' }" @click="switchTheme('base16-heetch-dark')">
-        base16-heetch-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-heetch-light' }" @click="switchTheme('base16-heetch-light')">
-        base16-heetch-light
-      </li>
-      <li :class="{ selected: theme == 'base16-helios' }" @click="switchTheme('base16-helios')">base16-helios</li>
-      <li :class="{ selected: theme == 'base16-hopscotch' }" @click="switchTheme('base16-hopscotch')">
-        base16-hopscotch
-      </li>
-      <li :class="{ selected: theme == 'base16-horizon-dark' }" @click="switchTheme('base16-horizon-dark')">
-        base16-horizon-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-horizon-light' }" @click="switchTheme('base16-horizon-light')">
-        base16-horizon-light
-      </li>
-      <li :class="{ selected: theme == 'base16-humanoid-dark' }" @click="switchTheme('base16-humanoid-dark')">
-        base16-humanoid-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-humanoid-light' }" @click="switchTheme('base16-humanoid-light')">
-        base16-humanoid-light
-      </li>
-      <li :class="{ selected: theme == 'base16-ia-dark' }" @click="switchTheme('base16-ia-dark')">base16-ia-dark</li>
-      <li :class="{ selected: theme == 'base16-ia-light' }" @click="switchTheme('base16-ia-light')">base16-ia-light</li>
-      <li :class="{ selected: theme == 'base16-icy-dark' }" @click="switchTheme('base16-icy-dark')">base16-icy-dark</li>
-      <li :class="{ selected: theme == 'base16-ir-black' }" @click="switchTheme('base16-ir-black')">base16-ir-black</li>
-      <li :class="{ selected: theme == 'base16-isotope' }" @click="switchTheme('base16-isotope')">base16-isotope</li>
-      <li :class="{ selected: theme == 'base16-kimber' }" @click="switchTheme('base16-kimber')">base16-kimber</li>
-      <li :class="{ selected: theme == 'base16-london-tube' }" @click="switchTheme('base16-london-tube')">
-        base16-london-tube
-      </li>
-      <li :class="{ selected: theme == 'base16-macintosh' }" @click="switchTheme('base16-macintosh')">
-        base16-macintosh
-      </li>
-      <li :class="{ selected: theme == 'base16-marrakesh' }" @click="switchTheme('base16-marrakesh')">
-        base16-marrakesh
-      </li>
-      <li :class="{ selected: theme == 'base16-materia' }" @click="switchTheme('base16-materia')">base16-materia</li>
-      <li :class="{ selected: theme == 'base16-material-darker' }" @click="switchTheme('base16-material-darker')">
-        base16-material-darker
-      </li>
-      <li :class="{ selected: theme == 'base16-material-lighter' }" @click="switchTheme('base16-material-lighter')">
-        base16-material-lighter
-      </li>
-      <li :class="{ selected: theme == 'base16-material-palenight' }" @click="switchTheme('base16-material-palenight')">
-        base16-material-palenight
-      </li>
-      <li :class="{ selected: theme == 'base16-material-vivid' }" @click="switchTheme('base16-material-vivid')">
-        base16-material-vivid
-      </li>
-      <li :class="{ selected: theme == 'base16-material' }" @click="switchTheme('base16-material')">base16-material</li>
-      <li :class="{ selected: theme == 'base16-mellow-purple' }" @click="switchTheme('base16-mellow-purple')">
-        base16-mellow-purple
-      </li>
-      <li :class="{ selected: theme == 'base16-mexico-light' }" @click="switchTheme('base16-mexico-light')">
-        base16-mexico-light
-      </li>
-      <li :class="{ selected: theme == 'base16-mocha' }" @click="switchTheme('base16-mocha')">base16-mocha</li>
-      <li :class="{ selected: theme == 'base16-monokai' }" @click="switchTheme('base16-monokai')">base16-monokai</li>
-      <li :class="{ selected: theme == 'base16-nebula' }" @click="switchTheme('base16-nebula')">base16-nebula</li>
-      <li :class="{ selected: theme == 'base16-nord' }" @click="switchTheme('base16-nord')">base16-nord</li>
-      <li :class="{ selected: theme == 'base16-nova' }" @click="switchTheme('base16-nova')">base16-nova</li>
-      <li :class="{ selected: theme == 'base16-ocean' }" @click="switchTheme('base16-ocean')">base16-ocean</li>
-      <li :class="{ selected: theme == 'base16-oceanicnext' }" @click="switchTheme('base16-oceanicnext')">
-        base16-oceanicnext
-      </li>
-      <li :class="{ selected: theme == 'base16-one-light' }" @click="switchTheme('base16-one-light')">
-        base16-one-light
-      </li>
-      <li :class="{ selected: theme == 'base16-onedark' }" @click="switchTheme('base16-onedark')">base16-onedark</li>
-      <li :class="{ selected: theme == 'base16-outrun-dark' }" @click="switchTheme('base16-outrun-dark')">
-        base16-outrun-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-papercolor-dark' }" @click="switchTheme('base16-papercolor-dark')">
-        base16-papercolor-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-papercolor-light' }" @click="switchTheme('base16-papercolor-light')">
-        base16-papercolor-light
-      </li>
-      <li :class="{ selected: theme == 'base16-paraiso' }" @click="switchTheme('base16-paraiso')">base16-paraiso</li>
-      <li :class="{ selected: theme == 'base16-pasque' }" @click="switchTheme('base16-pasque')">base16-pasque</li>
-      <li :class="{ selected: theme == 'base16-phd' }" @click="switchTheme('base16-phd')">base16-phd</li>
-      <li :class="{ selected: theme == 'base16-pico' }" @click="switchTheme('base16-pico')">base16-pico</li>
-      <li :class="{ selected: theme == 'base16-pop' }" @click="switchTheme('base16-pop')">base16-pop</li>
-      <li :class="{ selected: theme == 'base16-porple' }" @click="switchTheme('base16-porple')">base16-porple</li>
-      <li :class="{ selected: theme == 'base16-qualia' }" @click="switchTheme('base16-qualia')">base16-qualia</li>
-      <li :class="{ selected: theme == 'base16-railscasts' }" @click="switchTheme('base16-railscasts')">
-        base16-railscasts
-      </li>
-      <li :class="{ selected: theme == 'base16-rebecca' }" @click="switchTheme('base16-rebecca')">base16-rebecca</li>
-      <li :class="{ selected: theme == 'base16-ros-pine-dawn' }" @click="switchTheme('base16-ros-pine-dawn')">
-        base16-ros-pine-dawn
-      </li>
-      <li :class="{ selected: theme == 'base16-ros-pine-moon' }" @click="switchTheme('base16-ros-pine-moon')">
-        base16-ros-pine-moon
-      </li>
-      <li :class="{ selected: theme == 'base16-ros-pine' }" @click="switchTheme('base16-ros-pine')">base16-ros-pine</li>
-      <li :class="{ selected: theme == 'base16-sagelight' }" @click="switchTheme('base16-sagelight')">
-        base16-sagelight
-      </li>
-      <li :class="{ selected: theme == 'base16-sandcastle' }" @click="switchTheme('base16-sandcastle')">
-        base16-sandcastle
-      </li>
-      <li :class="{ selected: theme == 'base16-seti-ui' }" @click="switchTheme('base16-seti-ui')">base16-seti-ui</li>
-      <li :class="{ selected: theme == 'base16-shapeshifter' }" @click="switchTheme('base16-shapeshifter')">
-        base16-shapeshifter
-      </li>
-      <li :class="{ selected: theme == 'base16-silk-dark' }" @click="switchTheme('base16-silk-dark')">
-        base16-silk-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-silk-light' }" @click="switchTheme('base16-silk-light')">
-        base16-silk-light
-      </li>
-      <li :class="{ selected: theme == 'base16-snazzy' }" @click="switchTheme('base16-snazzy')">base16-snazzy</li>
-      <li :class="{ selected: theme == 'base16-solar-flare-light' }" @click="switchTheme('base16-solar-flare-light')">
-        base16-solar-flare-light
-      </li>
-      <li :class="{ selected: theme == 'base16-solar-flare' }" @click="switchTheme('base16-solar-flare')">
-        base16-solar-flare
-      </li>
-      <li :class="{ selected: theme == 'base16-solarized-dark' }" @click="switchTheme('base16-solarized-dark')">
-        base16-solarized-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-solarized-light' }" @click="switchTheme('base16-solarized-light')">
-        base16-solarized-light
-      </li>
-      <li :class="{ selected: theme == 'base16-spacemacs' }" @click="switchTheme('base16-spacemacs')">
-        base16-spacemacs
-      </li>
-      <li :class="{ selected: theme == 'base16-summercamp' }" @click="switchTheme('base16-summercamp')">
-        base16-summercamp
-      </li>
-      <li :class="{ selected: theme == 'base16-summerfruit-dark' }" @click="switchTheme('base16-summerfruit-dark')">
-        base16-summerfruit-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-summerfruit-light' }" @click="switchTheme('base16-summerfruit-light')">
-        base16-summerfruit-light
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-synth-midnight-terminal-dark' }"
-        @click="switchTheme('base16-synth-midnight-terminal-dark')"
-      >
-        base16-synth-midnight-terminal-dark
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-synth-midnight-terminal-light' }"
-        @click="switchTheme('base16-synth-midnight-terminal-light')"
-      >
-        base16-synth-midnight-terminal-light
-      </li>
-      <li :class="{ selected: theme == 'base16-tango' }" @click="switchTheme('base16-tango')">base16-tango</li>
-      <li :class="{ selected: theme == 'base16-tender' }" @click="switchTheme('base16-tender')">base16-tender</li>
-      <li :class="{ selected: theme == 'base16-tomorrow-night' }" @click="switchTheme('base16-tomorrow-night')">
-        base16-tomorrow-night
-      </li>
-      <li :class="{ selected: theme == 'base16-tomorrow' }" @click="switchTheme('base16-tomorrow')">base16-tomorrow</li>
-      <li :class="{ selected: theme == 'base16-twilight' }" @click="switchTheme('base16-twilight')">base16-twilight</li>
-      <li :class="{ selected: theme == 'base16-unikitty-dark' }" @click="switchTheme('base16-unikitty-dark')">
-        base16-unikitty-dark
-      </li>
-      <li :class="{ selected: theme == 'base16-unikitty-light' }" @click="switchTheme('base16-unikitty-light')">
-        base16-unikitty-light
-      </li>
-      <li :class="{ selected: theme == 'base16-vulcan' }" @click="switchTheme('base16-vulcan')">base16-vulcan</li>
-      <li :class="{ selected: theme == 'base16-windows-10-light' }" @click="switchTheme('base16-windows-10-light')">
-        base16-windows-10-light
-      </li>
-      <li :class="{ selected: theme == 'base16-windows-10' }" @click="switchTheme('base16-windows-10')">
-        base16-windows-10
-      </li>
-      <li :class="{ selected: theme == 'base16-windows-95-light' }" @click="switchTheme('base16-windows-95-light')">
-        base16-windows-95-light
-      </li>
-      <li :class="{ selected: theme == 'base16-windows-95' }" @click="switchTheme('base16-windows-95')">
-        base16-windows-95
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-windows-high-contrast-light' }"
-        @click="switchTheme('base16-windows-high-contrast-light')"
-      >
-        base16-windows-high-contrast-light
-      </li>
-      <li
-        :class="{ selected: theme == 'base16-windows-high-contrast' }"
-        @click="switchTheme('base16-windows-high-contrast')"
-      >
-        base16-windows-high-contrast
-      </li>
-      <li :class="{ selected: theme == 'base16-windows-nt-light' }" @click="switchTheme('base16-windows-nt-light')">
-        base16-windows-nt-light
-      </li>
-      <li :class="{ selected: theme == 'base16-windows-nt' }" @click="switchTheme('base16-windows-nt')">
-        base16-windows-nt
-      </li>
-      <li :class="{ selected: theme == 'base16-woodland' }" @click="switchTheme('base16-woodland')">base16-woodland</li>
-      <li :class="{ selected: theme == 'base16-xcode-dusk' }" @click="switchTheme('base16-xcode-dusk')">
-        base16-xcode-dusk
-      </li>
-      <li :class="{ selected: theme == 'base16-zenburn' }" @click="switchTheme('base16-zenburn')">base16-zenburn</li>
-    </ul>
+    <div class="menu-body">
+      <ul>
+        <li :class="{ selected: theme == 'a11y-dark' }" @click="switchTheme('a11y-dark')">a11y-dark</li>
+        <li :class="{ selected: theme == 'a11y-light' }" @click="switchTheme('a11y-light')">a11y-light</li>
+        <li :class="{ selected: theme == 'agate' }" @click="switchTheme('agate')">agate</li>
+        <li :class="{ selected: theme == 'an-old-hope' }" @click="switchTheme('an-old-hope')">an-old-hope</li>
+        <li :class="{ selected: theme == 'androidstudio' }" @click="switchTheme('androidstudio')">androidstudio</li>
+        <li :class="{ selected: theme == 'arduino-light' }" @click="switchTheme('arduino-light')">arduino-light</li>
+        <li :class="{ selected: theme == 'arta' }" @click="switchTheme('arta')">arta</li>
+        <li :class="{ selected: theme == 'ascetic' }" @click="switchTheme('ascetic')">ascetic</li>
+        <li :class="{ selected: theme == 'atom-one-dark-reasonable' }" @click="switchTheme('atom-one-dark-reasonable')">
+          atom-one-dark-reasonable
+        </li>
+        <li :class="{ selected: theme == 'atom-one-dark' }" @click="switchTheme('atom-one-dark')">atom-one-dark</li>
+        <li :class="{ selected: theme == 'atom-one-light' }" @click="switchTheme('atom-one-light')">atom-one-light</li>
+        <li :class="{ selected: theme == 'brown-paper' }" @click="switchTheme('brown-paper')">brown-paper</li>
+        <li :class="{ selected: theme == 'codepen-embed' }" @click="switchTheme('codepen-embed')">codepen-embed</li>
+        <li :class="{ selected: theme == 'color-brewer' }" @click="switchTheme('color-brewer')">color-brewer</li>
+        <li :class="{ selected: theme == 'dark' }" @click="switchTheme('dark')">dark</li>
+        <li :class="{ selected: theme == 'default' }" @click="switchTheme('default')">default</li>
+        <li :class="{ selected: theme == 'devibeans' }" @click="switchTheme('devibeans')">devibeans</li>
+        <li :class="{ selected: theme == 'docco' }" @click="switchTheme('docco')">docco</li>
+        <li :class="{ selected: theme == 'far' }" @click="switchTheme('far')">far</li>
+        <li :class="{ selected: theme == 'felipec' }" @click="switchTheme('felipec')">felipec</li>
+        <li :class="{ selected: theme == 'foundation' }" @click="switchTheme('foundation')">foundation</li>
+        <li :class="{ selected: theme == 'github-dark-dimmed' }" @click="switchTheme('github-dark-dimmed')">
+          github-dark-dimmed
+        </li>
+        <li :class="{ selected: theme == 'github-dark' }" @click="switchTheme('github-dark')">github-dark</li>
+        <li :class="{ selected: theme == 'github' }" @click="switchTheme('github')">github</li>
+        <li :class="{ selected: theme == 'gml' }" @click="switchTheme('gml')">gml</li>
+        <li :class="{ selected: theme == 'googlecode' }" @click="switchTheme('googlecode')">googlecode</li>
+        <li :class="{ selected: theme == 'gradient-dark' }" @click="switchTheme('gradient-dark')">gradient-dark</li>
+        <li :class="{ selected: theme == 'gradient-light' }" @click="switchTheme('gradient-light')">gradient-light</li>
+        <li :class="{ selected: theme == 'grayscale' }" @click="switchTheme('grayscale')">grayscale</li>
+        <li :class="{ selected: theme == 'hybrid' }" @click="switchTheme('hybrid')">hybrid</li>
+        <li :class="{ selected: theme == 'idea' }" @click="switchTheme('idea')">idea</li>
+        <li :class="{ selected: theme == 'intellij-light' }" @click="switchTheme('intellij-light')">intellij-light</li>
+        <li :class="{ selected: theme == 'ir-black' }" @click="switchTheme('ir-black')">ir-black</li>
+        <li :class="{ selected: theme == 'isbl-editor-dark' }" @click="switchTheme('isbl-editor-dark')">
+          isbl-editor-dark
+        </li>
+        <li :class="{ selected: theme == 'isbl-editor-light' }" @click="switchTheme('isbl-editor-light')">
+          isbl-editor-light
+        </li>
+        <li :class="{ selected: theme == 'kimbie-dark' }" @click="switchTheme('kimbie-dark')">kimbie-dark</li>
+        <li :class="{ selected: theme == 'kimbie-light' }" @click="switchTheme('kimbie-light')">kimbie-light</li>
+        <li :class="{ selected: theme == 'lightfair' }" @click="switchTheme('lightfair')">lightfair</li>
+        <li :class="{ selected: theme == 'lioshi' }" @click="switchTheme('lioshi')">lioshi</li>
+        <li :class="{ selected: theme == 'magula' }" @click="switchTheme('magula')">magula</li>
+        <li :class="{ selected: theme == 'mono-blue' }" @click="switchTheme('mono-blue')">mono-blue</li>
+        <li :class="{ selected: theme == 'monokai-sublime' }" @click="switchTheme('monokai-sublime')">monokai-sublime</li>
+        <li :class="{ selected: theme == 'monokai' }" @click="switchTheme('monokai')">monokai</li>
+        <li :class="{ selected: theme == 'night-owl' }" @click="switchTheme('night-owl')">night-owl</li>
+        <li :class="{ selected: theme == 'nnfx-dark' }" @click="switchTheme('nnfx-dark')">nnfx-dark</li>
+        <li :class="{ selected: theme == 'nnfx-light' }" @click="switchTheme('nnfx-light')">nnfx-light</li>
+        <li :class="{ selected: theme == 'nord' }" @click="switchTheme('nord')">nord</li>
+        <li :class="{ selected: theme == 'obsidian' }" @click="switchTheme('obsidian')">obsidian</li>
+        <li :class="{ selected: theme == 'panda-syntax-dark' }" @click="switchTheme('panda-syntax-dark')">
+          panda-syntax-dark
+        </li>
+        <li :class="{ selected: theme == 'panda-syntax-light' }" @click="switchTheme('panda-syntax-light')">
+          panda-syntax-light
+        </li>
+        <li :class="{ selected: theme == 'paraiso-dark' }" @click="switchTheme('paraiso-dark')">paraiso-dark</li>
+        <li :class="{ selected: theme == 'paraiso-light' }" @click="switchTheme('paraiso-light')">paraiso-light</li>
+        <li :class="{ selected: theme == 'pojoaque' }" @click="switchTheme('pojoaque')">pojoaque</li>
+        <li :class="{ selected: theme == 'purebasic' }" @click="switchTheme('purebasic')">purebasic</li>
+        <li :class="{ selected: theme == 'qtcreator-dark' }" @click="switchTheme('qtcreator-dark')">qtcreator-dark</li>
+        <li :class="{ selected: theme == 'qtcreator-light' }" @click="switchTheme('qtcreator-light')">qtcreator-light</li>
+        <li :class="{ selected: theme == 'rainbow' }" @click="switchTheme('rainbow')">rainbow</li>
+        <li :class="{ selected: theme == 'routeros' }" @click="switchTheme('routeros')">routeros</li>
+        <li :class="{ selected: theme == 'school-book' }" @click="switchTheme('school-book')">school-book</li>
+        <li :class="{ selected: theme == 'shades-of-purple' }" @click="switchTheme('shades-of-purple')">
+          shades-of-purple
+        </li>
+        <li :class="{ selected: theme == 'srcery' }" @click="switchTheme('srcery')">srcery</li>
+        <li :class="{ selected: theme == 'stackoverflow-dark' }" @click="switchTheme('stackoverflow-dark')">
+          stackoverflow-dark
+        </li>
+        <li :class="{ selected: theme == 'stackoverflow-light' }" @click="switchTheme('stackoverflow-light')">
+          stackoverflow-light
+        </li>
+        <li :class="{ selected: theme == 'sunburst' }" @click="switchTheme('sunburst')">sunburst</li>
+        <li :class="{ selected: theme == 'tokyo-night-dark' }" @click="switchTheme('tokyo-night-dark')">
+          tokyo-night-dark
+        </li>
+        <li :class="{ selected: theme == 'tokyo-night-light' }" @click="switchTheme('tokyo-night-light')">
+          tokyo-night-light
+        </li>
+        <li :class="{ selected: theme == 'tomorrow-night-blue' }" @click="switchTheme('tomorrow-night-blue')">
+          tomorrow-night-blue
+        </li>
+        <li :class="{ selected: theme == 'tomorrow-night-bright' }" @click="switchTheme('tomorrow-night-bright')">
+          tomorrow-night-bright
+        </li>
+        <li :class="{ selected: theme == 'vs' }" @click="switchTheme('vs')">vs</li>
+        <li :class="{ selected: theme == 'vs2015' }" @click="switchTheme('vs2015')">vs2015</li>
+        <li :class="{ selected: theme == 'xcode' }" @click="switchTheme('xcode')">xcode</li>
+        <li :class="{ selected: theme == 'xt256' }" @click="switchTheme('xt256')">xt256</li>
+        <li :class="{ selected: theme == 'base16-3024' }" @click="switchTheme('base16-3024')">base16-3024</li>
+        <li :class="{ selected: theme == 'base16-apathy' }" @click="switchTheme('base16-apathy')">base16-apathy</li>
+        <li :class="{ selected: theme == 'base16-apprentice' }" @click="switchTheme('base16-apprentice')">
+          base16-apprentice
+        </li>
+        <li :class="{ selected: theme == 'base16-ashes' }" @click="switchTheme('base16-ashes')">base16-ashes</li>
+        <li :class="{ selected: theme == 'base16-atelier-cave-light' }" @click="switchTheme('base16-atelier-cave-light')">
+          base16-atelier-cave-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-cave' }" @click="switchTheme('base16-atelier-cave')">
+          base16-atelier-cave
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-dune-light' }" @click="switchTheme('base16-atelier-dune-light')">
+          base16-atelier-dune-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-dune' }" @click="switchTheme('base16-atelier-dune')">
+          base16-atelier-dune
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-estuary-light' }"
+          @click="switchTheme('base16-atelier-estuary-light')"
+        >
+          base16-atelier-estuary-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-estuary' }" @click="switchTheme('base16-atelier-estuary')">
+          base16-atelier-estuary
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-forest-light' }"
+          @click="switchTheme('base16-atelier-forest-light')"
+        >
+          base16-atelier-forest-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-forest' }" @click="switchTheme('base16-atelier-forest')">
+          base16-atelier-forest
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-heath-light' }"
+          @click="switchTheme('base16-atelier-heath-light')"
+        >
+          base16-atelier-heath-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-heath' }" @click="switchTheme('base16-atelier-heath')">
+          base16-atelier-heath
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-lakeside-light' }"
+          @click="switchTheme('base16-atelier-lakeside-light')"
+        >
+          base16-atelier-lakeside-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-lakeside' }" @click="switchTheme('base16-atelier-lakeside')">
+          base16-atelier-lakeside
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-plateau-light' }"
+          @click="switchTheme('base16-atelier-plateau-light')"
+        >
+          base16-atelier-plateau-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-plateau' }" @click="switchTheme('base16-atelier-plateau')">
+          base16-atelier-plateau
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-savanna-light' }"
+          @click="switchTheme('base16-atelier-savanna-light')"
+        >
+          base16-atelier-savanna-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-savanna' }" @click="switchTheme('base16-atelier-savanna')">
+          base16-atelier-savanna
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-seaside-light' }"
+          @click="switchTheme('base16-atelier-seaside-light')"
+        >
+          base16-atelier-seaside-light
+        </li>
+        <li :class="{ selected: theme == 'base16-atelier-seaside' }" @click="switchTheme('base16-atelier-seaside')">
+          base16-atelier-seaside
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-sulphurpool-light' }"
+          @click="switchTheme('base16-atelier-sulphurpool-light')"
+        >
+          base16-atelier-sulphurpool-light
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-atelier-sulphurpool' }"
+          @click="switchTheme('base16-atelier-sulphurpool')"
+        >
+          base16-atelier-sulphurpool
+        </li>
+        <li :class="{ selected: theme == 'base16-atlas' }" @click="switchTheme('base16-atlas')">base16-atlas</li>
+        <li :class="{ selected: theme == 'base16-bespin' }" @click="switchTheme('base16-bespin')">base16-bespin</li>
+        <li
+          :class="{ selected: theme == 'base16-black-metal-bathory' }"
+          @click="switchTheme('base16-black-metal-bathory')"
+        >
+          base16-black-metal-bathory
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-burzum' }" @click="switchTheme('base16-black-metal-burzum')">
+          base16-black-metal-burzum
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-black-metal-dark-funeral' }"
+          @click="switchTheme('base16-black-metal-dark-funeral')"
+        >
+          base16-black-metal-dark-funeral
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-black-metal-gorgoroth' }"
+          @click="switchTheme('base16-black-metal-gorgoroth')"
+        >
+          base16-black-metal-gorgoroth
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-black-metal-immortal' }"
+          @click="switchTheme('base16-black-metal-immortal')"
+        >
+          base16-black-metal-immortal
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-khold' }" @click="switchTheme('base16-black-metal-khold')">
+          base16-black-metal-khold
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-marduk' }" @click="switchTheme('base16-black-metal-marduk')">
+          base16-black-metal-marduk
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-mayhem' }" @click="switchTheme('base16-black-metal-mayhem')">
+          base16-black-metal-mayhem
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-nile' }" @click="switchTheme('base16-black-metal-nile')">
+          base16-black-metal-nile
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal-venom' }" @click="switchTheme('base16-black-metal-venom')">
+          base16-black-metal-venom
+        </li>
+        <li :class="{ selected: theme == 'base16-black-metal' }" @click="switchTheme('base16-black-metal')">
+          base16-black-metal
+        </li>
+        <li :class="{ selected: theme == 'base16-brewer' }" @click="switchTheme('base16-brewer')">base16-brewer</li>
+        <li :class="{ selected: theme == 'base16-bright' }" @click="switchTheme('base16-bright')">base16-bright</li>
+        <li :class="{ selected: theme == 'base16-brogrammer' }" @click="switchTheme('base16-brogrammer')">
+          base16-brogrammer
+        </li>
+        <li :class="{ selected: theme == 'base16-brush-trees-dark' }" @click="switchTheme('base16-brush-trees-dark')">
+          base16-brush-trees-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-brush-trees' }" @click="switchTheme('base16-brush-trees')">
+          base16-brush-trees
+        </li>
+        <li :class="{ selected: theme == 'base16-chalk' }" @click="switchTheme('base16-chalk')">base16-chalk</li>
+        <li :class="{ selected: theme == 'base16-circus' }" @click="switchTheme('base16-circus')">base16-circus</li>
+        <li :class="{ selected: theme == 'base16-classic-dark' }" @click="switchTheme('base16-classic-dark')">
+          base16-classic-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-classic-light' }" @click="switchTheme('base16-classic-light')">
+          base16-classic-light
+        </li>
+        <li :class="{ selected: theme == 'base16-codeschool' }" @click="switchTheme('base16-codeschool')">
+          base16-codeschool
+        </li>
+        <li :class="{ selected: theme == 'base16-colors' }" @click="switchTheme('base16-colors')">base16-colors</li>
+        <li :class="{ selected: theme == 'base16-cupcake' }" @click="switchTheme('base16-cupcake')">base16-cupcake</li>
+        <li :class="{ selected: theme == 'base16-cupertino' }" @click="switchTheme('base16-cupertino')">
+          base16-cupertino
+        </li>
+        <li :class="{ selected: theme == 'base16-danqing' }" @click="switchTheme('base16-danqing')">base16-danqing</li>
+        <li :class="{ selected: theme == 'base16-darcula' }" @click="switchTheme('base16-darcula')">base16-darcula</li>
+        <li :class="{ selected: theme == 'base16-dark-violet' }" @click="switchTheme('base16-dark-violet')">
+          base16-dark-violet
+        </li>
+        <li :class="{ selected: theme == 'base16-darkmoss' }" @click="switchTheme('base16-darkmoss')">base16-darkmoss</li>
+        <li :class="{ selected: theme == 'base16-darktooth' }" @click="switchTheme('base16-darktooth')">
+          base16-darktooth
+        </li>
+        <li :class="{ selected: theme == 'base16-decaf' }" @click="switchTheme('base16-decaf')">base16-decaf</li>
+        <li :class="{ selected: theme == 'base16-default-dark' }" @click="switchTheme('base16-default-dark')">
+          base16-default-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-default-light' }" @click="switchTheme('base16-default-light')">
+          base16-default-light
+        </li>
+        <li :class="{ selected: theme == 'base16-dirtysea' }" @click="switchTheme('base16-dirtysea')">base16-dirtysea</li>
+        <li :class="{ selected: theme == 'base16-dracula' }" @click="switchTheme('base16-dracula')">base16-dracula</li>
+        <li :class="{ selected: theme == 'base16-edge-dark' }" @click="switchTheme('base16-edge-dark')">
+          base16-edge-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-edge-light' }" @click="switchTheme('base16-edge-light')">
+          base16-edge-light
+        </li>
+        <li :class="{ selected: theme == 'base16-eighties' }" @click="switchTheme('base16-eighties')">base16-eighties</li>
+        <li :class="{ selected: theme == 'base16-embers' }" @click="switchTheme('base16-embers')">base16-embers</li>
+        <li :class="{ selected: theme == 'base16-equilibrium-dark' }" @click="switchTheme('base16-equilibrium-dark')">
+          base16-equilibrium-dark
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-equilibrium-gray-dark' }"
+          @click="switchTheme('base16-equilibrium-gray-dark')"
+        >
+          base16-equilibrium-gray-dark
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-equilibrium-gray-light' }"
+          @click="switchTheme('base16-equilibrium-gray-light')"
+        >
+          base16-equilibrium-gray-light
+        </li>
+        <li :class="{ selected: theme == 'base16-equilibrium-light' }" @click="switchTheme('base16-equilibrium-light')">
+          base16-equilibrium-light
+        </li>
+        <li :class="{ selected: theme == 'base16-espresso' }" @click="switchTheme('base16-espresso')">base16-espresso</li>
+        <li :class="{ selected: theme == 'base16-eva-dim' }" @click="switchTheme('base16-eva-dim')">base16-eva-dim</li>
+        <li :class="{ selected: theme == 'base16-eva' }" @click="switchTheme('base16-eva')">base16-eva</li>
+        <li :class="{ selected: theme == 'base16-flat' }" @click="switchTheme('base16-flat')">base16-flat</li>
+        <li :class="{ selected: theme == 'base16-framer' }" @click="switchTheme('base16-framer')">base16-framer</li>
+        <li :class="{ selected: theme == 'base16-fruit-soda' }" @click="switchTheme('base16-fruit-soda')">
+          base16-fruit-soda
+        </li>
+        <li :class="{ selected: theme == 'base16-gigavolt' }" @click="switchTheme('base16-gigavolt')">base16-gigavolt</li>
+        <li :class="{ selected: theme == 'base16-github' }" @click="switchTheme('base16-github')">base16-github</li>
+        <li :class="{ selected: theme == 'base16-google-dark' }" @click="switchTheme('base16-google-dark')">
+          base16-google-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-google-light' }" @click="switchTheme('base16-google-light')">
+          base16-google-light
+        </li>
+        <li :class="{ selected: theme == 'base16-grayscale-dark' }" @click="switchTheme('base16-grayscale-dark')">
+          base16-grayscale-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-grayscale-light' }" @click="switchTheme('base16-grayscale-light')">
+          base16-grayscale-light
+        </li>
+        <li :class="{ selected: theme == 'base16-green-screen' }" @click="switchTheme('base16-green-screen')">
+          base16-green-screen
+        </li>
+        <li :class="{ selected: theme == 'base16-gruvbox-dark-hard' }" @click="switchTheme('base16-gruvbox-dark-hard')">
+          base16-gruvbox-dark-hard
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-gruvbox-dark-medium' }"
+          @click="switchTheme('base16-gruvbox-dark-medium')"
+        >
+          base16-gruvbox-dark-medium
+        </li>
+        <li :class="{ selected: theme == 'base16-gruvbox-dark-pale' }" @click="switchTheme('base16-gruvbox-dark-pale')">
+          base16-gruvbox-dark-pale
+        </li>
+        <li :class="{ selected: theme == 'base16-gruvbox-dark-soft' }" @click="switchTheme('base16-gruvbox-dark-soft')">
+          base16-gruvbox-dark-soft
+        </li>
+        <li :class="{ selected: theme == 'base16-gruvbox-light-hard' }" @click="switchTheme('base16-gruvbox-light-hard')">
+          base16-gruvbox-light-hard
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-gruvbox-light-medium' }"
+          @click="switchTheme('base16-gruvbox-light-medium')"
+        >
+          base16-gruvbox-light-medium
+        </li>
+        <li :class="{ selected: theme == 'base16-gruvbox-light-soft' }" @click="switchTheme('base16-gruvbox-light-soft')">
+          base16-gruvbox-light-soft
+        </li>
+        <li :class="{ selected: theme == 'base16-hardcore' }" @click="switchTheme('base16-hardcore')">base16-hardcore</li>
+        <li :class="{ selected: theme == 'base16-harmonic16-dark' }" @click="switchTheme('base16-harmonic16-dark')">
+          base16-harmonic16-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-harmonic16-light' }" @click="switchTheme('base16-harmonic16-light')">
+          base16-harmonic16-light
+        </li>
+        <li :class="{ selected: theme == 'base16-heetch-dark' }" @click="switchTheme('base16-heetch-dark')">
+          base16-heetch-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-heetch-light' }" @click="switchTheme('base16-heetch-light')">
+          base16-heetch-light
+        </li>
+        <li :class="{ selected: theme == 'base16-helios' }" @click="switchTheme('base16-helios')">base16-helios</li>
+        <li :class="{ selected: theme == 'base16-hopscotch' }" @click="switchTheme('base16-hopscotch')">
+          base16-hopscotch
+        </li>
+        <li :class="{ selected: theme == 'base16-horizon-dark' }" @click="switchTheme('base16-horizon-dark')">
+          base16-horizon-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-horizon-light' }" @click="switchTheme('base16-horizon-light')">
+          base16-horizon-light
+        </li>
+        <li :class="{ selected: theme == 'base16-humanoid-dark' }" @click="switchTheme('base16-humanoid-dark')">
+          base16-humanoid-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-humanoid-light' }" @click="switchTheme('base16-humanoid-light')">
+          base16-humanoid-light
+        </li>
+        <li :class="{ selected: theme == 'base16-ia-dark' }" @click="switchTheme('base16-ia-dark')">base16-ia-dark</li>
+        <li :class="{ selected: theme == 'base16-ia-light' }" @click="switchTheme('base16-ia-light')">base16-ia-light</li>
+        <li :class="{ selected: theme == 'base16-icy-dark' }" @click="switchTheme('base16-icy-dark')">base16-icy-dark</li>
+        <li :class="{ selected: theme == 'base16-ir-black' }" @click="switchTheme('base16-ir-black')">base16-ir-black</li>
+        <li :class="{ selected: theme == 'base16-isotope' }" @click="switchTheme('base16-isotope')">base16-isotope</li>
+        <li :class="{ selected: theme == 'base16-kimber' }" @click="switchTheme('base16-kimber')">base16-kimber</li>
+        <li :class="{ selected: theme == 'base16-london-tube' }" @click="switchTheme('base16-london-tube')">
+          base16-london-tube
+        </li>
+        <li :class="{ selected: theme == 'base16-macintosh' }" @click="switchTheme('base16-macintosh')">
+          base16-macintosh
+        </li>
+        <li :class="{ selected: theme == 'base16-marrakesh' }" @click="switchTheme('base16-marrakesh')">
+          base16-marrakesh
+        </li>
+        <li :class="{ selected: theme == 'base16-materia' }" @click="switchTheme('base16-materia')">base16-materia</li>
+        <li :class="{ selected: theme == 'base16-material-darker' }" @click="switchTheme('base16-material-darker')">
+          base16-material-darker
+        </li>
+        <li :class="{ selected: theme == 'base16-material-lighter' }" @click="switchTheme('base16-material-lighter')">
+          base16-material-lighter
+        </li>
+        <li :class="{ selected: theme == 'base16-material-palenight' }" @click="switchTheme('base16-material-palenight')">
+          base16-material-palenight
+        </li>
+        <li :class="{ selected: theme == 'base16-material-vivid' }" @click="switchTheme('base16-material-vivid')">
+          base16-material-vivid
+        </li>
+        <li :class="{ selected: theme == 'base16-material' }" @click="switchTheme('base16-material')">base16-material</li>
+        <li :class="{ selected: theme == 'base16-mellow-purple' }" @click="switchTheme('base16-mellow-purple')">
+          base16-mellow-purple
+        </li>
+        <li :class="{ selected: theme == 'base16-mexico-light' }" @click="switchTheme('base16-mexico-light')">
+          base16-mexico-light
+        </li>
+        <li :class="{ selected: theme == 'base16-mocha' }" @click="switchTheme('base16-mocha')">base16-mocha</li>
+        <li :class="{ selected: theme == 'base16-monokai' }" @click="switchTheme('base16-monokai')">base16-monokai</li>
+        <li :class="{ selected: theme == 'base16-nebula' }" @click="switchTheme('base16-nebula')">base16-nebula</li>
+        <li :class="{ selected: theme == 'base16-nord' }" @click="switchTheme('base16-nord')">base16-nord</li>
+        <li :class="{ selected: theme == 'base16-nova' }" @click="switchTheme('base16-nova')">base16-nova</li>
+        <li :class="{ selected: theme == 'base16-ocean' }" @click="switchTheme('base16-ocean')">base16-ocean</li>
+        <li :class="{ selected: theme == 'base16-oceanicnext' }" @click="switchTheme('base16-oceanicnext')">
+          base16-oceanicnext
+        </li>
+        <li :class="{ selected: theme == 'base16-one-light' }" @click="switchTheme('base16-one-light')">
+          base16-one-light
+        </li>
+        <li :class="{ selected: theme == 'base16-onedark' }" @click="switchTheme('base16-onedark')">base16-onedark</li>
+        <li :class="{ selected: theme == 'base16-outrun-dark' }" @click="switchTheme('base16-outrun-dark')">
+          base16-outrun-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-papercolor-dark' }" @click="switchTheme('base16-papercolor-dark')">
+          base16-papercolor-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-papercolor-light' }" @click="switchTheme('base16-papercolor-light')">
+          base16-papercolor-light
+        </li>
+        <li :class="{ selected: theme == 'base16-paraiso' }" @click="switchTheme('base16-paraiso')">base16-paraiso</li>
+        <li :class="{ selected: theme == 'base16-pasque' }" @click="switchTheme('base16-pasque')">base16-pasque</li>
+        <li :class="{ selected: theme == 'base16-phd' }" @click="switchTheme('base16-phd')">base16-phd</li>
+        <li :class="{ selected: theme == 'base16-pico' }" @click="switchTheme('base16-pico')">base16-pico</li>
+        <li :class="{ selected: theme == 'base16-pop' }" @click="switchTheme('base16-pop')">base16-pop</li>
+        <li :class="{ selected: theme == 'base16-porple' }" @click="switchTheme('base16-porple')">base16-porple</li>
+        <li :class="{ selected: theme == 'base16-qualia' }" @click="switchTheme('base16-qualia')">base16-qualia</li>
+        <li :class="{ selected: theme == 'base16-railscasts' }" @click="switchTheme('base16-railscasts')">
+          base16-railscasts
+        </li>
+        <li :class="{ selected: theme == 'base16-rebecca' }" @click="switchTheme('base16-rebecca')">base16-rebecca</li>
+        <li :class="{ selected: theme == 'base16-ros-pine-dawn' }" @click="switchTheme('base16-ros-pine-dawn')">
+          base16-ros-pine-dawn
+        </li>
+        <li :class="{ selected: theme == 'base16-ros-pine-moon' }" @click="switchTheme('base16-ros-pine-moon')">
+          base16-ros-pine-moon
+        </li>
+        <li :class="{ selected: theme == 'base16-ros-pine' }" @click="switchTheme('base16-ros-pine')">base16-ros-pine</li>
+        <li :class="{ selected: theme == 'base16-sagelight' }" @click="switchTheme('base16-sagelight')">
+          base16-sagelight
+        </li>
+        <li :class="{ selected: theme == 'base16-sandcastle' }" @click="switchTheme('base16-sandcastle')">
+          base16-sandcastle
+        </li>
+        <li :class="{ selected: theme == 'base16-seti-ui' }" @click="switchTheme('base16-seti-ui')">base16-seti-ui</li>
+        <li :class="{ selected: theme == 'base16-shapeshifter' }" @click="switchTheme('base16-shapeshifter')">
+          base16-shapeshifter
+        </li>
+        <li :class="{ selected: theme == 'base16-silk-dark' }" @click="switchTheme('base16-silk-dark')">
+          base16-silk-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-silk-light' }" @click="switchTheme('base16-silk-light')">
+          base16-silk-light
+        </li>
+        <li :class="{ selected: theme == 'base16-snazzy' }" @click="switchTheme('base16-snazzy')">base16-snazzy</li>
+        <li :class="{ selected: theme == 'base16-solar-flare-light' }" @click="switchTheme('base16-solar-flare-light')">
+          base16-solar-flare-light
+        </li>
+        <li :class="{ selected: theme == 'base16-solar-flare' }" @click="switchTheme('base16-solar-flare')">
+          base16-solar-flare
+        </li>
+        <li :class="{ selected: theme == 'base16-solarized-dark' }" @click="switchTheme('base16-solarized-dark')">
+          base16-solarized-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-solarized-light' }" @click="switchTheme('base16-solarized-light')">
+          base16-solarized-light
+        </li>
+        <li :class="{ selected: theme == 'base16-spacemacs' }" @click="switchTheme('base16-spacemacs')">
+          base16-spacemacs
+        </li>
+        <li :class="{ selected: theme == 'base16-summercamp' }" @click="switchTheme('base16-summercamp')">
+          base16-summercamp
+        </li>
+        <li :class="{ selected: theme == 'base16-summerfruit-dark' }" @click="switchTheme('base16-summerfruit-dark')">
+          base16-summerfruit-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-summerfruit-light' }" @click="switchTheme('base16-summerfruit-light')">
+          base16-summerfruit-light
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-synth-midnight-terminal-dark' }"
+          @click="switchTheme('base16-synth-midnight-terminal-dark')"
+        >
+          base16-synth-midnight-terminal-dark
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-synth-midnight-terminal-light' }"
+          @click="switchTheme('base16-synth-midnight-terminal-light')"
+        >
+          base16-synth-midnight-terminal-light
+        </li>
+        <li :class="{ selected: theme == 'base16-tango' }" @click="switchTheme('base16-tango')">base16-tango</li>
+        <li :class="{ selected: theme == 'base16-tender' }" @click="switchTheme('base16-tender')">base16-tender</li>
+        <li :class="{ selected: theme == 'base16-tomorrow-night' }" @click="switchTheme('base16-tomorrow-night')">
+          base16-tomorrow-night
+        </li>
+        <li :class="{ selected: theme == 'base16-tomorrow' }" @click="switchTheme('base16-tomorrow')">base16-tomorrow</li>
+        <li :class="{ selected: theme == 'base16-twilight' }" @click="switchTheme('base16-twilight')">base16-twilight</li>
+        <li :class="{ selected: theme == 'base16-unikitty-dark' }" @click="switchTheme('base16-unikitty-dark')">
+          base16-unikitty-dark
+        </li>
+        <li :class="{ selected: theme == 'base16-unikitty-light' }" @click="switchTheme('base16-unikitty-light')">
+          base16-unikitty-light
+        </li>
+        <li :class="{ selected: theme == 'base16-vulcan' }" @click="switchTheme('base16-vulcan')">base16-vulcan</li>
+        <li :class="{ selected: theme == 'base16-windows-10-light' }" @click="switchTheme('base16-windows-10-light')">
+          base16-windows-10-light
+        </li>
+        <li :class="{ selected: theme == 'base16-windows-10' }" @click="switchTheme('base16-windows-10')">
+          base16-windows-10
+        </li>
+        <li :class="{ selected: theme == 'base16-windows-95-light' }" @click="switchTheme('base16-windows-95-light')">
+          base16-windows-95-light
+        </li>
+        <li :class="{ selected: theme == 'base16-windows-95' }" @click="switchTheme('base16-windows-95')">
+          base16-windows-95
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-windows-high-contrast-light' }"
+          @click="switchTheme('base16-windows-high-contrast-light')"
+        >
+          base16-windows-high-contrast-light
+        </li>
+        <li
+          :class="{ selected: theme == 'base16-windows-high-contrast' }"
+          @click="switchTheme('base16-windows-high-contrast')"
+        >
+          base16-windows-high-contrast
+        </li>
+        <li :class="{ selected: theme == 'base16-windows-nt-light' }" @click="switchTheme('base16-windows-nt-light')">
+          base16-windows-nt-light
+        </li>
+        <li :class="{ selected: theme == 'base16-windows-nt' }" @click="switchTheme('base16-windows-nt')">
+          base16-windows-nt
+        </li>
+        <li :class="{ selected: theme == 'base16-woodland' }" @click="switchTheme('base16-woodland')">base16-woodland</li>
+        <li :class="{ selected: theme == 'base16-xcode-dusk' }" @click="switchTheme('base16-xcode-dusk')">
+          base16-xcode-dusk
+        </li>
+        <li :class="{ selected: theme == 'base16-zenburn' }" @click="switchTheme('base16-zenburn')">base16-zenburn</li>
+      </ul>
+    </div>
   </div>
+  </transition>
   <!-- demo -->
   <div class="demo">
     <h1 class="title">Simple CodeEditor for Vue.js</h1>
