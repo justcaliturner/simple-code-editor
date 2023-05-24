@@ -70,12 +70,12 @@ export default {
 </script>
 
 <style>
-.fade-enter-active,
-.fade-leave-active {
+.code-editor .dropdown .list.fade-enter-active,
+.code-editor .dropdown .list.fade-leave-active {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.fade-enter-from,
-.fade-leave-to {
+.code-editor .dropdown .list.fade-enter-from,
+.code-editor .dropdown .list.fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
 }
