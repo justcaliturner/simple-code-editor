@@ -405,7 +405,6 @@ export default {
   overflow-y: hidden;
   box-sizing: border-box;
   caret-color: rgb(127, 127, 127);
-  -webkit-text-fill-color: transparent;
   color: transparent;
   white-space: pre;
   word-wrap: normal;
