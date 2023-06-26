@@ -108,6 +108,7 @@ const CodeEditor = {
     CopyCode: CopyCode,
     Dropdown: Dropdown,
   },
+  emits: ["update:modelValue", "lang", "content", "textarea"],
   props: {
     lineNums: {
       type: Boolean,
