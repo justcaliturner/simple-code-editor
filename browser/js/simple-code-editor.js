@@ -365,7 +365,7 @@ const CodeEditor = {
       minHeight: minHeight,
     }"
   >
-    <div class="hljs" :style="{ borderRadius: borderRadius }">
+    <div class="hljs" :style="{ borderRadius: borderRadius, overflowY: 'auto' }">
       <div
         class="header"
         :class="{ border: showLineNums }"
