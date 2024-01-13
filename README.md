@@ -118,6 +118,28 @@ Description: [["language name", "display name"], ["language name", "display name
 <CodeEditor :languages="[['cpp', 'C++']]" />
 ```
 
+### defaultLanguage `Array`
+
+Default: `[]`
+
+Description: ["language name", "display name"]. the language name is necessary, and the display name is optional
+
+```html
+<CodeEditor
+  :default-language=['markdown','Markdown']
+  :languages="[
+    ["c", "C"],
+    ["cpp", "C++"],
+    ["java", "Java"],
+    ["javascript", "JavaScript"],
+    ["typescript", "TypeScript"],
+    ["markdown", "Markdown"],
+    ["python", "Python"],
+    ["php", "PHP"]
+  ]"
+/>
+```
+
 Multiple languages:
 
 ```html

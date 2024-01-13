@@ -173,6 +173,10 @@ export default {
       type: String,
       default: "12px",
     },
+    defaultLanguage: {
+      type: Array,
+      default: [],
+    },
     languages: {
       type: Array,
       default: function () {
@@ -234,8 +238,10 @@ export default {
       scrollBarHeight: 0,
       top: 0,
       left: 0,
-      languageClass: "hljs language-" + this.languages[0][0],
-      languageTitle: this.languages[0][1] ? this.languages[0][1] : this.languages[0][0],
+      languageClass: "hljs language-" + (this.defaultLanguage[0] || this.languages[0][0]),
+      languageTitle: this.defaultLanguage.length > 0 ?
+        (this.defaultLanguage[1] ? this.defaultLanguage[1] : this.defaultLanguage[0]) :
+        (this.languages[0][1] ? this.languages[0][1] : this.languages[0][0]),
       content: this.value,
       cursorPosition: 0,
       insertTab: false,
