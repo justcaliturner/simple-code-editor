@@ -1411,6 +1411,25 @@ export default {
         :read-only="true"
         width="100%"
       ></CodeEditor>
+
+        <h3>@paste</h3>
+        <p>Description: passes the value inserted by the user</p>
+        <CodeEditor
+            value='<CodeEditor @paste="getValue"></CodeEditor>'
+            :languages="[['html', 'HTML']]"
+            :theme="theme"
+            :read-only="true"
+            width="100%"
+        ></CodeEditor>
+        <CodeEditor
+                value="getValue(pasteValue) {
+  console.log(pasteValue);
+}"
+                :languages="[['javascript', 'JS']]"
+                :theme="theme"
+                :read-only="true"
+                width="100%"
+        ></CodeEditor>
     </div>
   </div>
   <!-- footer -->
