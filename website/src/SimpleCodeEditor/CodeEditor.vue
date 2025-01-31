@@ -46,7 +46,7 @@
       >
         <div
           v-if="showLineNums"
-          ref="lineNums"
+          ref="refLineNums"
           class="line-nums hljs"
           :style="{
             fontSize: fontSize,
@@ -60,6 +60,8 @@
           <div>&nbsp;</div>
         </div>
         <textarea
+          ref="refTextarea"
+          v-model="modelValue"
           title="textarea"
           :readOnly="readOnly"
           :style="{
@@ -68,13 +70,12 @@
             marginLeft: showLineNums ? lineNumsWidth + 'px' : '0',
             width: showLineNums ? 'calc(100% - ' + lineNumsWidth + 'px)' : '100%',
           }"
-          ref="textarea"
           :autofocus="autofocus"
           spellcheck="false"
+          :value="modelValue"
           @keydown.tab.prevent.stop="tab"
           @scroll="calcScrollDistance"
-          :value="modelValue == undefined ? content : modelValue"
-          @input="updateValue"
+          @paste="getPasteValue"
         ></textarea>
         <pre
           :style="{
@@ -85,8 +86,7 @@
           }"
         >
         <code
-          ref="code"
-          v-highlight="contentValue"
+          ref="refCode"
           :class="languageClass"
           :style="{
             top: top + 'px',
@@ -101,257 +101,228 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { computed, onMounted, onUpdated, ref } from 'vue';
 import hljs from "highlight.js";
 import Dropdown from "./Dropdown.vue";
 import CopyCode from "./CopyCode.vue";
 import "./themes/themes-base16.css";
 import "./themes/themes.css";
 
-export default {
-  components: {
-    Dropdown,
-    CopyCode,
+const props = defineProps({
+  lineNums: {
+    type: Boolean,
+    default: false
   },
-  name: "CodeEditor",
-  props: {
-    lineNums: {
-      type: Boolean,
-      default: false,
-    },
-    modelValue: {
-      type: String,
-    },
-    value: {
-      type: String,
-    },
-    theme: {
-      type: String,
-      default: "github-dark",
-    },
-    tabSpaces: {
-      type: Number,
-      default: 2,
-    },
-    wrap: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    autofocus: {
-      type: Boolean,
-      default: false,
-    },
-    header: {
-      type: Boolean,
-      default: true,
-    },
-    width: {
-      type: String,
-      default: "540px",
-    },
-    height: {
-      type: String,
-      default: "auto",
-    },
-    maxWidth: {
-      type: String,
-    },
-    minWidth: {
-      type: String,
-    },
-    maxHeight: {
-      type: String,
-    },
-    minHeight: {
-      type: String,
-    },
-    borderRadius: {
-      type: String,
-      default: "12px",
-    },
-    languages: {
-      type: Array,
-      default: function () {
-        return [["javascript", "JS"]];
-      },
-    },
-    langListWidth: {
-      type: String,
-      default: "110px",
-    },
-    langListHeight: {
-      type: String,
-      default: "auto",
-    },
-    langListDisplay: {
-      type: Boolean,
-      default: false,
-    },
-    displayLanguage: {
-      type: Boolean,
-      default: true,
-    },
-    copyCode: {
-      type: Boolean,
-      default: true,
-    },
-    zIndex: {
-      type: String,
-      default: "0",
-    },
-    fontSize: {
-      type: String,
-      default: "17px",
-    },
-    padding: {
-      type: String,
-      default: "20px",
-    },
+  value: {
+    type: String
   },
-  directives: {
-    highlight: {
-      mounted(el, binding) {
-        el.textContent = binding.value;
-        hljs.highlightElement(el);
-      },
-      updated(el, binding) {
-        if (el.scrolling) {
-          el.scrolling = false;
-        } else {
-          el.textContent = binding.value;
-          hljs.highlightElement(el);
-        }
-      },
-    },
+  theme: {
+    type: String,
+    default: 'github-dark'
   },
-  data() {
-    return {
-      scrollBarWidth: 0,
-      scrollBarHeight: 0,
-      top: 0,
-      left: 0,
-      languageClass: "hljs language-" + this.languages[0][0],
-      languageTitle: this.languages[0][1] ? this.languages[0][1] : this.languages[0][0],
-      content: this.value,
-      cursorPosition: 0,
-      insertTab: false,
-      lineNum: 0,
-      lineNumsWidth: 0,
-      scrolling: false,
-      textareaHeight: 0,
-      showLineNums: this.wrap ? false : this.lineNums,
-    };
+  tabSpaces: {
+    type: Number,
+    default: 2
   },
-  computed: {
-    tabWidth() {
-      let result = "";
-      for (let i = 0; i < this.tabSpaces; i++) {
-        result += " ";
-      }
-      return result;
-    },
-    contentValue() {
-      return this.modelValue == undefined ? this.content + "\n" : this.modelValue + "\n";
-    },
-    scroll() {
-      return this.height == "auto" ? false : true;
-    },
+  wrap: {
+    type: Boolean,
+    default: false
   },
-  methods: {
-    updateValue(e) {
-      if (this.modelValue == undefined) {
-        this.content = e.target.value;
-      } else {
-        this.$emit("update:modelValue", e.target.value);
-      }
-    },
-    changeLang(lang) {
-      this.languageTitle = lang[1] ? lang[1] : lang[0];
-      this.languageClass = "language-" + lang[0];
-      this.$emit("lang", lang[0]);
-    },
-    tab() {
-      if (document.execCommand("insertText")) {
-        document.execCommand("insertText", false, this.tabWidth);
-      } else {
-        const cursorPosition = this.$refs.textarea.selectionStart;
-        this.content =
-          this.content.substring(0, cursorPosition) + this.tabWidth + this.content.substring(cursorPosition);
-        this.cursorPosition = cursorPosition + this.tabWidth.length;
-        this.insertTab = true;
-      }
-    },
-    calcScrollDistance(e) {
-      this.$refs.code.scrolling = true;
-      this.scrolling = true;
-      this.top = -e.target.scrollTop;
-      this.left = -e.target.scrollLeft;
-    },
-    resizer() {
-      // textareaResizer
-      const textareaResizer = new ResizeObserver((entries) => {
-        this.scrollBarWidth = entries[0].target.offsetWidth - entries[0].target.clientWidth;
-        this.scrollBarHeight = entries[0].target.offsetHeight - entries[0].target.clientHeight;
-        this.textareaHeight = entries[0].target.offsetHeight;
-      });
-      textareaResizer.observe(this.$refs.textarea);
-      // lineNumsResizer
-      const lineNumsResizer = new ResizeObserver((entries) => {
-        this.lineNumsWidth = entries[0].target.offsetWidth;
-      });
-      if (this.$refs.lineNums) {
-        lineNumsResizer.observe(this.$refs.lineNums);
-      }
-    },
-    copy() {
-      if (document.execCommand("copy")) {
-        this.$refs.textarea.select();
-        document.execCommand("copy");
-        window.getSelection().removeAllRanges();
-      } else {
-        navigator.clipboard.writeText(this.$refs.textarea.value);
-      }
-    },
-    getLineNum() {
-      // lineNum
-      const str = this.$refs.textarea.value;
-      let lineNum = 0;
-      let position = str.indexOf("\n");
-      while (position !== -1) {
-        lineNum++;
-        position = str.indexOf("\n", position + 1);
-      }
-      // heightNum
-      const singleLineHeight = this.$refs.lineNums.firstChild.offsetHeight;
-      const heightNum = parseInt(this.textareaHeight / singleLineHeight) - 1;
-      // displayed lineNum
-      this.lineNum = this.height == "auto" ? lineNum : lineNum > heightNum ? lineNum : heightNum;
-    },
+  readOnly: {
+    type: Boolean,
+    default: false
   },
-  mounted() {
-    this.$emit("lang", this.languages[0][0]);
-    this.$emit("content", this.content);
-    this.$emit("textarea", this.$refs.textarea);
-    this.resizer();
+  autofocus: {
+    type: Boolean,
+    default: false
   },
-  updated() {
-    if (this.insertTab) {
-      this.$refs.textarea.setSelectionRange(this.cursorPosition, this.cursorPosition);
-      this.insertTab = false;
-    }
-    if (this.lineNums) {
-      if (this.scrolling) {
-        this.scrolling = false;
-      } else {
-        this.getLineNum();
-      }
-    }
+  header: {
+    type: Boolean,
+    default: true
   },
+  width: {
+    type: String,
+    default: '540px'
+  },
+  height: {
+    type: String,
+    default: 'auto'
+  },
+  maxWidth: {
+    type: String
+  },
+  minWidth: {
+    type: String
+  },
+  maxHeight: {
+    type: String
+  },
+  minHeight: {
+    type: String
+  },
+  borderRadius: {
+    type: String,
+    default: '12px'
+  },
+  languages: {
+    type: Array,
+    default: () => [['javascript', 'JS']]
+  },
+  langListWidth: {
+    type: String,
+    default: '110px'
+  },
+  langListHeight: {
+    type: String,
+    default: 'auto'
+  },
+  langListDisplay: {
+    type: Boolean,
+    default: false
+  },
+  displayLanguage: {
+    type: Boolean,
+    default: true
+  },
+  copyCode: {
+    type: Boolean,
+    default: true
+  },
+  zIndex: {
+    type: String,
+    default: '0'
+  },
+  fontSize: {
+    type: String,
+    default: '17px'
+  },
+  padding: {
+    type: String,
+    default: '20px'
+  }
+});
+const emits = defineEmits(['paste', 'focus']);
+
+const modelValue = defineModel();
+
+const refTextarea = ref(null);
+const refLineNums = ref(null);
+const refCode = ref(null);
+
+const message = ref('Copy code');
+const scrollBarWidth = ref(0);
+const scrollBarHeight = ref(0);
+const top = ref(0);
+const left = ref(0);
+const languageClass = ref(`hljs language-${props.languages[0][0]}`);
+const languageTitle = props.languages[0][1] ? props.languages[0][1] : props.languages[0][0];
+const content = ref(props.value);
+const cursorPosition = ref(0);
+const insertTab = ref(false);
+const lineNum = ref(0);
+const lineNumsWidth = ref(0);
+const scrolling = ref(false);
+const textareaHeight = ref(0);
+const showLineNums = ref(props.wrap ? false : props.lineNums);
+
+const tabWidth = computed(() => {
+  let result = '';
+  for (let i = 0; i < props.tabSpaces; i++) {
+    result += ' ';
+  }
+  return result;
+});
+const scroll = computed(() => {
+  return props.height !== 'auto';
+});
+
+function tab() {
+  if (document.execCommand('insertText')) {
+    document.execCommand('insertText', false, tabWidth.value);
+  } else {
+    const cursorPos = refTextarea.value.selectionStart;
+    content.value =
+      content.value.substring(0, cursorPos) + tabWidth.value + content.value.substring(cursorPos);
+    cursorPosition.value = cursorPos + tabWidth.value.length;
+    insertTab.value = true;
+  }
 };
+function calcScrollDistance(e) {
+  refCode.value.scrolling = true;
+  scrolling.value = true;
+  top.value = -e.target.scrollTop;
+  left.value = -e.target.scrollLeft;
+};
+function resizer() {
+  // textareaResizer
+  const textareaResizer = new ResizeObserver((entries) => {
+    scrollBarWidth.value = entries[0].target.offsetWidth - entries[0].target.clientWidth;
+    scrollBarHeight.value = entries[0].target.offsetHeight - entries[0].target.clientHeight;
+    textareaHeight.value = entries[0].target.offsetHeight;
+  });
+  textareaResizer.observe(refTextarea.value);
+  // lineNumsResizer
+  const lineNumsResizer = new ResizeObserver((entries) => {
+    lineNumsWidth.value = entries[0].target.offsetWidth;
+  });
+  if (refLineNums.value) {
+    lineNumsResizer.observe(refLineNums.value);
+  }
+};
+function copy() {
+  if (document.execCommand('copy')) {
+    refTextarea.value.select();
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    message.value = 'Copied!';
+  } else {
+    navigator.clipboard.writeText(refTextarea.value.value);
+  }
+};
+function getLineNum() {
+  // lineNum
+  const str = refTextarea.value.value;
+  let numLine = 0;
+  let position = str.indexOf('\n');
+  while (position !== -1) {
+    numLine++;
+    position = str.indexOf('\n', position + 1);
+  }
+  // heightNum
+  const singleLineHeight = refLineNums.value.firstChild.offsetHeight;
+  const heightNum = parseInt(textareaHeight.value / singleLineHeight) - 1;
+  // displayed lineNum
+  lineNum.value = props.height === 'auto' ? numLine : numLine > heightNum ? numLine : heightNum;
+};
+function getPasteValue(event) {
+  const pasteValue = event.clipboardData.getData('text');
+  emits('paste', pasteValue);
+}
+function updateHljs(){
+  const code = hljs.highlightAuto(modelValue.value);
+  refCode.value.innerHTML = code.value;
+}
+
+onMounted(() => {
+  modelValue.value = modelValue.value === undefined ? props.value : modelValue.value;
+  resizer();
+  updateHljs();
+});
+onUpdated(() => {
+  if (insertTab.value) {
+    refTextarea.value.setSelectionRange(cursorPosition.value, cursorPosition.value);
+    insertTab.value = false;
+  }
+  if (props.lineNums) {
+    if (scrolling.value) {
+      scrolling.value = false;
+    } else {
+      getLineNum();
+    }
+  }
+  updateHljs();
+});
 </script>
 
 <style>

@@ -347,3 +347,17 @@ focus(node) {
   node.focus();
 }
 ```
+
+### @paste
+
+Description: passes the value inserted by the user
+
+```html
+<CodeEditor @paste="getValue"></CodeEditor>
+```
+
+```javascript
+getValue(pasteValue){
+    console.log(pasteValue);
+}
+```
