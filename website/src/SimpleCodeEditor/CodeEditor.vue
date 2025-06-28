@@ -217,6 +217,7 @@ export default {
       mounted(el, binding) {
         el.textContent = binding.value;
         hljs.highlightElement(el);
+        delete el.dataset.highlighted;
       },
       updated(el, binding) {
         if (el.scrolling) {
@@ -224,6 +225,7 @@ export default {
         } else {
           el.textContent = binding.value;
           hljs.highlightElement(el);
+          delete el.dataset.highlighted;
         }
       },
     },

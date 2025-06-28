@@ -1,6 +1,6 @@
 {
   "name": "simple-code-editor",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "description": "Simple code editor for Vue.js",
   "main": "CodeEditor.vue",
   "scripts": {
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/justcaliturner/simple-code-editor/issues"
   },
-  "homepage": "https://simple-code-editor.vicuxd.com",
+  "homepage": "https://simple-code-editor.vicless.com",
   "dependencies": {
     "highlight.js": "^11.8.0"
   }

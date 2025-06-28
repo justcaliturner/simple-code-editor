@@ -211,6 +211,7 @@ const CodeEditor = {
       mounted(el, binding) {
         el.textContent = binding.value;
         hljs.highlightElement(el);
+        delete el.dataset.highlighted;
       },
       updated(el, binding) {
         if (el.scrolling) {
@@ -218,6 +219,7 @@ const CodeEditor = {
         } else {
           el.textContent = binding.value;
           hljs.highlightElement(el);
+          delete el.dataset.highlighted;
         }
       },
     },

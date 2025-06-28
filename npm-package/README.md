@@ -2,7 +2,7 @@
 
 Support for **Vue.js 3**
 
-website: [simple-code-editor.vicuxd.com](https://simple-code-editor.vicuxd.com)
+website: [simple-code-editor.vicless.com](https://simple-code-editor.vicless.com)
 
 It's easy to use, both support read-only and edit mode with 200+ themes, you can directly use it in the browser or import it via the NPM package.
 
@@ -176,7 +176,7 @@ Description: enable copy icon to show or not
 
 Default: `github-dark`
 
-Description: freely switching between 200+ themes, [check all the themes](https://simple-code-editor.vicuxd.com)
+Description: freely switching between 200+ themes, [check all the themes](https://simple-code-editor.vicless.com)
 
 ```html
 <CodeEditor theme="github-dark"></CodeEditor>
