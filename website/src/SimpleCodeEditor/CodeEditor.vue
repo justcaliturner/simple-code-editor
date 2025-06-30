@@ -216,6 +216,7 @@ export default {
     highlight: {
       mounted(el, binding) {
         el.textContent = binding.value;
+        el.removeAttribute('data-highlighted');
         hljs.highlightElement(el);
         delete el.dataset.highlighted;
       },
@@ -224,6 +225,7 @@ export default {
           el.scrolling = false;
         } else {
           el.textContent = binding.value;
+          el.removeAttribute('data-highlighted');
           hljs.highlightElement(el);
           delete el.dataset.highlighted;
         }
