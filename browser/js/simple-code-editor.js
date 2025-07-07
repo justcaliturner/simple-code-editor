@@ -108,6 +108,7 @@ const CodeEditor = {
     CopyCode: CopyCode,
     Dropdown: Dropdown,
   },
+  emits: ["update:modelValue", "lang", "content", "textarea"],
   props: {
     lineNums: {
       type: Boolean,
@@ -367,7 +368,7 @@ const CodeEditor = {
       minHeight: minHeight,
     }"
   >
-    <div class="hljs" :style="{ borderRadius: borderRadius }">
+    <div class="hljs" :style="{ borderRadius: borderRadius, overflowY: 'auto' }">
       <div
         class="header"
         :class="{ border: showLineNums }"
